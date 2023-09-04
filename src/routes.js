@@ -42,11 +42,22 @@ import RTL from "layouts/rtl";
 import Profile from "layouts/profile";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
+import NewCompanies from "layouts/admin/new-companies";
 
 // Argon Dashboard 2 MUI components
 import ArgonBox from "components/ArgonBox";
 
 const routes = [
+  {
+    type: "route",
+    name: "New Companies",
+    key: "new-companies",
+    route: "/new-companies",
+    icon: <ArgonBox component="i" color="success" fontSize="14px" className="ni ni-credit-card" />,
+    component: <NewCompanies />,
+  },
+
+
   {
     type: "route",
     name: "Dashboard",
