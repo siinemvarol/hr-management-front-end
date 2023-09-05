@@ -23,7 +23,7 @@ import ArgonBox from "components/ArgonBox";
 import DefaultInfoCard from "examples/Cards/InfoCards/DefaultInfoCard";
 
 // Billing page components
-import BaseLayout from "layouts/billing/components/BaseLayout";
+import BaseLayout from "layouts/admin/components/BaseLayout";
 import NewCompaniesApproval from "layouts/admin/components/NewCompaniesApproval";
 
 function NewCompanies() {
@@ -55,7 +55,7 @@ function NewCompanies() {
             </Grid>
           </Grid>
         </ArgonBox>
-        {/* below is code for new companies */}
+        {/* below is code for new company requests */}
         <ArgonBox mb={3}>
           <Grid container spacing={3}>
             <Grid item xs={12} md={7}>

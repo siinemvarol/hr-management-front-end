@@ -25,14 +25,14 @@ import NewCompany from "layouts/admin/components/NewCompany";
 
 function NewCompaniesApproval() {
   return (
-    <Card id="delete-account" >
+    <Card id="delete-account" sx={{ width: 1}}>
       <ArgonBox pt={3} px={2}>
         <ArgonTypography variant="h6" fontWeight="medium">
           New Company Requests
         </ArgonTypography>
       </ArgonBox>
       <ArgonBox pt={1} pb={2} px={2}>
-        <ArgonBox component="ul" display="flex" flexDirection="column" p={0} m={0} >
+        <ArgonBox component="ul" display="flex" flexDirection="column" p={0} m={0}>
           <NewCompany
             name="Company 1"
             company="viking burrito"

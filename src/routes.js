@@ -53,11 +53,9 @@ const routes = [
     name: "New Companies",
     key: "new-companies",
     route: "/new-companies",
-    icon: <ArgonBox component="i" color="success" fontSize="14px" className="ni ni-credit-card" />,
+    icon: <ArgonBox component="i" color="success" fontSize="14px" className="ni ni-single-copy-04" />,
     component: <NewCompanies />,
   },
-
-
   {
     type: "route",
     name: "Dashboard",
