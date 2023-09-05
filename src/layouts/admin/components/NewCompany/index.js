@@ -64,12 +64,12 @@ function NewCompany({ name, company, email, vat, noGutter }) {
             ml={{ xs: -1.5, sm: 0 }}
           >
             <ArgonBox mr={1}>
-              <ArgonButton variant="text" color="error">
-                <Icon>delete</Icon>&nbsp;Delete
+              <ArgonButton variant="text" color="success">
+                <Icon>done</Icon>&nbsp;Accept
               </ArgonButton>
             </ArgonBox>
-            <ArgonButton variant="text" color="dark">
-              <Icon>edit</Icon>&nbsp;Edit
+            <ArgonButton variant="text" color="error">
+              <Icon>clear</Icon>&nbsp;Deny
             </ArgonButton>
           </ArgonBox>
         </ArgonBox>
