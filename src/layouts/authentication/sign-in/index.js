@@ -41,13 +41,12 @@ function Illustration() {
 
   return (
     <IllustrationLayout
-      title="Sign In"
-      description="Enter your email and password to sign in"
+      title="Login"
+      description="Enter your email and password to login"
       illustration={{
         image: bgImage,
-        title: '"Attention is the new currency"',
-        description:
-          "The more effortless the writing looks, the more effort the writer actually put into the process.",
+        title: "BA Boost Java-8 Team-1",
+        description: "This is an application for HR Management.",
       }}
     >
       <ArgonBox component="form" role="form">
@@ -57,20 +56,22 @@ function Illustration() {
         <ArgonBox mb={2}>
           <ArgonInput type="password" placeholder="Password" size="large" />
         </ArgonBox>
-        <ArgonBox display="flex" alignItems="center">
-          <Switch checked={rememberMe} onChange={handleSetRememberMe} />
+        <ArgonBox display="flex" flexDirection="column" alignItems="flex-end">
+          {/* <Switch checked={rememberMe} onChange={handleSetRememberMe} /> */}
           <ArgonTypography
-            variant="button"
+            component={Link}
+            to="/authentication/sign-up"
+            color="error"
             fontWeight="regular"
-            onClick={handleSetRememberMe}
-            sx={{ cursor: "pointer", userSelect: "none" }}
+            fontSize="default"            
           >
-            &nbsp;&nbsp;Remember me
+            Forgot password
           </ArgonTypography>
         </ArgonBox>
+
         <ArgonBox mt={4} mb={1}>
           <ArgonButton color="info" size="large" fullWidth>
-            Sign In
+            Login
           </ArgonButton>
         </ArgonBox>
         <ArgonBox mt={3} textAlign="center">
@@ -83,7 +84,7 @@ function Illustration() {
               color="info"
               fontWeight="medium"
             >
-              Sign up
+              Register
             </ArgonTypography>
           </ArgonTypography>
         </ArgonBox>
