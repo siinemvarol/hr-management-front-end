@@ -51,41 +51,41 @@ function Default() {
         <Grid container spacing={3} mb={3}>
           <Grid item xs={12} md={6} lg={3}>
             <DetailedStatisticsCard
-              title="today's money"
-              count="$53,000"
+              title="new employee"
+              count="22"
               icon={{ color: "info", component: <i className="ni ni-money-coins" /> }}
-              percentage={{ color: "success", count: "+55%", text: "since yesterday" }}
+              percentage={{ color: "success", count: "+5%", text: "since last month" }}
             />
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
             <DetailedStatisticsCard
-              title="today's users"
-              count="2,300"
+              title="total employee"
+              count="425"
               icon={{ color: "error", component: <i className="ni ni-world" /> }}
-              percentage={{ color: "success", count: "+3%", text: "since last week" }}
+              percentage={{ color: "success", count: "+3%", text: "since last year" }}
             />
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
             <DetailedStatisticsCard
-              title="new clients"
-              count="+3,462"
+              title="total salary"
+              count="$2.8M"
               icon={{ color: "success", component: <i className="ni ni-paper-diploma" /> }}
-              percentage={{ color: "error", count: "-2%", text: "since last quarter" }}
+              percentage={{ color: "success", count: "+10%", text: "since last year" }}
             />
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
             <DetailedStatisticsCard
-              title="sales"
-              count="$103,430"
+              title="avg. salary"
+              count="$1,250"
               icon={{ color: "warning", component: <i className="ni ni-cart" /> }}
-              percentage={{ color: "success", count: "+5%", text: "than last month" }}
+              percentage={{ color: "success", count: "+5%", text: "than last year" }}
             />
           </Grid>
         </Grid>
         <Grid container spacing={3} mb={3}>
           <Grid item xs={12} lg={7}>
             <GradientLineChart
-              title="Sales Overview"
+              title="Salary Statistics"
               description={
                 <ArgonBox display="flex" alignItems="center">
                   <ArgonBox fontSize={size.lg} color="success" mb={0.3} mr={0.5} lineHeight={0}>
@@ -94,7 +94,7 @@ function Default() {
                   <ArgonTypography variant="button" color="text" fontWeight="medium">
                     4% more{" "}
                     <ArgonTypography variant="button" color="text" fontWeight="regular">
-                      in 2022
+                      in 2023
                     </ArgonTypography>
                   </ArgonTypography>
                 </ArgonBox>
@@ -108,10 +108,10 @@ function Default() {
         </Grid>
         <Grid container spacing={3}>
           <Grid item xs={12} md={8}>
-            <SalesTable title="Sales by Country" rows={salesTableData} />
+            <SalesTable title="Holidays" rows={salesTableData} />
           </Grid>
           <Grid item xs={12} md={4}>
-            <CategoriesList title="categories" categories={categoriesListData} />
+            <CategoriesList title="Departments" categories={categoriesListData} />
           </Grid>
         </Grid>
       </ArgonBox>

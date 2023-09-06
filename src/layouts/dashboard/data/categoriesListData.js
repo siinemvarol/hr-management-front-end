@@ -20,12 +20,12 @@ const categoriesListData = [
   {
     color: "dark",
     icon: <i className="ni ni-mobile-button" style={{ fontSize: "12px" }} />,
-    name: "Devices",
+    name: "Web Development",
     description: (
       <>
-        250 in stock,{" "}
+        Department Head,{" "}
         <ArgonTypography variant="caption" color="text" fontWeight="medium">
-          346+ sold
+          John Smith
         </ArgonTypography>
       </>
     ),
@@ -34,12 +34,12 @@ const categoriesListData = [
   {
     color: "dark",
     icon: <i className="ni ni-tag" style={{ fontSize: "12px" }} />,
-    name: "Tickets",
+    name: "Marketing",
     description: (
       <>
-        123 closed,{" "}
+        Department Head,{" "}
         <ArgonTypography variant="caption" color="text" fontWeight="medium">
-          15 open
+          Maryam Amiri
         </ArgonTypography>
       </>
     ),
@@ -48,12 +48,12 @@ const categoriesListData = [
   {
     color: "dark",
     icon: <i className="ni ni-box-2" style={{ fontSize: "12px" }} />,
-    name: "Error logs",
+    name: "App Development",
     description: (
       <>
-        1 is active,{" "}
+        Department Head,{" "}
         <ArgonTypography variant="caption" color="text" fontWeight="medium">
-          40 closed
+          Fidel Tonn
         </ArgonTypography>
       </>
     ),
@@ -62,11 +62,12 @@ const categoriesListData = [
   {
     color: "dark",
     icon: <i className="ni ni-satisfied" style={{ fontSize: "12px" }} />,
-    name: "Happy Users",
+    name: "Support",
     description: (
       <>
+        Department Head,{" "}
         <ArgonTypography variant="caption" color="text" fontWeight="medium">
-          +&nbsp;430
+          Frank Camly
         </ArgonTypography>
       </>
     ),
