@@ -118,11 +118,10 @@ function Slider() {
                 </ArgonTypography>
               </ArgonBox>
               <ArgonTypography variant="h5" color="white" mb={0.5}>
-                Get started with Argon
+
               </ArgonTypography>
               <ArgonTypography variant="body2" color="white">
-                There&apos;s nothing I really wanted to do in life that I wasn&apos;t able to get
-                good at.
+                “You cannot mandate productivity; you must provide the tools to let people become their best.” — Steve Jobs
               </ArgonTypography>
             </ArgonBox>
           </ArgonBox>
@@ -153,11 +152,10 @@ function Slider() {
                 </ArgonTypography>
               </ArgonBox>
               <ArgonTypography variant="h5" color="white" mb={0.5}>
-                Faster way to create web pages
+
               </ArgonTypography>
               <ArgonTypography variant="body2" color="white">
-                That&apos;s my skill. I&apos;m not really specifically talented at anything except
-                for the ability to learn.
+                “Before you are a leader, success is about growing yourself. When you become a leader, success is about growing others.” — Jack Welch
               </ArgonTypography>
             </ArgonBox>
           </ArgonBox>
@@ -188,11 +186,10 @@ function Slider() {
                 </ArgonTypography>
               </ArgonBox>
               <ArgonTypography variant="h5" color="white" mb={0.5}>
-                Share with us your design tips!
+
               </ArgonTypography>
               <ArgonTypography variant="body2" color="white">
-                Don&apos;t be afraid to be wrong because you can&apos;t learn anything from a
-                compliment.
+                “Good judgment comes from experience, and experience comes from bad judgment.” — Rita Mae Brown
               </ArgonTypography>
             </ArgonBox>
           </ArgonBox>
