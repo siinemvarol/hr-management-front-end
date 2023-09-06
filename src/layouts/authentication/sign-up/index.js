@@ -30,43 +30,173 @@ import ArgonButton from "components/ArgonButton";
 import CoverLayout from "layouts/authentication/components/CoverLayout";
 import Socials from "layouts/authentication/components/Socials";
 import Separator from "layouts/authentication/components/Separator";
+import { useState } from "react";
+import { Select } from "@mui/material";
 
 // Images
 const bgImage =
   "https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/signup-cover.jpg";
 
+const turkishCities = [
+  "Adana",
+  "Adıyaman",
+  "Afyonkarahisar",
+  "Ağrı",
+  "Amasya",
+  "Ankara",
+  "Antalya",
+  "Artvin",
+  "Aydın",
+  "Balıkesir",
+  "Bilecik",
+  "Bingöl",
+  "Bitlis",
+  "Bolu",
+  "Burdur",
+  "Bursa",
+  "Çanakkale",
+  "Çankırı",
+  "Çorum",
+  "Denizli",
+  "Diyarbakır",
+  "Düzce",
+  "Edirne",
+  "Elazığ",
+  "Erzincan",
+  "Erzurum",
+  "Eskişehir",
+  "Gaziantep",
+  "Giresun",
+  "Gümüşhane",
+  "Hakkâri",
+  "Hatay",
+  "Iğdır",
+  "Isparta",
+  "İstanbul",
+  "İzmir",
+  "Kahramanmaraş",
+  "Karabük",
+  "Karaman",
+  "Kars",
+  "Kastamonu",
+  "Kayseri",
+  "Kırıkkale",
+  "Kırklareli",
+  "Kırşehir",
+  "Kilis",
+  "Kocaeli",
+  "Konya",
+  "Kütahya",
+  "Malatya",
+  "Manisa",
+  "Mardin",
+  "Mersin",
+  "Muğla",
+  "Muş",
+  "Nevşehir",
+  "Niğde",
+  "Ordu",
+  "Osmaniye",
+  "Rize",
+  "Sakarya",
+  "Samsun",
+  "Siirt",
+  "Sinop",
+  "Sivas",
+  "Şanlıurfa",
+  "Şırnak",
+  "Tekirdağ",
+  "Tokat",
+  "Trabzon",
+  "Tunceli",
+  "Uşak",
+  "Van",
+  "Yalova",
+  "Yozgat",
+  "Zonguldak",
+];
 function Cover() {
+  // Seçilen ili saklamak için state kullanın
+  const [selectedCity, setSelectedCity] = useState("");
+
+  // Select öğesi değiştiğinde bu işlevi çağırın
+  const handleCityChange = (e) => {
+    const selectedValue = e.target.value;
+    setSelectedCity(selectedValue);
+  };
   return (
     <CoverLayout
       title="Welcome!"
-      description="Use these awesome forms to login or create new account in your project for free."
+      description="You can keep all the information of your personnel."
       image={bgImage}
       imgPosition="top"
       button={{ color: "dark", variant: "gradient" }}
     >
-      <Card>
+      <Card sx={{ width: "500px", margin: "0 auto" }} textAlign="center">
         <ArgonBox p={3} mb={1} textAlign="center">
           <ArgonTypography variant="h5" fontWeight="medium">
-            Register with
+            Company Registration Form
           </ArgonTypography>
         </ArgonBox>
-        <ArgonBox mb={2}>
-          <Socials />
-        </ArgonBox>
-        <ArgonBox px={12}>
-          <Separator />
-        </ArgonBox>
+
         <ArgonBox pt={2} pb={3} px={3}>
           <ArgonBox component="form" role="form">
-            <ArgonBox mb={2}>
-              <ArgonInput placeholder="Name" />
-            </ArgonBox>
-            <ArgonBox mb={2}>
-              <ArgonInput type="email" placeholder="Email" />
-            </ArgonBox>
-            <ArgonBox mb={2}>
-              <ArgonInput type="password" placeholder="Password" />
-            </ArgonBox>
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              {/* First Column */}
+              <div style={{ flex: 1, marginRight: "16px" }}>
+                <ArgonBox mb={2}>
+                  <ArgonInput placeholder="Name" />
+                </ArgonBox>
+                <ArgonBox mb={2}>
+                  <ArgonInput type="email" placeholder="Email" />
+                </ArgonBox>
+                <ArgonBox mb={2}>
+                  <ArgonInput type="password" placeholder="Password" />
+                </ArgonBox>
+              </div>
+
+              {/* Second Column */}
+              <div style={{ flex: 1 }}>
+                
+                <ArgonBox mb={2}>
+                  <ArgonInput placeholder="Company Name" />
+                </ArgonBox>
+                <ArgonBox mb={2}>
+                  <ArgonInput  placeholder="Phone Number" />
+                </ArgonBox>
+                <ArgonBox mb={2}>
+                  <ArgonInput  placeholder="VKN" />
+                </ArgonBox>
+                <ArgonBox mb={2}>
+                  <select
+                    name="city"
+                    value={selectedCity}
+                    onChange={handleCityChange}
+                    style={{
+                      width: "100%",
+                      padding: "0.375rem 0.75rem",
+                      fontSize: "1rem",
+                      fontWeight: "300",
+                      lineHeight: "1.5",
+                      color: "#495057",
+                      backgroundColor: "#fff",
+                      backgroundClip: "padding-box",
+                      border: "1px solid #ced4da",
+                      borderRadius: "0.5rem",
+                      transition: "border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
+                    }}
+                  >
+                    <option value="">Şehir Seçin</option>
+                    {turkishCities.map((city, index) => (
+                      <option key={index} value={city}>
+                        {city}
+                      </option>
+                    ))}
+                  </select>
+                </ArgonBox>
+              </div>
+            </div>
+
             <ArgonBox display="flex" alignItems="center">
               <Checkbox defaultChecked />
               <ArgonTypography
@@ -74,7 +204,7 @@ function Cover() {
                 fontWeight="regular"
                 sx={{ cursor: "pointer", userSelect: "none" }}
               >
-                &nbsp;&nbsp;I agree the&nbsp;
+                &nbsp;&nbsp;I agree to the&nbsp;
               </ArgonTypography>
               <ArgonTypography
                 component="a"
@@ -88,7 +218,7 @@ function Cover() {
             </ArgonBox>
             <ArgonBox mt={4} mb={1}>
               <ArgonButton variant="gradient" color="dark" fullWidth>
-                sign up
+                Sign Up
               </ArgonButton>
             </ArgonBox>
             <ArgonBox mt={2}>
@@ -102,7 +232,7 @@ function Cover() {
                   fontWeight="bold"
                   textGradient
                 >
-                  Sign in
+                  Sign In
                 </ArgonTypography>
               </ArgonTypography>
             </ArgonBox>
