@@ -13,6 +13,8 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
+import axios from "axios";
+
 // react-router-dom components
 import { Link } from "react-router-dom";
 
@@ -30,7 +32,7 @@ import ArgonButton from "components/ArgonButton";
 import CoverLayout from "layouts/authentication/components/CoverLayout";
 import Socials from "layouts/authentication/components/Socials";
 import Separator from "layouts/authentication/components/Separator";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Select } from "@mui/material";
 
 // Images
@@ -124,10 +126,62 @@ function Cover() {
     const selectedValue = e.target.value;
     setSelectedCity(selectedValue);
   };
+
+  const [companies, setCompanies] = useState([]);
+
+  // Diğer state ve işlevler burada tanımlanır
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Form verilerini al
+    const formData = new FormData(e.target); // Form verilerini JSON formatına çevir
+    const formDataJSON = {};
+    formData.forEach((value, key) => {
+      formDataJSON[key] = value;
+    }); // Spring Boot sunucusuna POST isteği yap
+    try {
+      const response = await fetch("http://localhost:9091/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formDataJSON),
+      });
+      if (response.ok) {
+        // Başarılı bir yanıt alındığında burada işlem yapabilirsiniz
+        console.log("Kayıt başarıyla tamamlandı.");
+      } else {
+        console.error("Kayıt sırasında hata oluştu.");
+      }
+    } catch (error) {
+      console.error("İstek gönderirken bir hata oluştu:", error);
+    }
+  };
+
+  // const onRegister = (e) => {
+  //   e.preventDefault();
+  //   const newCompany = {
+  //     name: e.target.manager - name.value,
+  //     companyName: e.target.company - name.value,
+  //     email: e.target.email.value,
+  //     phone: e.target.phone.value,
+  //     password: e.target.password.value,
+  //     taxIdNumber: e.target.tax - id - number.value,
+  //     city: e.target.city.value,
+  //   };
+  //   console.log(newCompany);
+  //   axios.post("http://localhost:9091/register").then((response) => {
+  //     console.log(response.data);
+  //     axios.get("http://localhost:9091/").then((res) => {
+  //       setCompanies(res.data);
+  //     });
+  //   });
+  // };
+
+  // useEffect(() => {});
+
   return (
     <CoverLayout
       title="Welcome!"
-      description="You can keep all the information of your personnel."
+      description="You can keep and manage all your human resources information of your company."
       image={bgImage}
       imgPosition="top"
       button={{ color: "dark", variant: "gradient" }}
@@ -135,37 +189,42 @@ function Cover() {
       <Card sx={{ width: "500px", margin: "0 auto" }} textAlign="center">
         <ArgonBox p={3} mb={1} textAlign="center">
           <ArgonTypography variant="h5" fontWeight="medium">
-            Company Registration Form
+            Company Registration
           </ArgonTypography>
         </ArgonBox>
 
         <ArgonBox pt={2} pb={3} px={3}>
-          <ArgonBox component="form" role="form">
+          <ArgonBox
+            component="form"
+            role="form"
+            onSubmit={() => {
+              handleSubmit;
+            }}
+          >
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               {/* First Column */}
               <div style={{ flex: 1, marginRight: "16px" }}>
                 <ArgonBox mb={2}>
-                  <ArgonInput placeholder="Name" />
+                  <ArgonInput placeholder="Company Manager Name" name="manager-name" />
                 </ArgonBox>
                 <ArgonBox mb={2}>
-                  <ArgonInput type="email" placeholder="Email" />
+                  <ArgonInput type="email" placeholder="Email" name="email" />
                 </ArgonBox>
                 <ArgonBox mb={2}>
-                  <ArgonInput type="password" placeholder="Password" />
+                  <ArgonInput type="password" placeholder="Password" name="password" />
                 </ArgonBox>
               </div>
 
               {/* Second Column */}
               <div style={{ flex: 1 }}>
-                
                 <ArgonBox mb={2}>
-                  <ArgonInput placeholder="Company Name" />
+                  <ArgonInput placeholder="Company Name" name="company-name" />
                 </ArgonBox>
                 <ArgonBox mb={2}>
-                  <ArgonInput  placeholder="Phone Number" />
+                  <ArgonInput placeholder="Phone Number" name="phone" />
                 </ArgonBox>
                 <ArgonBox mb={2}>
-                  <ArgonInput  placeholder="VKN" />
+                  <ArgonInput placeholder="VKN" name="tax-id-number" />
                 </ArgonBox>
                 <ArgonBox mb={2}>
                   <select
@@ -186,7 +245,7 @@ function Cover() {
                       transition: "border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
                     }}
                   >
-                    <option value="">Şehir Seçin</option>
+                    <option value="">Select a city...</option>
                     {turkishCities.map((city, index) => (
                       <option key={index} value={city}>
                         {city}
@@ -197,7 +256,7 @@ function Cover() {
               </div>
             </div>
 
-            <ArgonBox display="flex" alignItems="center">
+            {/* <ArgonBox display="flex" alignItems="center">
               <Checkbox defaultChecked />
               <ArgonTypography
                 variant="button"
@@ -215,10 +274,11 @@ function Cover() {
               >
                 Terms and Conditions
               </ArgonTypography>
-            </ArgonBox>
+            </ArgonBox> */}
+
             <ArgonBox mt={4} mb={1}>
-              <ArgonButton variant="gradient" color="dark" fullWidth>
-                Sign Up
+              <ArgonButton variant="gradient" color="dark" fullWidth type="submit">
+                Register
               </ArgonButton>
             </ArgonBox>
             <ArgonBox mt={2}>
@@ -232,7 +292,7 @@ function Cover() {
                   fontWeight="bold"
                   textGradient
                 >
-                  Sign In
+                  Login
                 </ArgonTypography>
               </ArgonTypography>
             </ArgonBox>
