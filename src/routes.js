@@ -46,6 +46,8 @@ import NewCompanies from "layouts/admin/new-companies";
 
 // Argon Dashboard 2 MUI components
 import ArgonBox from "components/ArgonBox";
+import Employee from "layouts/employee/employees";
+import CompanyInfo from "layouts/company-info/company";
 
 const routes = [
   {
@@ -63,6 +65,22 @@ const routes = [
     route: "/dashboard",
     icon: <ArgonBox component="i" color="primary" fontSize="14px" className="ni ni-tv-2" />,
     component: <Dashboard />,
+  },
+  {
+    type: "route",
+    name: "Company Information",
+    key: "company",
+    route: "/company",
+    icon: <ArgonBox component="i" color="info" fontSize="14px" className="ni ni-collection" />,
+    component: <CompanyInfo />,
+  },
+  {
+    type: "route",
+    name: "Employees",
+    key: "employee",
+    route: "/employee",
+    icon: <ArgonBox component="i" color="dark" fontSize="14px" className="ni ni-single-02" />,
+    component: <Employee />,
   },
   {
     type: "route",
