@@ -43,6 +43,7 @@ import Profile from "layouts/profile";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
 import NewCompanies from "layouts/admin/new-companies";
+import AddNewEmployee from "layouts/add-new-employee";
 
 // Argon Dashboard 2 MUI components
 import ArgonBox from "components/ArgonBox";
@@ -57,6 +58,14 @@ const routes = [
     route: "/new-companies",
     icon: <ArgonBox component="i" color="success" fontSize="14px" className="ni ni-single-copy-04" />,
     component: <NewCompanies />,
+  },
+  {
+    type: "route",
+    name: "Add New Employee",
+    key: "add-new-employee",
+    route: "/add-new-employee",
+    icon: <ArgonBox component="i" color="success" fontSize="14px" className="ni ni-single-copy-04" />,
+    component: <AddNewEmployee />,
   },
   {
     type: "route",
