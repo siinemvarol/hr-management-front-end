@@ -39,7 +39,7 @@ import Slider from "layouts/dashboard/components/Slider";
 
 // Data
 import gradientLineChartData from "layouts/dashboard/data/gradientLineChartData";
-import salesTableData from "layouts/dashboard/data/salesTableData";
+import holidaysTableData from "layouts/dashboard/data/holidaysTableData";
 import categoriesListData from "layouts/dashboard/data/categoriesListData";
 
 function Default() {
@@ -108,7 +108,7 @@ function Default() {
         </Grid>
         <Grid container spacing={3}>
           <Grid item xs={12} md={8}>
-            <SalesTable title="Holidays" rows={salesTableData} />
+            <SalesTable title="Public Holidays" rows={holidaysTableData} />
           </Grid>
           <Grid item xs={12} md={4}>
             <CategoriesList title="Departments" categories={categoriesListData} />

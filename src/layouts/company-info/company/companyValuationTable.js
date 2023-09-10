@@ -10,15 +10,15 @@ import { Button, Stack } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 
 
-function CompanyId({ company_id }) {
-    return (
-        <ArgonBox display="flex" flexDirection="column">
-            <ArgonTypography variant="caption" fontWeight="medium" color="text">
-                {company_id}
-            </ArgonTypography>
-        </ArgonBox>
-    );
-}
+// function CompanyId({ company_id }) {
+//     return (
+//         <ArgonBox display="flex" flexDirection="column">
+//             <ArgonTypography variant="caption" fontWeight="medium" color="text">
+//                 {company_id}
+//             </ArgonTypography>
+//         </ArgonBox>
+//     );
+// }
 function Revenue({ revenue }) {
     return (
         <ArgonBox display="flex" flexDirection="column">
@@ -68,7 +68,7 @@ function NetIncome({ net_income }) {
 
 const companyValuationTable = {
     columns: [
-        { name: "company_id", align: "center" },
+        // { name: "company_id", align: "center" },
         { name: "revenue", align: "center" },
         { name: "expense", align: "center" },
         { name: "profit", align: "center" },
@@ -79,7 +79,7 @@ const companyValuationTable = {
 
     rows: [
         {
-            company_id: <CompanyId company_id="231" />,
+            // company_id: <CompanyId company_id="231" />,
             revenue: <Revenue revenue="$60000" />,
             expense: <Expense expense="$20000" />,
             profit: <Profit profit="%72" />,

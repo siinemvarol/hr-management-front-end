@@ -39,7 +39,7 @@ import Slider from "layouts/dashboard/components/Slider";
 
 // Data
 import gradientLineChartData from "layouts/dashboard/data/gradientLineChartData";
-import salesTableData from "layouts/dashboard/data/salesTableData";
+import salesTableData from "layouts/dashboard/data/holidaysTableData";
 import categoriesListData from "layouts/dashboard/data/categoriesListData";
 
 // Argon Dashboard 2 MUI contexts

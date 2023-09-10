@@ -39,24 +39,24 @@ function Email({ email }) {
     </ArgonBox>
   );
 }
-function CompanyId({ company_id }) {
-  return (
-    <ArgonBox display="flex" flexDirection="column">
-      <ArgonTypography variant="caption" fontWeight="medium" color="text">
-        {company_id}
-      </ArgonTypography>
-    </ArgonBox>
-  );
-}
-function CompanyName({ company_name }) {
-  return (
-    <ArgonBox display="flex" flexDirection="column">
-      <ArgonTypography variant="caption" fontWeight="medium" color="text">
-        {company_name}
-      </ArgonTypography>
-    </ArgonBox>
-  );
-}
+// function CompanyId({ company_id }) {
+//   return (
+//     <ArgonBox display="flex" flexDirection="column">
+//       <ArgonTypography variant="caption" fontWeight="medium" color="text">
+//         {company_id}
+//       </ArgonTypography>
+//     </ArgonBox>
+//   );
+// }
+// function CompanyName({ company_name }) {
+//   return (
+//     <ArgonBox display="flex" flexDirection="column">
+//       <ArgonTypography variant="caption" fontWeight="medium" color="text">
+//         {company_name}
+//       </ArgonTypography>
+//     </ArgonBox>
+//   );
+// }
 function Phone({ phone }) {
   return (
     <ArgonBox display="flex" flexDirection="column">
@@ -90,8 +90,8 @@ const companyTableData = {
   columns: [
     { name: "owner", align: "left" },
     { name: "email", align: "left" },
-    { name: "company_id", align: "center" },
-    { name: "company_name", align: "center" },
+    // { name: "company_id", align: "center" },
+    // { name: "company_name", align: "center" },
     { name: "tax_id", align: "center" },
     { name: "phone", align: "center" },
     { name: "city", align: "center" },
@@ -102,8 +102,8 @@ const companyTableData = {
     {
       owner: <Author image={team2} name="John Michael" />,
       email: <Email email="john@creative-tim.com" />,
-      company_id: <CompanyId company_id="231" />,
-      company_name: <CompanyName company_name="Amazon" />,
+      // company_id: <CompanyId company_id="231" />,
+      // company_name: <CompanyName company_name="Amazon" />,
       tax_id: <TaxId tax_id="WD23418" />,
       phone: <Phone phone="+90656-89-76" />,
       city: <City city="Ankara" />,
@@ -118,8 +118,8 @@ const companyTableData = {
     {
       owner: <Author image={team4} name="John Michael" />,
       email: <Email email="john@creative-tim.com" />,
-      company_id: <CompanyId company_id="453" />,
-      company_name: <CompanyName company_name="Amazon" />,
+      // company_id: <CompanyId company_id="453" />,
+      // company_name: <CompanyName company_name="Amazon" />,
       tax_id: <TaxId tax_id="WD23418" />,
       phone: <Phone phone="+90656-89-76" />,
       city: <City city="Ankara" />,

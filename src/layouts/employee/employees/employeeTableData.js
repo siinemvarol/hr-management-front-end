@@ -49,6 +49,7 @@ function Function({ job, org }) {
 const authorsTableData = {
   columns: [
     { name: "employee", align: "left" },
+    { name: "employee_id", align: "left" },
     { name: "department", align: "left" },
     { name: "salary", align: "center" },
     { name: "status", align: "center" },
@@ -59,6 +60,11 @@ const authorsTableData = {
   rows: [
     {
       employee: <Author image={team2} name="John Michael" email="john@creative-tim.com" />,
+      employee_id: (
+        <ArgonTypography variant="caption" color="secondary" fontWeight="medium">
+          345
+        </ArgonTypography>
+      ),
       department: <Function job="Manager" org="Organization" />,
       salary: (
         <ArgonTypography variant="caption" color="secondary" fontWeight="medium">
@@ -86,6 +92,11 @@ const authorsTableData = {
     },
     {
       employee: <Author image={team3} name="Alexa Liras" email="alexa@creative-tim.com" />,
+      employee_id: (
+        <ArgonTypography variant="caption" color="secondary" fontWeight="medium">
+          346
+        </ArgonTypography>
+      ),
       department: <Function job="Programator" org="Developer" />,
       salary: (
         <ArgonTypography variant="caption" color="secondary" fontWeight="medium">
@@ -119,6 +130,11 @@ const authorsTableData = {
     },
     {
       employee: <Author image={team2} name="John Michael" email="john@creative-tim.com" />,
+      employee_id: (
+        <ArgonTypography variant="caption" color="secondary" fontWeight="medium">
+          347
+        </ArgonTypography>
+      ),
       department: <Function job="Manager" org="Organization" />,
       salary: (
         <ArgonTypography variant="caption" color="secondary" fontWeight="medium">
@@ -146,6 +162,11 @@ const authorsTableData = {
     },
     {
       employee: <Author image={team4} name="Alexa Liras" email="alexa@creative-tim.com" />,
+      employee_id: (
+        <ArgonTypography variant="caption" color="secondary" fontWeight="medium">
+          348
+        </ArgonTypography>
+      ),
       department: <Function job="Programator" org="Developer" />,
       salary: (
         <ArgonTypography variant="caption" color="secondary" fontWeight="medium">

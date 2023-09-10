@@ -49,7 +49,7 @@ function SalesTableCell({ title, content, image, noBorder, ...rest }) {
     );
   } else {
     template = (
-      <TableCell {...rest} align="center" sx={{ border: noBorder && 0 }}>
+      <TableCell {...rest} align="left" sx={{ border: noBorder && 0 }}>
         <ArgonBox display="flex" flexDirection="column">
           <ArgonTypography
             variant="caption"
