@@ -130,31 +130,31 @@ function Cover() {
   const [companies, setCompanies] = useState([]);
 
   // Diğer state ve işlevler burada tanımlanır
-  const handleSubmit = async (e) => {
-    e.preventDefault(); // Form verilerini al
-    const formData = new FormData(e.target); // Form verilerini JSON formatına çevir
-    const formDataJSON = {};
-    formData.forEach((value, key) => {
-      formDataJSON[key] = value;
-    }); // Spring Boot sunucusuna POST isteği yap
-    try {
-      const response = await fetch("http://localhost:9091/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formDataJSON),
-      });
-      if (response.ok) {
-        // Başarılı bir yanıt alındığında burada işlem yapabilirsiniz
-        console.log("Kayıt başarıyla tamamlandı.");
-      } else {
-        console.error("Kayıt sırasında hata oluştu.");
-      }
-    } catch (error) {
-      console.error("İstek gönderirken bir hata oluştu:", error);
-    }
-  };
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault(); // Form verilerini al
+  //   const formData = new FormData(e.target); // Form verilerini JSON formatına çevir
+  //   const formDataJSON = {};
+  //   formData.forEach((value, key) => {
+  //     formDataJSON[key] = value;
+  //   }); // Spring Boot sunucusuna POST isteği yap
+  //   try {
+  //     const response = await fetch("http://localhost:9091/register", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(formDataJSON),
+  //     });
+  //     if (response.ok) {
+  //       // Başarılı bir yanıt alındığında burada işlem yapabilirsiniz
+  //       console.log("Kayıt başarıyla tamamlandı.");
+  //     } else {
+  //       console.error("Kayıt sırasında hata oluştu.");
+  //     }
+  //   } catch (error) {
+  //     console.error("İstek gönderirken bir hata oluştu:", error);
+  //   }
+  // };
 
   // const onRegister = (e) => {
   //   e.preventDefault();

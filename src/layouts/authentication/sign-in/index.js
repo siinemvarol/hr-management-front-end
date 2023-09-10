@@ -12,14 +12,14 @@ Coded by www.creative-tim.com
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
-
+import axios from "axios";
 import { useState } from "react";
 
 // react-router-dom components
 import { Link } from "react-router-dom";
 
 // @mui material components
-import Switch from "@mui/material/Switch";
+//import Switch from "@mui/material/Switch";
 
 // Argon Dashboard 2 MUI components
 import ArgonBox from "components/ArgonBox";
@@ -38,6 +38,41 @@ function Illustration() {
   const [rememberMe, setRememberMe] = useState(false);
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLoginSuccess = () => {
+    setIsLoggedIn(true);
+  };
+
+  function handleLogin(email, password) {
+
+    const data = {
+      email: email,
+      password: password,
+    };
+
+    axios.post("http://localhost:9090/api/v1/auth/login", data)
+      .then((response) => {
+        console.log("Login successful!", response.data);
+        handleLoginSuccess();
+      })
+      .catch((error) => {
+        console.error("Login failed:", error);
+      })
+      .finally(() => {
+        console.log("isLoggedIn:", isLoggedIn);
+      });
+  }
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
 
   return (
     <IllustrationLayout
@@ -51,10 +86,22 @@ function Illustration() {
     >
       <ArgonBox component="form" role="form">
         <ArgonBox mb={2}>
-          <ArgonInput type="email" placeholder="Email" size="large" />
+          <ArgonInput
+            type="email"
+            placeholder="Email"
+            size="large"
+            value={email}
+            onChange={handleEmailChange}
+          />
         </ArgonBox>
         <ArgonBox mb={2}>
-          <ArgonInput type="password" placeholder="Password" size="large" />
+          <ArgonInput
+            type="password"
+            placeholder="Password"
+            size="large"
+            value={password}
+            onChange={handlePasswordChange}
+          />
         </ArgonBox>
         <ArgonBox display="flex" flexDirection="column" alignItems="flex-end">
           {/* <Switch checked={rememberMe} onChange={handleSetRememberMe} /> */}
@@ -63,14 +110,20 @@ function Illustration() {
             to="/authentication/sign-up"
             color="error"
             fontWeight="regular"
-            fontSize="default"            
+            fontSize="default"
           >
             Forgot password
           </ArgonTypography>
         </ArgonBox>
-
         <ArgonBox mt={4} mb={1}>
-          <ArgonButton color="info" size="large" fullWidth>
+          <ArgonButton
+            onClick={() => handleLogin(email, password)}
+            component={isLoggedIn ? Link : 'button'}
+            to="/"
+            color="info"
+            size="large"
+            fullWidth
+          >
             Login
           </ArgonButton>
         </ArgonBox>
