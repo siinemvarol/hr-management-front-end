@@ -26,7 +26,7 @@ import DefaultInfoCard from "examples/Cards/InfoCards/DefaultInfoCard";
 import BaseLayout from "layouts/admin/components/BaseLayout";
 import NewCompaniesApproval from "layouts/admin/components/NewCompaniesApproval";
 
-function NewCompanies() {
+function ApproveNewCompanies() {
   return (
     <BaseLayout stickyNavbar>
       <ArgonBox mt={4}>
@@ -56,7 +56,7 @@ function NewCompanies() {
           </Grid>
         </ArgonBox>
         {/* below is code for new company requests */}
-        <ArgonBox mb={3}>
+        <ArgonBox mb={3} sx={{ width: "173%"}}>
           <Grid container spacing={3}>
             <Grid item xs={12} md={7}>
               <NewCompaniesApproval />
@@ -68,4 +68,4 @@ function NewCompanies() {
   );
 }
 
-export default NewCompanies;
+export default ApproveNewCompanies;
