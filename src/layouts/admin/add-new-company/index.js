@@ -122,15 +122,63 @@ const turkishCities = [
 ];
 
 function AddNewCompany() {
+  // Seçilen ili saklamak için state kullanın
+  const [selectedCity, setSelectedCity] = useState("");
 
-    // Seçilen ili saklamak için state kullanın
-    const [selectedCity, setSelectedCity] = useState("");
+  // Select öğesi değiştiğinde bu işlevi çağırın
+  const handleCityChange = (e) => {
+    const selectedValue = e.target.value;
+    setSelectedCity(selectedValue);
+  };
 
-    // Select öğesi değiştiğinde bu işlevi çağırın
-    const handleCityChange = (e) => {
-      const selectedValue = e.target.value;
-      setSelectedCity(selectedValue);
-    };
+  const [companyManagerName, setCompanyManagerName] = useState("");
+  const [companyManagerEmail, setCompanyManagerEmail] = useState("");
+  const [companyManagerPassword, setCompanyManagerPassword] = useState("");
+  const [companyManagerSurname, setCompanyManagerSurname] = useState("");
+  const [companyManagerPhone, setCompanyManagerPhone] = useState("");
+  const [companyName, setCompanyName] = useState("");
+  const [taxIdentificationNumber, setTaxIdentificationNumber] = useState("");
+
+  const handleCompanyManagerNameChange = (event) => {
+    setCompanyManagerName(event.target.value);
+  };
+
+  const handleCompanyManagerEmailChange = (event) => {
+    setCompanyManagerEmail(event.target.value);
+  };
+
+  const handleCompanyManagerPasswordChange = (event) => {
+    setCompanyManagerPassword(event.target.value);
+  };
+
+  const handleCompanyManagerSurnameChange = (event) => {
+    setCompanyManagerSurname(event.target.value);
+  };
+
+  const handleCompanyManagerPhoneChange = (event) => {
+    setCompanyManagerPhone(event.target.value);
+  };
+
+  const handleCompanyNameChange = (event) => {
+    setCompanyName(event.target.value);
+  };
+
+  const handleTaxIdentificationNumberChange = (event) => {
+    setTaxIdentificationNumber(event.target.value);
+  };
+
+  function handleAddNewCompany(
+    companyManagerName,
+    companyManagerEmail,
+    companyManagerPassword,
+    companyManagerSurname,
+    companyManagerPhone,
+    companyName,
+    taxIdentificationNumber
+  ) {
+    
+
+  }
 
   return (
     <DashboardLayout>
@@ -145,24 +193,25 @@ function AddNewCompany() {
             </ArgonBox>
 
             <ArgonBox pt={2} pb={3} px={3}>
-              <ArgonBox
-                component="form"
-                role="form"
-                onSubmit={() => {
-                  handleSubmit;
-                }}
-              >
+              <ArgonBox component="form" role="form">
                 <div style={{ display: "flex", justifyContent: "space-between" }}>
                   {/* First Column */}
                   <div style={{ flex: 1, marginRight: "16px" }}>
                     <ArgonBox mb={2}>
-                      <ArgonInput placeholder="Company Manager Name" name="company-manager-name" />
+                      <ArgonInput
+                        placeholder="Company Manager Name"
+                        name="company-manager-name"
+                        value={companyManagerName}
+                        onChange={handleCompanyManagerNameChange}
+                      />
                     </ArgonBox>
                     <ArgonBox mb={2}>
                       <ArgonInput
                         type="email"
                         placeholder="Company Manager Email"
                         name="company-manager-email"
+                        value={companyManagerEmail}
+                        onChange={handleCompanyManagerEmailChange}
                       />
                     </ArgonBox>
                     <ArgonBox mb={2}>
@@ -170,6 +219,8 @@ function AddNewCompany() {
                         type="password"
                         placeholder="Company Manager Password"
                         name="company-manager-password"
+                        value={companyManagerPassword}
+                        onChange={handleCompanyManagerPasswordChange}
                       />
                     </ArgonBox>
                   </div>
@@ -180,12 +231,16 @@ function AddNewCompany() {
                       <ArgonInput
                         placeholder="Company Manager Surname"
                         name="company-manager-surname"
+                        value={companyManagerSurname}
+                        onChange={handleCompanyManagerSurnameChange}
                       />
                     </ArgonBox>
                     <ArgonBox mb={2}>
                       <ArgonInput
                         placeholder="Company Manager Phone No"
                         name="company-manager-phone"
+                        value={companyManagerPhone}
+                        onChange={handleCompanyManagerPhoneChange}
                       />
                     </ArgonBox>
                   </div>
@@ -195,46 +250,74 @@ function AddNewCompany() {
                   {/* First Column */}
                   <div style={{ flex: 1, marginRight: "16px" }}>
                     <ArgonBox mb={2}>
-                      <ArgonInput placeholder="Company Name" name="company-name" />
+                      <ArgonInput
+                        placeholder="Company Name"
+                        name="company-name"
+                        value={companyName}
+                        onChange={handleCompanyNameChange}
+                      />
                     </ArgonBox>
                   </div>
                   {/* Second Column */}
                   <div style={{ flex: 1 }}>
                     <ArgonBox mb={2}>
-                      <ArgonInput placeholder="Tax Identification Number" name="tax-identification-number" />
+                      <ArgonInput
+                        placeholder="Tax Identification Number"
+                        name="tax-identification-number"
+                        value={taxIdentificationNumber}
+                        onChange={handleTaxIdentificationNumberChange}
+                      />
                     </ArgonBox>
                     <ArgonBox mb={2}>
-                  <select
-                    name="city"
-                    value={selectedCity}
-                    onChange={handleCityChange}
-                    style={{
-                      width: "100%",
-                      padding: "0.375rem 0.75rem",
-                      fontSize: "1rem",
-                      fontWeight: "300",
-                      lineHeight: "1.5",
-                      color: "#495057",
-                      backgroundColor: "#fff",
-                      backgroundClip: "padding-box",
-                      border: "1px solid #ced4da",
-                      borderRadius: "0.5rem",
-                      transition: "border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
-                    }}
-                  >
-                    <option value="">Select a city...</option>
-                    {turkishCities.map((city, index) => (
-                      <option key={index} value={city}>
-                        {city}
-                      </option>
-                    ))}
-                  </select>
-                </ArgonBox>
+                      <select
+                        name="city"
+                        value={selectedCity}
+                        onChange={handleCityChange}
+                        style={{
+                          width: "100%",
+                          padding: "0.375rem 0.75rem",
+                          fontSize: "1rem",
+                          fontWeight: "300",
+                          lineHeight: "1.5",
+                          color: "#495057",
+                          backgroundColor: "#fff",
+                          backgroundClip: "padding-box",
+                          border: "1px solid #ced4da",
+                          borderRadius: "0.5rem",
+                          transition:
+                            "border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
+                        }}
+                      >
+                        <option value="">Select a city...</option>
+                        {turkishCities.map((city, index) => (
+                          <option key={index} value={city}>
+                            {city}
+                          </option>
+                        ))}
+                      </select>
+                    </ArgonBox>
                   </div>
                 </div>
 
                 <ArgonBox mt={4} mb={1}>
-                  <ArgonButton variant="gradient" color="dark" fullWidth type="submit">
+                  <ArgonButton
+                    variant="gradient"
+                    color="dark"
+                    fullWidth
+                    // type="submit"
+                    to="/"
+                    onClick={() =>
+                      handleAddNewCompany(
+                        companyManagerName,
+                        companyManagerEmail,
+                        companyManagerPassword,
+                        companyManagerSurname,
+                        companyManagerPhone,
+                        companyName,
+                        taxIdentificationNumber
+                      )
+                    }
+                  >
                     Add Company
                   </ArgonButton>
                 </ArgonBox>
