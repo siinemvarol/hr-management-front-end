@@ -42,8 +42,10 @@ import RTL from "layouts/rtl";
 import Profile from "layouts/profile";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
-import NewCompanies from "layouts/admin/new-companies";
+import ApproveNewCompanies from "layouts/admin/approve-new-companies";
 import AddNewEmployee from "layouts/add-new-employee";
+import AddNewCompany from "layouts/admin/add-new-company";
+import ApproveNewComments from "layouts/admin/approve-new-comments";
 
 // Argon Dashboard 2 MUI components
 import ArgonBox from "components/ArgonBox";
@@ -53,11 +55,27 @@ import CompanyInfo from "layouts/company-info/company";
 const routes = [
   {
     type: "route",
-    name: "New Companies",
-    key: "new-companies",
-    route: "/new-companies",
+    name: "Approve New Companies",
+    key: "approve-new-companies",
+    route: "/approve-new-companies",
     icon: <ArgonBox component="i" color="success" fontSize="14px" className="ni ni-single-copy-04" />,
-    component: <NewCompanies />,
+    component: <ApproveNewCompanies />,
+  },
+  {
+    type: "route",
+    name: "Add New Company",
+    key: "add-new-company",
+    route: "/add-new-company",
+    icon: <ArgonBox component="i" color="success" fontSize="14px" className="ni ni-single-copy-04" />,
+    component: <AddNewCompany />,
+  },
+  {
+    type: "route",
+    name: "Approve New Comments",
+    key: "approve-new-comments",
+    route: "/approve-new-comments",
+    icon: <ArgonBox component="i" color="success" fontSize="14px" className="ni ni-single-copy-04" />,
+    component: <ApproveNewComments />,
   },
   {
     type: "route",
