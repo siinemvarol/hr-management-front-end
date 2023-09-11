@@ -29,7 +29,8 @@ import ArgonTypography from "components/ArgonTypography";
 // Argon Dashboard 2 MUI example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import Footer from "examples/Footer";
-import ProfileInfoCard from "examples/Cards/InfoCards/ProfileInfoCard";
+//import ProfileInfoCard from "examples/Cards/InfoCards/ProfileInfoCard";
+import EmployeeInfoCard from "examples/Cards/InfoCards/EmployeeInfoCard";
 import ProfilesList from "examples/Lists/ProfilesList";
 import DefaultProjectCard from "examples/Cards/ProjectCards/DefaultProjectCard";
 import PlaceholderCard from "examples/Cards/PlaceholderCard";
@@ -71,33 +72,38 @@ function Overview() {
             <PlatformSettings />
           </Grid>
           <Grid item xs={12} md={6} xl={4}>
-            <ProfileInfoCard
+            {/* <ProfileInfoCard */}
+            <EmployeeInfoCard
               title="profile information"
-              description="Hi, I'm Alec Thompson, Decisions: If you can't decide, the answer is no. If two equally difficult paths, choose the one more painful in the short term (pain avoidance is creating an illusion of equality)."
+              // description=""
               info={{
-                fullName: "Alec M. Thompson",
-                mobile: "(44) 123 1234 123",
-                email: "alecthompson@mail.com",
-                location: "USA",
+                info: "lorem ipsum",
+                name: "Alec",
+                surname: "Thompson",
+                companyEmail: "alecthompson@mail.com",
+                phone: "(44) 123 1234 123",
+                address: "Ankara",
+                birthday: "June 15 1992",
               }}
               social={[
                 {
-                  link: "https://www.facebook.com/CreativeTim/",
+                  link: "https://www.facebook.com/",
                   icon: <FacebookIcon />,
                   color: "facebook",
                 },
                 {
-                  link: "https://twitter.com/creativetim",
+                  link: "https://twitter.com/",
                   icon: <TwitterIcon />,
                   color: "twitter",
                 },
                 {
-                  link: "https://www.instagram.com/creativetimofficial/",
+                  link: "https://www.instagram.com/",
                   icon: <InstagramIcon />,
                   color: "instagram",
                 },
               ]}
               action={{ route: "", tooltip: "Edit Profile" }}
+              edit={true}
             />
           </Grid>
           <Grid item xs={12} xl={4}>
