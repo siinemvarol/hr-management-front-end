@@ -52,7 +52,7 @@ import ArgonBox from "components/ArgonBox";
 import Employee from "layouts/employee/employees";
 import CompanyInfo from "layouts/company-info/company";
 
-const routes = [
+const PersonelRoutes = [
   {
     type: "route",
     name: "Approve New Companies",
@@ -172,4 +172,4 @@ const routes = [
   },
 ];
 
-export default routes;
+export default PersonelRoutes;
