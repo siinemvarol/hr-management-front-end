@@ -117,7 +117,7 @@ const turkishCities = [
   "Yozgat",
   "Zonguldak",
 ];
-function Cover() {
+function CompanyRegister() {
   const [isCompanyRegistered, setIsCompanyRegistered] = useState(false);
   const [companyManagerName, setCompanyManagerName] = useState("");
   const [companyManagerEmail, setCompanyManagerEmail] = useState("");
@@ -426,11 +426,12 @@ function Cover() {
 
             <ArgonBox mt={4} mb={1}>
               <ArgonButton
+                component={Link}
+                to="/authentication/sign-up"
                 variant="gradient"
                 color="dark"
                 fullWidth
                 type="submit"
-                to="/"
                 onClick={() =>
                   handleAddNewCompany(
                     companyManagerName,
@@ -450,6 +451,20 @@ function Cover() {
                 Register
               </ArgonButton>
             </ArgonBox>
+
+            <ArgonBox mt={4} mb={1}>
+              <ArgonButton
+                component={Link}
+                to="/authentication/guest-register"
+                variant="gradient"
+                color="dark"
+                fullWidth
+                type="submit"
+              >
+                Register as a Guest
+              </ArgonButton>
+            </ArgonBox>
+
             <ArgonBox mt={2}>
               <ArgonTypography variant="button" color="text" fontWeight="regular">
                 Already have an account?&nbsp;
@@ -472,4 +487,4 @@ function Cover() {
   );
 }
 
-export default Cover;
+export default CompanyRegister;
