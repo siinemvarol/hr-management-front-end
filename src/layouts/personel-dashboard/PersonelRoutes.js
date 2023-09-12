@@ -135,7 +135,14 @@ const routes = [
     icon: <ArgonBox component="i" color="info" fontSize="14px" className="ni ni-app" />,
     component: <VirtualReality />,
   },
- 
+  {
+    type: "route",
+    name: "RTL",
+    key: "rtl",
+    route: "/rtl",
+    icon: <ArgonBox component="i" color="error" fontSize="14px" className="ni ni-world-2" />,
+    component: <RTL />,
+  },
   { type: "title", title: "Account Pages", key: "account-pages" },
   {
     type: "route",
