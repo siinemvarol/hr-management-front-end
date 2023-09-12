@@ -118,65 +118,120 @@ const turkishCities = [
   "Zonguldak",
 ];
 function Cover() {
-  // Seçilen ili saklamak için state kullanın
+  const [isCompanyRegistered, setIsCompanyRegistered] = useState(false);
+  const [companyManagerName, setCompanyManagerName] = useState("");
+  const [companyManagerEmail, setCompanyManagerEmail] = useState("");
+  const [companyManagerPassword, setCompanyManagerPassword] = useState("");
+  const [companyManagerSurname, setCompanyManagerSurname] = useState("");
+  const [companyManagerPhone, setCompanyManagerPhone] = useState("");
+  const [companyName, setCompanyName] = useState("");
+  const [companyInfoEmail, setCompanyInfoEmail] = useState("");
+  const [companyPhone, setCompanyPhone] = useState("");
+  const [taxIdentificationNumber, setTaxIdentificationNumber] = useState("");
+  const [companyAddress, setCompanyAddress] = useState("");
   const [selectedCity, setSelectedCity] = useState("");
 
-  // Select öğesi değiştiğinde bu işlevi çağırın
-  const handleCityChange = (e) => {
-    const selectedValue = e.target.value;
+  const handleCompanyManagerNameChange = (event) => {
+    setCompanyManagerName(event.target.value);
+  };
+
+  const handleCompanyManagerEmailChange = (event) => {
+    setCompanyManagerEmail(event.target.value);
+  };
+
+  const handleCompanyManagerPasswordChange = (event) => {
+    setCompanyManagerPassword(event.target.value);
+  };
+
+  const handleCompanyManagerSurnameChange = (event) => {
+    setCompanyManagerSurname(event.target.value);
+  };
+
+  const handleCompanyManagerPhoneChange = (event) => {
+    setCompanyManagerPhone(event.target.value);
+  };
+
+  const handleCompanyNameChange = (event) => {
+    setCompanyName(event.target.value);
+  };
+
+  const handleCompanyInfoEmailChange = (event) => {
+    setCompanyInfoEmail(event.target.value);
+  };
+
+  const handleCompanyPhoneChange = (event) => {
+    setCompanyPhone(event.target.value);
+  };
+
+  const handleTaxIdentificationNumberChange = (event) => {
+    setTaxIdentificationNumber(event.target.value);
+  };
+
+  const handleCompanyAddressChange = (event) => {
+    setCompanyAddress(event.target.value);
+  };
+
+  const handleCityChange = (event) => {
+    const selectedValue = event.target.value;
     setSelectedCity(selectedValue);
   };
 
-  const [companies, setCompanies] = useState([]);
+  const handleCompanyRegisterSuccess = () => {
+    setIsCompanyRegistered(true);
+  };
 
-  // Diğer state ve işlevler burada tanımlanır
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault(); // Form verilerini al
-  //   const formData = new FormData(e.target); // Form verilerini JSON formatına çevir
-  //   const formDataJSON = {};
-  //   formData.forEach((value, key) => {
-  //     formDataJSON[key] = value;
-  //   }); // Spring Boot sunucusuna POST isteği yap
-  //   try {
-  //     const response = await fetch("http://localhost:9091/register", {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(formDataJSON),
-  //     });
-  //     if (response.ok) {
-  //       // Başarılı bir yanıt alındığında burada işlem yapabilirsiniz
-  //       console.log("Kayıt başarıyla tamamlandı.");
-  //     } else {
-  //       console.error("Kayıt sırasında hata oluştu.");
-  //     }
-  //   } catch (error) {
-  //     console.error("İstek gönderirken bir hata oluştu:", error);
-  //   }
-  // };
+  function handleAddNewCompany(
+    companyManagerName,
+    companyManagerEmail,
+    companyManagerPassword,
+    companyManagerSurname,
+    companyManagerPhone,
+    companyName,
+    companyInfoEmail,
+    companyPhone,
+    taxIdentificationNumber,
+    companyAddress,
+    selectedCity
+  ) {
+    const companyRegisterRequestDto = {
+      name: companyManagerName,
+      surname: companyManagerSurname,
+      companyEmail: companyManagerEmail,
+      phone: companyManagerPhone,
+      password: companyManagerPassword,
+      companyName: companyName,
+      infoEmail: companyInfoEmail,
+      companyPhone: companyPhone,
+      taxId: taxIdentificationNumber,
+      companyAddress: companyAddress,
+      city: selectedCity,
+    };
 
-  // const onRegister = (e) => {
-  //   e.preventDefault();
-  //   const newCompany = {
-  //     name: e.target.manager - name.value,
-  //     companyName: e.target.company - name.value,
-  //     email: e.target.email.value,
-  //     phone: e.target.phone.value,
-  //     password: e.target.password.value,
-  //     taxIdNumber: e.target.tax - id - number.value,
-  //     city: e.target.city.value,
-  //   };
-  //   console.log(newCompany);
-  //   axios.post("http://localhost:9091/register").then((response) => {
-  //     console.log(response.data);
-  //     axios.get("http://localhost:9091/").then((res) => {
-  //       setCompanies(res.data);
-  //     });
-  //   });
-  // };
+    axios
+      .post("http://localhost:9090/api/v1/auth/company-register", companyRegisterRequestDto)
+      .then((response) => {
+        console.log("Company register successfull!", response.data);
+        handleCompanyRegisterSuccess();
+      })
+      .catch((error) => {
+        console.error("Company register failed: ", error);
+      })
+      .finally(() => {
+        console.log("isCompanyRegistered: ", isCompanyRegistered);
+      });
 
-  // useEffect(() => {});
+    setCompanyManagerName("");
+    setCompanyManagerSurname("");
+    setCompanyManagerEmail("");
+    setCompanyManagerPhone("");
+    setCompanyManagerPassword("");
+    setCompanyName("");
+    setCompanyInfoEmail("");
+    setCompanyPhone("");
+    setTaxIdentificationNumber("");
+    setCompanyAddress("");
+    setSelectedCity("");
+  }
 
   return (
     <CoverLayout
@@ -205,27 +260,140 @@ function Cover() {
               {/* First Column */}
               <div style={{ flex: 1, marginRight: "16px" }}>
                 <ArgonBox mb={2}>
-                  <ArgonInput placeholder="Company Manager Name" name="manager-name" />
+                  <ArgonInput
+                    placeholder="Company Manager Name"
+                    name="company-manager-name"
+                    value={companyManagerName}
+                    onChange={handleCompanyManagerNameChange}
+                  />
                 </ArgonBox>
                 <ArgonBox mb={2}>
-                  <ArgonInput type="email" placeholder="Email" name="email" />
+                  <ArgonInput
+                    type="email"
+                    placeholder="Company Manager Email"
+                    name="company-manager-email"
+                    value={companyManagerEmail}
+                    onChange={handleCompanyManagerEmailChange}
+                  />
                 </ArgonBox>
                 <ArgonBox mb={2}>
-                  <ArgonInput type="password" placeholder="Password" name="password" />
+                  <ArgonInput
+                    type="password"
+                    placeholder="Company Manager Password"
+                    name="company-manager-password"
+                    value={companyManagerPassword}
+                    onChange={handleCompanyManagerPasswordChange}
+                  />
                 </ArgonBox>
               </div>
 
               {/* Second Column */}
               <div style={{ flex: 1 }}>
                 <ArgonBox mb={2}>
-                  <ArgonInput placeholder="Company Name" name="company-name" />
+                  <ArgonInput
+                    placeholder="Company Manager Surname"
+                    name="company-manager-surname"
+                    value={companyManagerSurname}
+                    onChange={handleCompanyManagerSurnameChange}
+                  />
                 </ArgonBox>
                 <ArgonBox mb={2}>
-                  <ArgonInput placeholder="Phone Number" name="phone" />
+                  <ArgonInput
+                    placeholder="Company Manager Phone No"
+                    name="company-manager-phone"
+                    value={companyManagerPhone}
+                    onChange={handleCompanyManagerPhoneChange}
+                  />
+                </ArgonBox>
+              </div>
+            </div>
+
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              {/* First Column */}
+              <div style={{ flex: 1, marginRight: "16px" }}>
+                {/* <ArgonBox mb={2}>
+                  <select
+                    name="city"
+                    value={selectedCity}
+                    onChange={handleCityChange}
+                    style={{
+                      width: "100%",
+                      padding: "0.375rem 0.75rem",
+                      fontSize: "1rem",
+                      fontWeight: "300",
+                      lineHeight: "1.5",
+                      color: "#495057",
+                      backgroundColor: "#fff",
+                      backgroundClip: "padding-box",
+                      border: "1px solid #ced4da",
+                      borderRadius: "0.5rem",
+                      transition: "border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out",
+                    }}
+                  >
+                    <option value="">Select a city...</option>
+                    {turkishCities.map((city, index) => (
+                      <option key={index} value={city}>
+                        {city}
+                      </option>
+                    ))}
+                  </select>
+                </ArgonBox> */}
+
+                <ArgonBox mb={2}>
+                  <ArgonInput
+                    placeholder="Company Name"
+                    name="company-name"
+                    value={companyName}
+                    onChange={handleCompanyNameChange}
+                  />
                 </ArgonBox>
                 <ArgonBox mb={2}>
-                  <ArgonInput placeholder="VKN" name="tax-id-number" />
+                  <ArgonInput
+                    placeholder="Company Phone"
+                    name="company-phone"
+                    value={companyPhone}
+                    onChange={handleCompanyPhoneChange}
+                  />
                 </ArgonBox>
+              </div>
+
+              {/* Second Column */}
+              <div style={{ flex: 1 }}>
+                <ArgonBox mb={2}>
+                  <ArgonInput
+                    type="email"
+                    placeholder="Company Info Email"
+                    name="company-info-email"
+                    value={companyInfoEmail}
+                    onChange={handleCompanyInfoEmailChange}
+                  />
+                </ArgonBox>
+                <ArgonBox mb={2}>
+                  <ArgonInput
+                    placeholder="Tax Identification Number"
+                    name="tax-identification-number"
+                    value={taxIdentificationNumber}
+                    onChange={handleTaxIdentificationNumberChange}
+                  />
+                </ArgonBox>
+              </div>
+            </div>
+
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <div style={{ flex: 1 }}>
+                <ArgonBox mb={2}>
+                  <ArgonInput
+                    placeholder="Company Address"
+                    name="company-address"
+                    value={companyAddress}
+                    onChange={handleCompanyAddressChange}
+                  />
+                </ArgonBox>
+              </div>
+            </div>
+
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <div style={{ flex: 1 }}>
                 <ArgonBox mb={2}>
                   <select
                     name="city"
@@ -256,28 +424,29 @@ function Cover() {
               </div>
             </div>
 
-            {/* <ArgonBox display="flex" alignItems="center">
-              <Checkbox defaultChecked />
-              <ArgonTypography
-                variant="button"
-                fontWeight="regular"
-                sx={{ cursor: "pointer", userSelect: "none" }}
-              >
-                &nbsp;&nbsp;I agree to the&nbsp;
-              </ArgonTypography>
-              <ArgonTypography
-                component="a"
-                href="#"
-                variant="button"
-                fontWeight="bold"
-                textGradient
-              >
-                Terms and Conditions
-              </ArgonTypography>
-            </ArgonBox> */}
-
             <ArgonBox mt={4} mb={1}>
-              <ArgonButton variant="gradient" color="dark" fullWidth type="submit">
+              <ArgonButton
+                variant="gradient"
+                color="dark"
+                fullWidth
+                type="submit"
+                to="/"
+                onClick={() =>
+                  handleAddNewCompany(
+                    companyManagerName,
+                    companyManagerEmail,
+                    companyManagerPassword,
+                    companyManagerSurname,
+                    companyManagerPhone,
+                    companyName,
+                    companyInfoEmail,
+                    companyPhone,
+                    taxIdentificationNumber,
+                    companyAddress,
+                    selectedCity
+                  )
+                }
+              >
                 Register
               </ArgonButton>
             </ArgonBox>
