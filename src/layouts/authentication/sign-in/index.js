@@ -49,7 +49,7 @@ function Illustration() {
   function handleLogin(email, password) {
 
     const data = {
-      email: email,
+      companyEmail: email,
       password: password,
     };
 
@@ -64,6 +64,9 @@ function Illustration() {
       .finally(() => {
         console.log("isLoggedIn:", isLoggedIn);
       });
+
+      setEmail('');
+      setPassword('');
   }
 
   const handleEmailChange = (event) => {

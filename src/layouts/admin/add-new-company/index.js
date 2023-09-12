@@ -41,6 +41,7 @@ import ArgonButton from "components/ArgonButton";
 import DashboardLayout from "layouts/admin/components/DashboardLayout";
 import DashboardNavbar from "layouts/admin/components/DashboardNavbar";
 import Footer from "examples/Footer";
+import axios from "axios";
 
 const turkishCities = [
   "Adana",
@@ -122,22 +123,18 @@ const turkishCities = [
 ];
 
 function AddNewCompany() {
-  // Seçilen ili saklamak için state kullanın
-  const [selectedCity, setSelectedCity] = useState("");
-
-  // Select öğesi değiştiğinde bu işlevi çağırın
-  const handleCityChange = (e) => {
-    const selectedValue = e.target.value;
-    setSelectedCity(selectedValue);
-  };
-
+  const [isCompanyRegistered, setIsCompanyRegistered] = useState(false);
   const [companyManagerName, setCompanyManagerName] = useState("");
   const [companyManagerEmail, setCompanyManagerEmail] = useState("");
   const [companyManagerPassword, setCompanyManagerPassword] = useState("");
   const [companyManagerSurname, setCompanyManagerSurname] = useState("");
   const [companyManagerPhone, setCompanyManagerPhone] = useState("");
   const [companyName, setCompanyName] = useState("");
+  const [companyInfoEmail, setCompanyInfoEmail] = useState("");
+  const [companyPhone, setCompanyPhone] = useState("");
   const [taxIdentificationNumber, setTaxIdentificationNumber] = useState("");
+  const [companyAddress, setCompanyAddress] = useState("");
+  const [selectedCity, setSelectedCity] = useState("");
 
   const handleCompanyManagerNameChange = (event) => {
     setCompanyManagerName(event.target.value);
@@ -163,8 +160,29 @@ function AddNewCompany() {
     setCompanyName(event.target.value);
   };
 
+  const handleCompanyInfoEmailChange = (event) => {
+    setCompanyInfoEmail(event.target.value);
+  };
+
+  const handleCompanyPhoneChange = (event) => {
+    setCompanyPhone(event.target.value);
+  };
+
   const handleTaxIdentificationNumberChange = (event) => {
     setTaxIdentificationNumber(event.target.value);
+  };
+
+  const handleCompanyAddressChange = (event) => {
+    setCompanyAddress(event.target.value);
+  };
+
+  const handleCityChange = (event) => {
+    const selectedValue = event.target.value;
+    setSelectedCity(selectedValue);
+  };
+
+  const handleCompanyRegisterSuccess = () => {
+    setIsCompanyRegistered(true);
   };
 
   function handleAddNewCompany(
@@ -174,10 +192,50 @@ function AddNewCompany() {
     companyManagerSurname,
     companyManagerPhone,
     companyName,
-    taxIdentificationNumber
+    companyInfoEmail,
+    companyPhone,
+    taxIdentificationNumber,
+    companyAddress,
+    selectedCity
   ) {
-    
+    const companyRegisterRequestDto = {
+      name: companyManagerName,
+      surname: companyManagerSurname,
+      companyEmail: companyManagerEmail,
+      phone: companyManagerPhone,
+      password: companyManagerPassword,
+      companyName: companyName,
+      infoEmail: companyInfoEmail,
+      companyPhone: companyPhone,
+      taxId: taxIdentificationNumber,
+      companyAddress: companyAddress,
+      city: selectedCity,
+    };
 
+    axios
+      .post("http://localhost:9090/api/v1/auth/company-register", companyRegisterRequestDto)
+      .then((response) => {
+        console.log("Company register successfull!", response.data);
+        handleCompanyRegisterSuccess();
+      })
+      .catch((error) => {
+        console.error("Company register failed: ", error);
+      })
+      .finally(() => {
+        console.log("isCompanyRegistered: ", isCompanyRegistered);
+      });
+
+      setCompanyManagerName('');
+      setCompanyManagerSurname('');
+      setCompanyManagerEmail('');
+      setCompanyManagerPhone('');
+      setCompanyManagerPassword('');
+      setCompanyName('');
+      setCompanyInfoEmail('');
+      setCompanyPhone('');
+      setTaxIdentificationNumber('');
+      setCompanyAddress('');
+      setSelectedCity('');
   }
 
   return (
@@ -257,9 +315,27 @@ function AddNewCompany() {
                         onChange={handleCompanyNameChange}
                       />
                     </ArgonBox>
+                    <ArgonBox mb={2}>
+                      <ArgonInput
+                        placeholder="Company Phone"
+                        name="company-phone"
+                        value={companyPhone}
+                        onChange={handleCompanyPhoneChange}
+                      />
+                    </ArgonBox>
                   </div>
+
                   {/* Second Column */}
                   <div style={{ flex: 1 }}>
+                    <ArgonBox mb={2}>
+                      <ArgonInput
+                        type="email"
+                        placeholder="Company Info Email"
+                        name="company-info-email"
+                        value={companyInfoEmail}
+                        onChange={handleCompanyInfoEmailChange}
+                      />
+                    </ArgonBox>
                     <ArgonBox mb={2}>
                       <ArgonInput
                         placeholder="Tax Identification Number"
@@ -268,6 +344,24 @@ function AddNewCompany() {
                         onChange={handleTaxIdentificationNumberChange}
                       />
                     </ArgonBox>
+                  </div>
+                </div>
+
+                <div style={{ display: "flex", justifyContent: "space-between" }}>
+                  <div style={{ flex: 1 }}>
+                    <ArgonBox mb={2}>
+                      <ArgonInput
+                        placeholder="Company Address"
+                        name="company-address"
+                        value={companyAddress}
+                        onChange={handleCompanyAddressChange}
+                      />
+                    </ArgonBox>
+                  </div>
+                </div>
+
+                <div style={{ display: "flex", justifyContent: "space-between" }}>
+                  <div style={{ flex: 1 }}>
                     <ArgonBox mb={2}>
                       <select
                         name="city"
@@ -314,7 +408,11 @@ function AddNewCompany() {
                         companyManagerSurname,
                         companyManagerPhone,
                         companyName,
-                        taxIdentificationNumber
+                        companyInfoEmail,
+                        companyPhone,
+                        taxIdentificationNumber,
+                        companyAddress,
+                        selectedCity
                       )
                     }
                   >
@@ -323,7 +421,7 @@ function AddNewCompany() {
                 </ArgonBox>
                 <ArgonBox mt={2}>
                   <ArgonTypography color="text" fontWeight="ligth" fontSize="0.7em">
-                    NOTES...
+                    {/* NOTES... */}
                   </ArgonTypography>
                 </ArgonBox>
               </ArgonBox>
