@@ -46,23 +46,13 @@ import ApproveNewCompanies from "layouts/admin/approve-new-companies";
 import AddNewEmployee from "layouts/add-new-employee";
 import AddNewCompany from "layouts/admin/add-new-company";
 import ApproveNewComments from "layouts/admin/approve-new-comments";
-import GuestRegister from "layouts/authentication/guest-register";
 
 // Argon Dashboard 2 MUI components
 import ArgonBox from "components/ArgonBox";
 import Employee from "layouts/employee/employees";
 import CompanyInfo from "layouts/company-info/company";
-import AdminDashboard from "layouts/admin-dashboard";
 
-const routes = [
-  {
-    type: "route",
-    name: "Admin Dashboard",
-    key: "admin-dashboard",
-    route: "/admin",
-    icon: <ArgonBox component="i" color="success" fontSize="14px" className="ni ni-single-copy-04" />,
-    component: < AdminDashboard/>,
-  },
+const PersonelRoutes = [
   {
     type: "route",
     name: "Approve New Companies",
@@ -145,7 +135,14 @@ const routes = [
     icon: <ArgonBox component="i" color="info" fontSize="14px" className="ni ni-app" />,
     component: <VirtualReality />,
   },
- 
+  {
+    type: "route",
+    name: "RTL",
+    key: "rtl",
+    route: "/rtl",
+    icon: <ArgonBox component="i" color="error" fontSize="14px" className="ni ni-world-2" />,
+    component: <RTL />,
+  },
   { type: "title", title: "Account Pages", key: "account-pages" },
   {
     type: "route",
@@ -167,20 +164,12 @@ const routes = [
   },
   {
     type: "route",
-    name: "Company Register",
+    name: "Sign Up",
     key: "sign-up",
     route: "/authentication/sign-up",
     icon: <ArgonBox component="i" color="info" fontSize="14px" className="ni ni-collection" />,
     component: <SignUp />,
   },
-  {
-    type: "route",
-    name: "Guest Register",
-    key: "guest-register",
-    route: "/authentication/guest-register",
-    icon: <ArgonBox component="i" color="info" fontSize="14px" className="ni ni-collection" />,
-    component: <GuestRegister />,
-  },
 ];
 
-export default routes;
+export default PersonelRoutes;
