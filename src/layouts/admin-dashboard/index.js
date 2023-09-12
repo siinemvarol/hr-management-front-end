@@ -56,7 +56,7 @@ import "assets/css/nucleo-icons.css";
 import "assets/css/nucleo-svg.css";
 import adminRoutes from "./adminRoutes";
 
-export default function App() {
+export default function Admin() {
   const [controller, dispatch] = useArgonController();
   const { miniSidenav, direction, layout, openConfigurator, sidenavColor, darkSidenav, darkMode } =
     controller;

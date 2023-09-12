@@ -34,24 +34,16 @@ Coded by www.creative-tim.com
 */
 
 // Argon Dashboard 2 MUI layouts
-import Dashboard from "layouts/dashboard";
-import Tables from "layouts/tables";
-import Billing from "layouts/billing";
-import VirtualReality from "layouts/virtual-reality";
-import RTL from "layouts/rtl";
 import Profile from "layouts/profile";
-import SignIn from "layouts/authentication/sign-in";
-import SignUp from "layouts/authentication/sign-up";
-import ApproveNewCompanies from "layouts/admin/approve-new-companies";
+import ApproveNewCompanies from "../approve-new-companies";
 import AddNewEmployee from "layouts/add-new-employee";
-import AddNewCompany from "layouts/admin/add-new-company";
-import AdminDashboard from "layouts/admin-dashboard";
-import ApproveNewComments from "layouts/admin/approve-new-comments";
+import AddNewCompany from "../add-new-company";
+import AdminDashboard from "layoust/admin-dashboard";
+import ApproveNewComments from "../approve-new-comments";
 
 // Argon Dashboard 2 MUI components
 import ArgonBox from "components/ArgonBox";
-import Employee from "layouts/employee/employees";
-import CompanyInfo from "layouts/company-info/company";
+
 
 const adminRoutes = [
   {
