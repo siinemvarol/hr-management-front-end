@@ -14,9 +14,11 @@ Coded by www.creative-tim.com
 */
 import axios from "axios";
 import { useState, useEffect } from "react";
+import jwt_decode from "jwt-decode";
+import { createRoot } from "react-dom/client";
 
 // react-router-dom components
-import { Link, useNavigate } from "react-router-dom";
+import { BrowserRouter, Link, useNavigate } from "react-router-dom";
 
 // @mui material components
 //import Switch from "@mui/material/Switch";
@@ -29,10 +31,18 @@ import ArgonButton from "components/ArgonButton";
 
 // Authentication layout components
 import IllustrationLayout from "layouts/authentication/components/IllustrationLayout";
+import Admin from "layouts/admin-dashboard";
+import { ArgonControllerProvider } from "context";
+import PerfectScrollbar from "react-perfect-scrollbar";
+import PersonelApp from "layouts/personel-dashboard/PersonelApp";
+
 
 // Image
 const bgImage =
   "https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/signin-ill.jpg";
+
+const container = document.getElementById("root");
+const root = createRoot(container);
 
 function Illustration() {
   const [rememberMe, setRememberMe] = useState(false);
@@ -50,8 +60,35 @@ function Illustration() {
 
   useEffect(() => {
     if (isLoggedIn) {
-      console.log("isLoggedIn:", isLoggedIn);
-      navigate("/profile");
+      // Kullanıcı oturum açtıktan sonra JWT çözümleme ekliyoruz
+      const token = localStorage.getItem("Authorization");
+      const decoded = jwt_decode(token);
+
+      // JWT içindeki bilgilere erişim
+      console.log(decoded);
+
+      // JWT içindeki bilgilere göre yönlendirme yapabilirsiniz
+      if (decoded.role === "COMPANY_MANAGER") {
+        root.render(
+          <BrowserRouter>
+            <ArgonControllerProvider>
+              <PerfectScrollbar>
+                <Admin/>
+              </PerfectScrollbar>
+            </ArgonControllerProvider>
+          </BrowserRouter>
+        );
+      } else if (decoded.role === "EMPLOYEE") {
+        <BrowserRouter>
+        <ArgonControllerProvider>
+          <PerfectScrollbar>
+            <PersonelApp/>
+          </PerfectScrollbar>
+        </ArgonControllerProvider>
+      </BrowserRouter>
+      } else {
+        navigate("/guest-home");
+      }
     }
   }, [isLoggedIn, navigate]);
   function handleLogin(email, password) {
