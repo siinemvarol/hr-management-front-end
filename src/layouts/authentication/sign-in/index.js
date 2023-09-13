@@ -13,10 +13,10 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // react-router-dom components
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // @mui material components
 //import Switch from "@mui/material/Switch";
@@ -41,32 +41,41 @@ function Illustration() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+  const [token, setToken] = useState("");
 
   const handleLoginSuccess = () => {
     setIsLoggedIn(true);
   };
 
+  useEffect(() => {
+    if (isLoggedIn) {
+      console.log("isLoggedIn:", isLoggedIn);
+      navigate("/profile");
+    }
+  }, [isLoggedIn, navigate]);
   function handleLogin(email, password) {
-
     const data = {
       companyEmail: email,
       password: password,
     };
 
-    axios.post("http://localhost:9090/api/v1/auth/login", data)
+    axios
+      .post("http://localhost:9090/api/v1/auth/login", data)
       .then((response) => {
+        let token = response.data;
+        localStorage.setItem("Authorization", "Bearer " + token);
+        axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+        localStorage.getItem("token");
         console.log("Login successful!", response.data);
         handleLoginSuccess();
       })
       .catch((error) => {
         console.error("Login failed:", error);
-      })
-      .finally(() => {
-        console.log("isLoggedIn:", isLoggedIn);
       });
 
-      setEmail('');
-      setPassword('');
+    setEmail("");
+    setPassword("");
   }
 
   const handleEmailChange = (event) => {
@@ -121,8 +130,7 @@ function Illustration() {
         <ArgonBox mt={4} mb={1}>
           <ArgonButton
             onClick={() => handleLogin(email, password)}
-            component={isLoggedIn ? Link : 'button'}
-            to="/"
+            component={isLoggedIn ? Link : "button"}
             color="info"
             size="large"
             fullWidth
