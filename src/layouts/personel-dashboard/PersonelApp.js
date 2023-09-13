@@ -54,8 +54,9 @@ import brandDark from "assets/images/favicon.png";
 // Icon Fonts
 import "assets/css/nucleo-icons.css";
 import "assets/css/nucleo-svg.css";
+import PersonelRoutes from "./PersonelRoutes";
 
-export default function App() {
+export default function PersonelApp() {
   const [controller, dispatch] = useArgonController();
   const { miniSidenav, direction, layout, openConfigurator, sidenavColor, darkSidenav, darkMode } =
     controller;
@@ -144,13 +145,13 @@ export default function App() {
     <CacheProvider value={rtlCache}>
       <ThemeProvider theme={darkMode ? themeDarkRTL : themeRTL}>
         <CssBaseline />
-        {layout === "dashboard" && (
+        {layout === "perso" && (
           <>
             <Sidenav
               color={sidenavColor}
               brand={darkSidenav || darkMode ? brand : brandDark}
               brandName="HR Management"
-              routes={routes}
+              routes={PersonelRoutes}
               onMouseEnter={handleOnMouseEnter}
               onMouseLeave={handleOnMouseLeave}
             />
@@ -160,8 +161,8 @@ export default function App() {
         )}
         {layout === "vr" && <Configurator />}
         <Routes>
-          {getRoutes(routes)}
-          <Route path="*" element={<Navigate to="/dashboard" />} />
+          {getRoutes(PersonelRoutes)}
+          <Route path="*" element={<Navigate to="/personel" />} />
         </Routes>
       </ThemeProvider>
     </CacheProvider>
@@ -174,7 +175,7 @@ export default function App() {
             color={sidenavColor}
             brand={darkSidenav || darkMode ? brand : brandDark}
             brandName="HR Management"
-            routes={routes}
+            routes={PersonelRoutes}
             onMouseEnter={handleOnMouseEnter}
             onMouseLeave={handleOnMouseLeave}
           />
@@ -184,8 +185,8 @@ export default function App() {
       )}
       {layout === "vr" && <Configurator />}
       <Routes>
-        {getRoutes(routes)}
-        <Route path="*" element={<Navigate to="/dashboard" />} />
+        {getRoutes(PersonelRoutes)}
+        <Route path="*" element={<Navigate to="/personel" />} />
       </Routes>
     </ThemeProvider>
   );

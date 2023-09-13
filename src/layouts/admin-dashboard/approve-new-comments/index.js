@@ -23,7 +23,9 @@ import ArgonBox from "components/ArgonBox";
 import DefaultInfoCard from "examples/Cards/InfoCards/DefaultInfoCard";
 
 // Billing page components
-import BaseLayout from "layouts/admin/approve-new-comments";
+
+import BaseLayout from "layouts/admin/components/BaseLayout";
+
 import NewCommentsApproval from "../components/NewCommentsApproval";
 
 function ApproveNewComments() {
