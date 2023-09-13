@@ -12,6 +12,9 @@ Coded by www.creative-tim.com
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
+import { useEffect, useState } from "react";
+import axios from "axios";
+import jwt_decode from "jwt-decode";
 
 // @mui material components
 import Grid from "@mui/material/Grid";
@@ -54,6 +57,26 @@ const bgImage =
   "https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/profile-layout-header.jpg";
 
 function Overview() {
+
+  const storedToken = localStorage.getItem("Authorization");
+
+  const [userInfo, setUserInfo] = useState(null);
+
+  useEffect(() => {
+    if (storedToken) {
+      const decodedToken = jwt_decode(storedToken);
+      console.log(decodedToken);
+      axios
+        .get(`http://localhost:9095/api/v1/user/find-by-id/${decodedToken.id}`)
+        .then((response) => {
+          setUserInfo(response.data);
+        })
+        .catch((error) => {
+          console.error("An error occurred while trying to retrieve user information:", error);
+        });
+    }
+  }, [storedToken]);
+
   return (
     <DashboardLayout
       sx={{
@@ -77,13 +100,13 @@ function Overview() {
               title="profile information"
               // description=""
               info={{
-                info: "lorem ipsum",
-                name: "Alec",
-                surname: "Thompson",
-                companyEmail: "alecthompson@mail.com",
-                phone: "(44) 123 1234 123",
-                address: "Ankara",
-                birthday: "June 15 1992",
+                info: userInfo?.info || "",
+                name: userInfo?.name || "",
+                surname: userInfo?.surname || "",
+                companyEmail: userInfo?.companyEmail || "",
+                phone: userInfo?.phone || "",
+                address: userInfo?.address || "",
+                birthday: userInfo?.birthday || "",
               }}
               social={[
                 {

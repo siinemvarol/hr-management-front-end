@@ -35,7 +35,7 @@ root.render(
   <BrowserRouter>
     <ArgonControllerProvider>
       <PerfectScrollbar>
-        <Admin />
+        <App />
       </PerfectScrollbar>
     </ArgonControllerProvider>
   </BrowserRouter>
