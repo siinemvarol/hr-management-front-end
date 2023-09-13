@@ -52,15 +52,18 @@ import ApproveNewComments from "./approve-new-comments";
 import ArgonBox from "components/ArgonBox";
 import Employee from "layouts/employee/employees";
 import CompanyInfo from "layouts/company-info/company";
+import Default from "layouts/dashboard";
+import AdminHomePage from "./dashboard";
 
 const adminRoutes = [
+
   {
     type: "route",
     name: "Admin",
-    key: "admin-dashboard",
+    key: "dashboard",
     route: "/admin",
     icon: <ArgonBox component="i" color="success" fontSize="14px" className="ni ni-single-copy-04" />,
-    component: < AdminDashboard/>,
+    component: < AdminHomePage/>,
   },
  
   {

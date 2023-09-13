@@ -23,8 +23,8 @@ import ArgonBox from "components/ArgonBox";
 import DefaultInfoCard from "examples/Cards/InfoCards/DefaultInfoCard";
 
 // Billing page components
-import BaseLayout from "../components/BaseLayout";
-import NewCommentsApproval from "layouts/admin/components/NewCommentsApproval";
+import BaseLayout from "layouts/admin/components/BaseLayout";
+import NewCommentsApproval from "../components/NewCommentsApproval";
 
 function ApproveNewComments() {
   return (
