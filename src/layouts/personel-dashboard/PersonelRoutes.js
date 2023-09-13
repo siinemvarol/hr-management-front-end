@@ -51,125 +51,31 @@ import ApproveNewComments from "layouts/admin/approve-new-comments";
 import ArgonBox from "components/ArgonBox";
 import Employee from "layouts/employee/employees";
 import CompanyInfo from "layouts/company-info/company";
+import PersonelHomePage from "./dashboard";
+
 
 const PersonelRoutes = [
+
   {
     type: "route",
-    name: "Approve New Companies",
-    key: "approve-new-companies",
-    route: "/approve-new-companies",
+    name: "Personel",
+    key: "personel",
+    route: "/personel",
     icon: <ArgonBox component="i" color="success" fontSize="14px" className="ni ni-single-copy-04" />,
-    component: <ApproveNewCompanies />,
+    component: <PersonelHomePage/>,
   },
-  {
-    type: "route",
-    name: "Add New Company",
-    key: "add-new-company",
-    route: "/add-new-company",
-    icon: <ArgonBox component="i" color="success" fontSize="14px" className="ni ni-single-copy-04" />,
-    component: <AddNewCompany />,
-  },
-  {
-    type: "route",
-    name: "Approve New Comments",
-    key: "approve-new-comments",
-    route: "/approve-new-comments",
-    icon: <ArgonBox component="i" color="success" fontSize="14px" className="ni ni-single-copy-04" />,
-    component: <ApproveNewComments />,
-  },
-  {
-    type: "route",
-    name: "Add New Employee",
-    key: "add-new-employee",
-    route: "/add-new-employee",
-    icon: <ArgonBox component="i" color="success" fontSize="14px" className="ni ni-single-copy-04" />,
-    component: <AddNewEmployee />,
-  },
-  {
-    type: "route",
-    name: "Dashboard",
-    key: "dashboard",
-    route: "/dashboard",
-    icon: <ArgonBox component="i" color="primary" fontSize="14px" className="ni ni-tv-2" />,
-    component: <Dashboard />,
-  },
-  {
-    type: "route",
-    name: "Company Information",
-    key: "company",
-    route: "/company",
-    icon: <ArgonBox component="i" color="info" fontSize="14px" className="ni ni-collection" />,
-    component: <CompanyInfo />,
-  },
-  {
-    type: "route",
-    name: "Employees",
-    key: "employee",
-    route: "/employee",
-    icon: <ArgonBox component="i" color="dark" fontSize="14px" className="ni ni-single-02" />,
-    component: <Employee />,
-  },
-  {
-    type: "route",
-    name: "Tables",
-    key: "tables",
-    route: "/tables",
-    icon: (
-      <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-calendar-grid-58" />
-    ),
-    component: <Tables />,
-  },
-  {
-    type: "route",
-    name: "Billing",
-    key: "billing",
-    route: "/billing",
-    icon: <ArgonBox component="i" color="success" fontSize="14px" className="ni ni-credit-card" />,
-    component: <Billing />,
-  },
-  {
-    type: "route",
-    name: "Virtual Reality",
-    key: "virtual-reality",
-    route: "/virtual-reality",
-    icon: <ArgonBox component="i" color="info" fontSize="14px" className="ni ni-app" />,
-    component: <VirtualReality />,
-  },
-  {
-    type: "route",
-    name: "RTL",
-    key: "rtl",
-    route: "/rtl",
-    icon: <ArgonBox component="i" color="error" fontSize="14px" className="ni ni-world-2" />,
-    component: <RTL />,
-  },
-  { type: "title", title: "Account Pages", key: "account-pages" },
+  
   {
     type: "route",
     name: "Profile",
     key: "profile",
     route: "/profile",
     icon: <ArgonBox component="i" color="dark" fontSize="14px" className="ni ni-single-02" />,
-    component: <Profile />,
+    component: <Profile/>,
   },
-  {
-    type: "route",
-    name: "Login",
-    key: "sign-in",
-    route: "/authentication/sign-in",
-    icon: (
-      <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-single-copy-04" />
-    ),
-    component: <SignIn />,
-  },
-  {
-    type: "route",
-    name: "Sign Up",
-    key: "sign-up",
-    route: "/authentication/sign-up",
-    icon: <ArgonBox component="i" color="info" fontSize="14px" className="ni ni-collection" />,
-    component: <SignUp />,
-  },
+
+
+
 ];
 
 export default PersonelRoutes;
