@@ -27,7 +27,9 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 // react-perfect-scrollbar styles
 import "react-perfect-scrollbar/dist/css/styles.css";
 import Admin from "layouts/admin-dashboard";
+
 import PersonelApp from "layouts/personel-dashboard/PersonelApp";
+
 
 const container = document.getElementById("root");
 const root = createRoot(container);
