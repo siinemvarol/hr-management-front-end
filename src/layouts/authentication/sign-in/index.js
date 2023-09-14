@@ -68,7 +68,7 @@ function Illustration() {
       console.log(decoded);
 
       // JWT içindeki bilgilere göre yönlendirme yapabilirsiniz
-      if (decoded.role === "COMPANY_MANAGER") {
+      if (decoded.role === "ADMIN") {
         root.render(
           <BrowserRouter>
             <ArgonControllerProvider>
