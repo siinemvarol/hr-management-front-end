@@ -91,6 +91,8 @@ function Illustration() {
       }
     }
   }, [isLoggedIn, navigate]);
+
+  
   function handleLogin(email, password) {
     const data = {
       companyEmail: email,
