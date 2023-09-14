@@ -24,7 +24,7 @@ import ArgonTypography from "components/ArgonTypography";
 
 // Argon Dashboard 2 MUI example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import DashboardNavbar from "examples/Navbars/DashboardNavbar";
+import DashboardNavbar from "../examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 import DetailedStatisticsCard from "examples/Cards/StatisticsCards/DetailedStatisticsCard";
 import SalesTable from "examples/Tables/SalesTable";
@@ -43,10 +43,109 @@ import gradientLineChartData from "layouts/dashboard/data/gradientLineChartData"
 import categoriesListData from "layouts/dashboard/data/categoriesListData";
 import companyTableData from "./data/companyTableData";
 import CompanyTable from "../examples/Tables/CompanyTable";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 
 function AdminHomePage() {
+
+
+  //Get Company Number Metodu
+  const [employeeCount, setEmployeeCount] = useState(null);
+  const fetchEmployeeCount = () => {
+    axios.get('http://localhost:9090/api/v1/auth/get-employee-number')
+      .then(response => {
+        console.log(response.data)
+        setEmployeeCount(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching employee count:', error);
+      });
+  };
   
+  useEffect(() => {
+    fetchEmployeeCount(); // Sayfa yüklendiğinde hemen bir kez çalıştır
+  
+    const interval = setInterval(() => {
+      fetchEmployeeCount(); // Her 5 saniyede bir çalıştır
+    }, 5000);
+  
+    return () => clearInterval(interval); // Component temizlendiğinde interval'i temizle
+  }, []);
+
+
+
+
+
+    //Get USDTRY
+    const apiUrl = 'https://api.exchangerate-api.com/v4/latest/USD';
+    const [usdTry, setUsdTry] = useState(null);
+    const fetchUsdTry = () => {
+      fetch(apiUrl)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          const usdToTryExchangeRate = data.rates.TRY;
+          console.log(`1 USD = ${usdToTryExchangeRate} TRY`+Date.now());
+          setUsdTry(`1 USD = ${usdToTryExchangeRate} TRY`);
+        })
+        .catch(error => {
+          console.error('There was a problem with the fetch operation:', error);
+        });
+    };
+  
+    useEffect(() => {
+      fetchUsdTry(); // Sayfa yüklendiğinde hemen bir kez çalıştır
+  
+      const interval = setInterval(() => {
+        fetchUsdTry(); // Her 5 saniyede bir çalıştır
+      }, 5000);
+  
+      return () => clearInterval(interval); // Component temizlendiğinde interval'i temizle
+    }, []);
+
+
+
+
+    //Get New Companies Metod
+    const apiUrl2 = 'http://localhost:9091/api/v1/company/get--new-companies';
+    const [newCompanies, setNewCompanies] = useState(null);
+    
+    const fetchNewCompanies = () => {
+      fetch(apiUrl2)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log("haay ", data.length, Date.now());
+           setNewCompanies(data.length);
+        })
+        .catch(error => {
+          console.error('There was a problem with the fetch operation:', error);
+        });
+    };
+    
+    useEffect(() => {
+      fetchNewCompanies(); // Sayfa yüklendiğinde hemen bir kez çalıştır
+    
+      const interval = setInterval(() => {
+        fetchNewCompanies(); // Her 5 saniyede bir çalıştır
+      }, 5000);
+    
+      return () => clearInterval(interval); // Component temizlendiğinde interval'i temizle
+    }, []);
+
+
+
+
+
   const { size } = typography;
   return (
     <DashboardLayout>
@@ -55,19 +154,19 @@ function AdminHomePage() {
         <Grid container spacing={3} mb={3}>
           <Grid item xs={12} md={6} lg={3}>
             <DetailedStatisticsCard
-              title="new employee"
-              count="22"
+              title="new company"
+              count={employeeCount !== null ? employeeCount : 'Loading...'}
               icon={{ color: "info", component: <i className="ni ni-money-coins" /> }}
               percentage={{ color: "success", count: "+5%", text: "since last month" }}
             />
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
-            <DetailedStatisticsCard
-              title="total employee"
-              count="425"
-              icon={{ color: "error", component: <i className="ni ni-world" /> }}
-              percentage={{ color: "success", count: "+3%", text: "since last year" }}
-            />
+           <DetailedStatisticsCard
+            title="total company"
+            count={newCompanies !== null ? newCompanies : 'Loading...'}
+            icon={{ color: "error", component: <i className="ni ni-world" /> }}
+            percentage={{ color: "success", count: "+3%", text: "since last year" }}
+          />
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
             <DetailedStatisticsCard
@@ -79,11 +178,12 @@ function AdminHomePage() {
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
             <DetailedStatisticsCard
-              title="avg. salary"
-              count="$1,250"
+              title="instant exchange rate"
+              count={usdTry !== null ? usdTry : 'Loading...'}
               icon={{ color: "warning", component: <i className="ni ni-cart" /> }}
               percentage={{ color: "success", count: "+5%", text: "than last year" }}
             />
+            console.log(usdTry)
           </Grid>
         </Grid>
         <Grid container spacing={3} mb={3}>

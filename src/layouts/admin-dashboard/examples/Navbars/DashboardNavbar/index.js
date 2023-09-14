@@ -186,12 +186,11 @@ function DashboardNavbar({ absolute, light, isMini }) {
                     account_circle
                   </Icon>
                   <ArgonTypography
-                    variant="button"
-                    fontWeight="medium"
-                    color={light && transparentNavbar ? "white" : "dark"}
-                    
+                  variant="button"
+                  fontWeight="medium"
+                  color={light && transparentNavbar ? "white" : "dark"}
                   >
-                    Sign in
+                    {localStorage.getItem("token") ? "Sign out" : "Sign in"}
                   </ArgonTypography>
                   
                 </IconButton>
