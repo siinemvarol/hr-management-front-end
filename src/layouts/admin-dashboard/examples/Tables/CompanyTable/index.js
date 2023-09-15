@@ -62,7 +62,7 @@ function CompanyTable({ title, rows }) {
       tableRows.push(
         <SalesTableCell
           key={`confirm-button-${key}`}
-          title="Onayla"
+          title="Quick Confirm"
           content={
             <Button
               variant="contained"
@@ -72,7 +72,7 @@ function CompanyTable({ title, rows }) {
                 alert(`Onaylandı: ${row.companyName}`);
               }}
             >
-              Onayla
+              Accept
             </Button>
           }
           noBorder={key === rows.length - 1}

@@ -27,8 +27,66 @@ import DefaultInfoCard from "examples/Cards/InfoCards/DefaultInfoCard";
 import BaseLayout from "layouts/admin/components/BaseLayout";
 
 import NewCommentsApproval from "../components/NewCommentsApproval";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function ApproveNewComments() {
+
+
+  const apiUrl2 = 'http://localhost:9093/api/v1/comment/get-comments';
+   const [totalComments, setTotalComments] = useState(null);
+   
+   const fetchTotalComments = () => {
+     fetch(apiUrl2)
+       .then(response => {
+         if (!response.ok) {
+           throw new Error('Network response was not ok');
+         }
+         return response.json();
+       })
+       .then(data => {
+        setTotalComments(data.length);
+       })
+       .catch(error => {
+         console.error('There was a problem with the fetch operation:', error);
+       });
+   };
+   
+   useEffect(() => {
+    fetchTotalComments();
+   }, []);
+
+
+   const [newComments2, setnewComments2] = useState([]);
+   useEffect(() => {
+     axios.get('http://localhost:9093/api/v1/comment/get-pending-comments')
+       .then(response => {
+         const apiData = response.data;
+ 
+         const mappedData = apiData.map(item => {
+ 
+           return {
+             id: item.id,
+             companyName: item.companyName,
+             companyPhone: item.companyPhone,
+             companyEmail: item.infoEmail,
+             companyAddress: item.companyAddress,
+             city: item.city,
+             taxId: item.taxId,
+             status: item.status,
+           };
+         });
+
+
+         setnewComments2(mappedData.length);
+          console.log(mappedData)
+       })
+       .catch(error => {
+         console.error('Error fetching company data:', error);
+       });
+   }, []);
+
+
   return (
     <BaseLayout stickyNavbar>
       <ArgonBox mt={4}>
@@ -42,7 +100,7 @@ function ApproveNewComments() {
                     icon="create_new_folder_outlined"
                     title="Comments"
                     description="Waiting for Approval"
-                    value="3"
+                    value={newComments2}
                   />
                 </Grid>
                 <Grid item xs={12} md={6} xl={3}>
@@ -50,7 +108,7 @@ function ApproveNewComments() {
                     icon="business_outlined"
                     title="Total Comments"
                     description="Total Comments in the System"
-                    value="15"
+                    value={totalComments}
                   />
                 </Grid>
               </Grid>

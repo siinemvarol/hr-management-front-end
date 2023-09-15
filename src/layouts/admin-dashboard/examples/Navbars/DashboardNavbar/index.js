@@ -67,6 +67,8 @@ function DashboardNavbar({ absolute, light, isMini }) {
   const { miniSidenav, transparentNavbar, fixedNavbar, openConfigurator } = controller;
   const [openMenu, setOpenMenu] = useState(false);
   const route = useLocation().pathname.split("/").slice(1);
+  
+  
 
   useEffect(() => {
     // Setting the navbar type
@@ -190,7 +192,9 @@ function DashboardNavbar({ absolute, light, isMini }) {
                   fontWeight="medium"
                   color={light && transparentNavbar ? "white" : "dark"}
                   >
-                    {localStorage.getItem("token") ? "Sign out" : "Sign in"}
+                    {localStorage.getItem("Authorization") ? "Sign out" : "Sign out"}
+                    {console.log(localStorage.getItem("Authorization"))}
+   
                   </ArgonTypography>
                   
                 </IconButton>

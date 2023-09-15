@@ -26,10 +26,58 @@ import ArgonButton from "components/ArgonButton";
 
 // Argon Dashboard 2 MUI contexts
 import { useArgonController } from "context";
+import axios from "axios";
 
-function NewCompany({ name, company, email, vat, noGutter }) {
+function NewCompany({ name, company, email, vat, noGutter,companyId,status  }) {
+
+  const handleAcceptClick = (companyId) => {
+    // API isteği yap
+    axios.put(`http://localhost:9091/api/v1/company/activate-company?id=${companyId}`, {
+      status: 'active' // Burada istediğiniz yeni durumu belirtin
+    })
+      .then(response => {
+        // Başarılı ise burada yapılacak işlemler
+        console.log('Company status updated successfully:', response.data);
+        alert("Şirket Onaylandı")
+        
+      })
+      .catch(error => {
+        // Hata durumunda burada yapılacak işlemler
+        console.error('Error updating company status:', error);
+      });
+  };
+  const handleDenyClick = (companyId) => {
+    // API isteği yap
+    axios.put(`http://localhost:9091/api/v1/company/denied-company?id=${companyId}`, {
+      status: 'DENIED' // Company statusunu DENIED olarak gönder
+    })
+      .then(response => {
+        // Başarılı ise burada yapılacak işlemler
+        console.log('Company status denied successfully:', response.data);
+        alert("Şirket Reddedildi")
+      })
+      .catch(error => {
+        // Hata durumunda burada yapılacak işlemler
+        console.error('Error denying company:', error);
+      });
+  };
+
+
+
+
+
   const [controller] = useArgonController();
   const { darkMode } = controller;
+
+  NewCompany.propTypes = {
+    name: PropTypes.string.isRequired,
+    company: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    vat: PropTypes.string.isRequired,
+    noGutter: PropTypes.bool,
+    companyId: PropTypes.number, // companyId ekleniyor
+    status: PropTypes.string.isRequired,
+  };
 
   return (
     <ArgonBox
@@ -64,20 +112,20 @@ function NewCompany({ name, company, email, vat, noGutter }) {
             ml={{ xs: -1.5, sm: 0 }}
           >
             <ArgonBox mr={1}>
-              <ArgonButton variant="text" color="success">
-                <Icon>done</Icon>&nbsp;Accept
-              </ArgonButton>
-            </ArgonBox>
-            <ArgonButton variant="text" color="error">
-              <Icon>clear</Icon>&nbsp;Deny
+            <ArgonButton variant="text" color="success" onClick={() => handleAcceptClick(companyId)}>
+              <Icon>done</Icon>&nbsp;Accept
             </ArgonButton>
+            </ArgonBox>
+            <ArgonButton variant="text" color="error" onClick={() => handleDenyClick(companyId)}>
+          <Icon>clear</Icon>&nbsp;Deny
+        </ArgonButton>
           </ArgonBox>
         </ArgonBox>
         <ArgonBox mb={1} lineHeight={0}>
           <ArgonTypography variant="caption" color="text">
-            Company Representative:&nbsp;&nbsp;&nbsp;
+            Status:&nbsp;&nbsp;&nbsp;
             <ArgonTypography variant="caption" fontWeight="medium" textTransform="capitalize">
-              {company}
+              {status}
             </ArgonTypography>
           </ArgonTypography>
         </ArgonBox>
@@ -89,8 +137,16 @@ function NewCompany({ name, company, email, vat, noGutter }) {
             </ArgonTypography>
           </ArgonTypography>
         </ArgonBox>
+        <ArgonBox mb={1} lineHeight={0}>
+          <ArgonTypography variant="caption" color="text">
+            Company Id:&nbsp;&nbsp;&nbsp;
+            <ArgonTypography variant="caption" fontWeight="medium">
+              {companyId}
+            </ArgonTypography>
+          </ArgonTypography>
+        </ArgonBox>
         <ArgonTypography variant="caption" color="text">
-          VAT Number:&nbsp;&nbsp;&nbsp;
+          TAX ID:&nbsp;&nbsp;&nbsp;
           <ArgonTypography variant="caption" fontWeight="medium">
             {vat}
           </ArgonTypography>

@@ -26,8 +26,59 @@ import ArgonButton from "components/ArgonButton";
 
 // Argon Dashboard 2 MUI contexts
 import { useArgonController } from "context";
+import axios from "axios";
 
-function NewComment({ commentText, employeeName, employeeSurname, employeeEmail, companyName, noGutter }) {
+function NewComment({ content, commentId, createDate, updateDate, noGutter, userId, header,status }) {
+
+
+  const handleAcceptClick = (userId) => {
+
+    axios.put(`http://localhost:9093/api/v1/comment/active-comment?id=${commentId}`, {
+      status: 'APPROVED' 
+    })
+      .then(response => {
+
+        console.log('Comment status updated successfully:', response.data);
+        alert("Comment Succesfully")
+        
+      })
+      .catch(error => {
+
+        console.error('Error updating company status:', error);
+      });
+  };
+
+  const handleDenyClick = (commentId) => {
+
+    axios.put(`http://localhost:9093/api/v1/comment/denied-comment?id=${commentId}`, {
+      status: 'DENIED' 
+    })
+      .then(response => {
+
+        console.log('Comment status denied successfully:', response.data);
+        alert("Comment Denied")
+      })
+      .catch(error => {
+
+        console.error('Error denying company:', error);
+      });
+  };
+
+
+  NewComment.propTypes = {
+    content: PropTypes.string.isRequired,
+    commentId: PropTypes.string.isRequired,
+    createDate: PropTypes.string.isRequired,
+    updateDate: PropTypes.string.isRequired,
+    noGutter: PropTypes.bool,
+    userId: PropTypes.number,
+    header: PropTypes.string.isRequired,
+    status: PropTypes.string.isRequired,
+  };
+
+
+
+
   const [controller] = useArgonController();
   const { darkMode } = controller;
 
@@ -56,7 +107,7 @@ function NewComment({ commentText, employeeName, employeeSurname, employeeEmail,
           <ArgonTypography variant="button" fontWeight="medium" 
           // textTransform="capitalize"
           >
-            {commentText}
+            {content}
           </ArgonTypography>
 
           <ArgonBox
@@ -66,37 +117,47 @@ function NewComment({ commentText, employeeName, employeeSurname, employeeEmail,
             ml={{ xs: -1.5, sm: 0 }}
           >
             <ArgonBox mr={1}>
-              <ArgonButton variant="text" color="success">
-                <Icon>done</Icon>&nbsp;Accept
-              </ArgonButton>
+            <ArgonButton variant="text" color="success" onClick={() => handleAcceptClick(commentId)}>
+              <Icon>done</Icon>&nbsp;Accept
+            </ArgonButton>
             </ArgonBox>
-            <ArgonButton variant="text" color="error">
+            <ArgonButton variant="text" color="error" onClick={() => handleDenyClick(commentId)}>
               <Icon>clear</Icon>&nbsp;Deny
             </ArgonButton>
           </ArgonBox>
         </ArgonBox>
         <ArgonBox mb={1} lineHeight={0}>
           <ArgonTypography variant="caption" color="text">
-            Employee Name Surname:&nbsp;&nbsp;&nbsp;
+            Create Date - Update Date :&nbsp;&nbsp;&nbsp;
             <ArgonTypography variant="caption" fontWeight="medium" textTransform="capitalize">
-              {employeeName} {employeeSurname}
+              {createDate} {updateDate}
             </ArgonTypography>
           </ArgonTypography>
         </ArgonBox>
         <ArgonBox mb={1} lineHeight={0}>
           <ArgonTypography variant="caption" color="text">
-            Employee Email Address:&nbsp;&nbsp;&nbsp;
+            Header :&nbsp;&nbsp;&nbsp;
             <ArgonTypography variant="caption" fontWeight="medium">
-              {employeeEmail}
+              {header}
             </ArgonTypography>
           </ArgonTypography>
         </ArgonBox>
-        <ArgonTypography variant="caption" color="text">
-          Company Name:&nbsp;&nbsp;&nbsp;
-          <ArgonTypography variant="caption" fontWeight="medium">
-            {companyName}
+        <ArgonBox mb={1} lineHeight={0}>
+          <ArgonTypography variant="caption" color="text">
+            Content :&nbsp;&nbsp;&nbsp;
+            <ArgonTypography variant="caption" fontWeight="medium">
+              {content}
+            </ArgonTypography>
           </ArgonTypography>
-        </ArgonTypography>
+        </ArgonBox>
+        <ArgonBox mb={1} lineHeight={0}>
+          <ArgonTypography variant="caption" color="text">
+            Status :&nbsp;&nbsp;&nbsp;
+            <ArgonTypography variant="caption" fontWeight="medium">
+              {status}
+            </ArgonTypography>
+          </ArgonTypography>
+        </ArgonBox>
       </ArgonBox>
     </ArgonBox>
   );
@@ -108,14 +169,6 @@ NewComment.defaultProps = {
 };
 
 // Typechecking props for the NewComment
-NewComment.propTypes = {
-  commentText: PropTypes.string.isRequired,
-  comment: PropTypes.string.isRequired,
-  employeeName: PropTypes.string.isRequired,
-  employeeSurname: PropTypes.string.isRequired,
-  employeeEmail: PropTypes.string.isRequired,
-  companyName: PropTypes.string.isRequired,
-  noGutter: PropTypes.bool,
-};
+
 
 export default NewComment;
