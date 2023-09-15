@@ -34,30 +34,29 @@ import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import Footer from "examples/Footer";
 //import ProfileInfoCard from "examples/Cards/InfoCards/ProfileInfoCard";
 import EmployeeInfoCard from "examples/Cards/InfoCards/EmployeeInfoCard";
-import ProfilesList from "examples/Lists/ProfilesList";
-import DefaultProjectCard from "examples/Cards/ProjectCards/DefaultProjectCard";
-import PlaceholderCard from "examples/Cards/PlaceholderCard";
+// import ProfilesList from "examples/Lists/ProfilesList";
+// import DefaultProjectCard from "examples/Cards/ProjectCards/DefaultProjectCard";
+// import PlaceholderCard from "examples/Cards/PlaceholderCard";
 
 // Overview page components
 import Header from "layouts/profile/components/Header";
-import PlatformSettings from "layouts/profile/components/PlatformSettings";
+// import PlatformSettings from "layouts/profile/components/PlatformSettings";
 
 // Data
-import profilesListData from "layouts/profile/data/profilesListData";
+// import profilesListData from "layouts/profile/data/profilesListData";
 
 // Images
-import homeDecor1 from "assets/images/home-decor-1.jpg";
-import homeDecor2 from "assets/images/home-decor-2.jpg";
-import homeDecor3 from "assets/images/home-decor-3.jpg";
-import team1 from "assets/images/team-1.jpg";
-import team2 from "assets/images/team-2.jpg";
-import team3 from "assets/images/team-3.jpg";
-import team4 from "assets/images/team-4.jpg";
+// import homeDecor1 from "assets/images/home-decor-1.jpg";
+// import homeDecor2 from "assets/images/home-decor-2.jpg";
+// import homeDecor3 from "assets/images/home-decor-3.jpg";
+// import team1 from "assets/images/team-1.jpg";
+// import team2 from "assets/images/team-2.jpg";
+// import team3 from "assets/images/team-3.jpg";
+// import team4 from "assets/images/team-4.jpg";
 const bgImage =
   "https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/profile-layout-header.jpg";
 
 function Overview() {
-
   const storedToken = localStorage.getItem("Authorization");
 
   const [userInfo, setUserInfo] = useState(null);
@@ -70,13 +69,13 @@ function Overview() {
         .get(`http://localhost:9095/api/v1/user/find-by-id/${decodedToken.id}`)
         .then((response) => {
           setUserInfo(response.data);
+
         })
         .catch((error) => {
           console.error("An error occurred while trying to retrieve user information:", error);
         });
     }
   }, [storedToken]);
-
   return (
     <DashboardLayout
       sx={{
@@ -90,22 +89,23 @@ function Overview() {
     >
       <Header />
       <ArgonBox mt={5} mb={3}>
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={6} xl={4}>
+        <Grid container spacing={3} >
+          {/* <Grid item xs={12} md={6} xl={4}>
             <PlatformSettings />
-          </Grid>
+          </Grid> */}
           <Grid item xs={12} md={6} xl={4}>
             {/* <ProfileInfoCard */}
-            <EmployeeInfoCard
+            <EmployeeInfoCard 
               title="profile information"
               // description=""
               info={{
-                info: userInfo?.info || "",
                 name: userInfo?.name || "",
                 surname: userInfo?.surname || "",
                 companyEmail: userInfo?.companyEmail || "",
+                personalEmail: userInfo?.personalEmail || "",
                 phone: userInfo?.phone || "",
                 address: userInfo?.address || "",
+                info: userInfo?.info || "",
                 birthday: userInfo?.birthday || "",
               }}
               social={[
@@ -129,13 +129,13 @@ function Overview() {
               edit={true}
             />
           </Grid>
-          <Grid item xs={12} xl={4}>
+          {/* <Grid item xs={12} xl={4}>
             <ProfilesList title="conversations" profiles={profilesListData} />
-          </Grid>
+          </Grid> */}
         </Grid>
       </ArgonBox>
-      <ArgonBox mb={3}>
-        <Card>
+      <ArgonBox>
+        {/* <Card>
           <ArgonBox pt={2} px={2}>
             <ArgonBox mb={0.5}>
               <ArgonTypography variant="h6" fontWeight="medium">
@@ -215,7 +215,7 @@ function Overview() {
               </Grid>
             </Grid>
           </ArgonBox>
-        </Card>
+        </Card> */}
       </ArgonBox>
 
       <Footer />

@@ -35,7 +35,7 @@ import Admin from "layouts/admin-dashboard";
 import { ArgonControllerProvider } from "context";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import PersonelApp from "layouts/personel-dashboard/PersonelApp";
-
+import Profile from "layouts/profile";
 
 // Image
 const bgImage =
@@ -63,7 +63,8 @@ function Illustration() {
       // Kullanıcı oturum açtıktan sonra JWT çözümleme ekliyoruz
       const token = localStorage.getItem("Authorization");
       const decoded = jwt_decode(token);
-
+      // -----
+      navigate("/profile");
       // JWT içindeki bilgilere erişim
       console.log(decoded);
 
@@ -73,26 +74,25 @@ function Illustration() {
           <BrowserRouter>
             <ArgonControllerProvider>
               <PerfectScrollbar>
-                <Admin/>
+                <Admin />
               </PerfectScrollbar>
             </ArgonControllerProvider>
           </BrowserRouter>
         );
       } else if (decoded.role === "EMPLOYEE") {
         <BrowserRouter>
-        <ArgonControllerProvider>
-          <PerfectScrollbar>
-            <PersonelApp/>
-          </PerfectScrollbar>
-        </ArgonControllerProvider>
-      </BrowserRouter>
+          <ArgonControllerProvider>
+            <PerfectScrollbar>
+              <PersonelApp />
+            </PerfectScrollbar>
+          </ArgonControllerProvider>
+        </BrowserRouter>;
       } else {
         navigate("/guest-home");
       }
     }
   }, [isLoggedIn, navigate]);
 
-  
   function handleLogin(email, password) {
     const data = {
       companyEmail: email,
