@@ -50,13 +50,13 @@ import axios from "axios";
 function AdminHomePage() {
 
 
-  //Get Company Number Metodu
+  //Get New Company Number Metodu
   const [employeeCount, setEmployeeCount] = useState(null);
   const fetchEmployeeCount = () => {
-    axios.get('http://localhost:9090/api/v1/auth/get-employee-number')
+    axios.get('http://localhost:9091/api/v1/company/get-new-number-company')
       .then(response => {
         console.log(response.data)
-        setEmployeeCount(response.data);
+        setEmployeeCount(response.data.length);
       })
       .catch(error => {
         console.error('Error fetching employee count:', error);
@@ -111,8 +111,8 @@ function AdminHomePage() {
 
 
 
-    //Get New Companies Metod
-    const apiUrl2 = 'http://localhost:9091/api/v1/company/get--new-companies';
+    //Get Number of All Companies Metod
+    const apiUrl2 = 'http://localhost:9091/api/v1/company/get-number-company';
     const [newCompanies, setNewCompanies] = useState(null);
     
     const fetchNewCompanies = () => {
@@ -124,8 +124,8 @@ function AdminHomePage() {
           return response.json();
         })
         .then(data => {
-          console.log("haay ", data.length, Date.now());
-           setNewCompanies(data.length);
+          console.log("haay ", data, Date.now());
+           setNewCompanies(data);
         })
         .catch(error => {
           console.error('There was a problem with the fetch operation:', error);

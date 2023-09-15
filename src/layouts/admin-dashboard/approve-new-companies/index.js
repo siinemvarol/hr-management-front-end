@@ -24,9 +24,70 @@ import DefaultInfoCard from "examples/Cards/InfoCards/DefaultInfoCard";
 
 // Billing page components
 import BaseLayout from "layouts/admin/components/BaseLayout";
-import NewCompaniesApproval from "layouts/admin/components/NewCompaniesApproval";
+import NewCompaniesApproval from "layouts/admin-dashboard/components/NewCompaniesApproval";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function ApproveNewCompanies() {
+//Functions
+
+   //Get Number of All Companies Method
+   const apiUrl2 = 'http://localhost:9091/api/v1/company/get-number-company';
+   const [newCompanies, setNewCompanies] = useState(null);
+   
+   const fetchNewCompanies = () => {
+     fetch(apiUrl2)
+       .then(response => {
+         if (!response.ok) {
+           throw new Error('Network response was not ok');
+         }
+         return response.json();
+       })
+       .then(data => {
+          setNewCompanies(data);
+       })
+       .catch(error => {
+         console.error('There was a problem with the fetch operation:', error);
+       });
+   };
+   
+   useEffect(() => {
+     fetchNewCompanies();
+   }, []);
+
+
+   const [companyTableData2, setCompanyTableData2] = useState([]);
+   useEffect(() => {
+     axios.get('http://localhost:9091/api/v1/company/get-not-authorized-companies')
+       .then(response => {
+         const apiData = response.data;
+ 
+         const mappedData = apiData.map(item => {
+ 
+           return {
+             id: item.id,
+             companyName: item.companyName,
+             companyPhone: item.companyPhone,
+             companyEmail: item.infoEmail,
+             companyAddress: item.companyAddress,
+             city: item.city,
+             taxId: item.taxId,
+             status: item.status,
+           };
+         });
+
+
+         setCompanyTableData2(mappedData.length);
+          console.log(mappedData)
+       })
+       .catch(error => {
+         console.error('Error fetching company data:', error);
+       });
+   }, []);
+
+
+
+
   return (
     <BaseLayout stickyNavbar>
       <ArgonBox mt={4}>
@@ -40,7 +101,8 @@ function ApproveNewCompanies() {
                     icon="create_new_folder_outlined"
                     title="Applications"
                     description="Waiting for Approval"
-                    value="3"
+                    
+                    value={companyTableData2}
                   />
                 </Grid>
                 <Grid item xs={12} md={6} xl={3}>
@@ -48,7 +110,7 @@ function ApproveNewCompanies() {
                     icon="business_outlined"
                     title="Total"
                     description="Total Companies in the System"
-                    value="15"
+                    value={newCompanies}
                   />
                 </Grid>
               </Grid>

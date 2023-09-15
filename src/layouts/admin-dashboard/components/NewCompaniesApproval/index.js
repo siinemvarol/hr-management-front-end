@@ -1,31 +1,55 @@
-/**
-=========================================================
-* Argon Dashboard 2 MUI - v3.0.1
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-material-ui
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-// @mui material components
+import React, { useEffect, useState } from "react";
 import Card from "@mui/material/Card";
-
-// Argon Dashboard 2 MUI components
+import axios from "axios";
 import ArgonBox from "components/ArgonBox";
 import ArgonTypography from "components/ArgonTypography";
-
-// New added company components
-import NewCompany from "layouts/admin/components/NewCompany";
+import NewCompany from "layouts/admin-dashboard/components/NewCompany";
 
 function NewCompaniesApproval() {
+
+//Get Not Authorized Companies method=>>NewCompany.js
+  const [companyTableData2, setCompanyTableData2] = useState([]);
+  const fetchCompanyData = () => {
+    axios
+      .get("http://localhost:9091/api/v1/company/get-not-authorized-companies")
+      .then((response) => {
+        const apiData = response.data;
+
+        const mappedData = apiData.map((item) => {
+          return {
+            id: item.id,
+            companyName: item.companyName,
+            companyPhone: item.companyPhone,
+            companyEmail: item.infoEmail,
+            companyAddress: item.companyAddress,
+            city: item.city,
+            taxId: item.taxId,
+            status: item.status,
+          };
+        });
+
+        setCompanyTableData2(mappedData);
+        console.log(mappedData);
+      })
+      .catch((error) => {
+        console.error("Error fetching company data:", error);
+      });
+  };
+
+  useEffect(() => {
+    // Sayfa yüklendiğinde bir kere çalıştır
+    fetchCompanyData();
+
+    // 3 saniyede bir tekrarla
+    const interval = setInterval(fetchCompanyData, 3000);
+
+    // Komponent temizlendiğinde interval'i durdur
+    return () => clearInterval(interval);
+  }, []);
+
+
   return (
-    <Card id="delete-account" sx={{ width: 1}}>
+    <Card id="delete-account" sx={{ width: 1 }}>
       <ArgonBox pt={3} px={2}>
         <ArgonTypography variant="h6" fontWeight="medium">
           New Company Requests
@@ -33,25 +57,17 @@ function NewCompaniesApproval() {
       </ArgonBox>
       <ArgonBox pt={1} pb={2} px={2}>
         <ArgonBox component="ul" display="flex" flexDirection="column" p={0} m={0}>
-          <NewCompany
-            name="Company 1"
-            company="viking burrito"
-            email="oliver@burrito.com"
-            vat="FRB1235476"
-          />
-          <NewCompany
-            name="Company 2"
-            company="stone tech zone"
-            email="lucas@stone-tech.com"
-            vat="FRB1235476"
-          />
-          <NewCompany
-            name="Company 3"
-            company="fiber notion"
-            email="ethan@fiber.com"
-            vat="FRB1235476"
-            noGutter
-          />
+          {companyTableData2.map((company) => (
+            <NewCompany
+              key={company.id}
+              companyId={company.id}
+              name={company.companyName}
+              company={company.companyAddress}
+              status={company.status}
+              email={company.companyEmail}
+              vat={company.taxId}
+            />
+          ))}
         </ArgonBox>
       </ArgonBox>
     </Card>
