@@ -60,15 +60,10 @@ function Illustration() {
 
   useEffect(() => {
     if (isLoggedIn) {
-      // Kullanıcı oturum açtıktan sonra JWT çözümleme ekliyoruz
       const token = localStorage.getItem("Authorization");
       const decoded = jwt_decode(token);
-      // -----
-      navigate("/profile");
-      // JWT içindeki bilgilere erişim
       console.log(decoded);
 
-      // JWT içindeki bilgilere göre yönlendirme yapabilirsiniz
       if (decoded.role === "ADMIN") {
         root.render(
           <BrowserRouter>

@@ -127,6 +127,10 @@ function Overview() {
               ]}
               action={{ route: "", tooltip: "Edit Profile" }}
               edit={true}
+              sx={{
+                maxWidth: "400px", 
+                overflow: "auto",
+              }}
             />
           </Grid>
           {/* <Grid item xs={12} xl={4}>
