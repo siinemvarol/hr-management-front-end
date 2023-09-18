@@ -66,7 +66,7 @@ function Overview() {
       const decodedToken = jwt_decode(storedToken);
       console.log(decodedToken);
       axios
-        .get(`http://localhost:9095/api/v1/user/find-by-id/${decodedToken.id}`)
+        .get(`http://10.92.12.248:9095/api/v1/user/find-by-id/${decodedToken.id}`)
         .then((response) => {
           setUserInfo(response.data);
 

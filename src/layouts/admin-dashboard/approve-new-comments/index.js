@@ -33,7 +33,7 @@ import axios from "axios";
 function ApproveNewComments() {
 
 
-  const apiUrl2 = 'http://localhost:9093/api/v1/comment/get-comments';
+  const apiUrl2 = 'http://10.92.11.181:9093/api/v1/comment/get-comments';
    const [totalComments, setTotalComments] = useState(null);
    
    const fetchTotalComments = () => {
@@ -59,7 +59,7 @@ function ApproveNewComments() {
 
    const [newComments2, setnewComments2] = useState([]);
    useEffect(() => {
-     axios.get('http://localhost:9093/api/v1/comment/get-pending-comments')
+     axios.get('http://10.92.11.181:9093/api/v1/comment/get-pending-comments')
        .then(response => {
          const apiData = response.data;
  

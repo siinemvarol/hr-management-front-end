@@ -90,7 +90,7 @@ function EmployeeInfoCard({ title, description, info, social, action }) {
     const decodedToken = jwt_decode(storedToken);
 
     axios
-      .put(`http://localhost:9095/api/v1/user/update/${decodedToken.id}`, editedInfo)
+      .put(`http://10.92.12.248:9095/api/v1/user/update/${decodedToken.id}`, editedInfo)
       .then((response) => {
         console.log("User data updated:", response.data);
         setEditMode(false);

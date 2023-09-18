@@ -36,23 +36,18 @@ Coded by www.creative-tim.com
 // Argon Dashboard 2 MUI layouts
 import Dashboard from "layouts/dashboard";
 import Tables from "layouts/tables";
-import Billing from "layouts/billing";
-import VirtualReality from "layouts/virtual-reality";
-import RTL from "layouts/rtl";
 import Profile from "layouts/profile";
 import SignIn from "layouts/authentication/sign-in";
 import SignUp from "layouts/authentication/sign-up";
-import ApproveNewCompanies from "layouts/admin/approve-new-companies";
-import AddNewEmployee from "layouts/add-new-employee";
-import AddNewCompany from "layouts/admin/add-new-company";
-import ApproveNewComments from "layouts/admin/approve-new-comments";
 import GuestRegister from "layouts/authentication/guest-register";
-
 // Argon Dashboard 2 MUI components
 import ArgonBox from "components/ArgonBox";
 import Employee from "layouts/employee/employees";
-import CompanyInfo from "layouts/company-info/company";
-import AdminDashboard from "layouts/admin-dashboard";
+import AddNewCompany from "layouts/admin-dashboard/add-new-company";
+import ApproveNewComments from "layouts/admin-dashboard/approve-new-comments";
+import ApproveNewCompanies from "layouts/admin-dashboard/approve-new-companies";
+import CompanyInfo from "layouts/company-info/company"
+
 
 const routes = [
   {
@@ -65,6 +60,14 @@ const routes = [
   },
   {
     type: "route",
+    name: "Profile",
+    key: "profile",
+    route: "/profile",
+    icon: <ArgonBox component="i" color="dark" fontSize="14px" className="ni ni-single-02" />,
+    component: <Profile />,
+  },
+  {
+    type: "route",
     name: "Employees",
     key: "employee",
     route: "/employee",
@@ -73,15 +76,46 @@ const routes = [
   },
   {
     type: "route",
-    name: "Tables",
-    key: "tables",
-    route: "/tables",
+    name: "Add New Company",
+    key: "add-new-company",
+    route: "/add-new-company",
     icon: (
       <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-calendar-grid-58" />
     ),
-    component: <Tables />,
+    component: <AddNewCompany/>,
+  },
+  {
+    type: "route",
+    name: "Approve New Comments",
+    key: "approve-new-comments",
+    route: "/approve-new-comments",
+    icon: (
+      <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-calendar-grid-58" />
+    ),
+    component: <ApproveNewComments />,
   }, 
+  {
+    type: "route",
+    name: "Approve New Companies",
+    key: "approve-new-companies",
+    route: "/approve-new-companies",
+    icon: (
+      <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-calendar-grid-58" />
+    ),
+    component: <ApproveNewCompanies />,
+  },
+  {
+    type: "route",
+    name: "Company Information",
+    key: "company-information",
+    route: "/company-information",
+    icon: (
+      <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-calendar-grid-58" />
+    ),
+    component: <CompanyInfo/>,
+  },
   { type: "title", title: "Account Pages", key: "account-pages" },
+  
   {
     type: "route",
     name: "Login",

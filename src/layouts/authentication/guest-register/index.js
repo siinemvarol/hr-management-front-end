@@ -172,7 +172,7 @@ function GuestRegister() {
     };
 
     axios
-      .post("http://localhost:9090/api/v1/auth/guest-register", guestRegisterRequestDto)
+      .post("http://10.92.2.45:9090/api/v1/auth/guest-register", guestRegisterRequestDto)
       .then((response) => {
         console.log("Guest register successfull!", response.data);
         handleGuestRegisterSuccess();

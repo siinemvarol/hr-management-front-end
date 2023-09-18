@@ -95,7 +95,7 @@ function Illustration() {
     };
 
     axios
-      .post("http://localhost:9090/api/v1/auth/login", data)
+      .post("http://10.92.2.45:9090/api/v1/auth/login", data)
       .then((response) => {
         let token = response.data;
         localStorage.setItem("Authorization", "Bearer " + token);
