@@ -46,6 +46,7 @@ import AddNewCompany from "layouts/admin-layout/add-new-company";
 import ApproveNewComments from "layouts/admin-layout/approve-new-comments";
 import ApproveNewCompanies from "layouts/admin-layout/approve-new-companies";
 import CompanyInfo from "layouts/company-manager-layout/company-info/company"
+import MyCompany from "layouts/employee-layout/my-company";
 
 
 const routes = [
@@ -114,6 +115,17 @@ const routes = [
   //   component: <CompanyInfo/>,
   // },
   // { type: "title", title: "Account Pages", key: "account-pages" },
+
+  //  {
+  //   type: "route",
+  //    name: "My Company",
+  //    key: "my-company",
+  //   route: "/employee/my-company",
+  //    icon: (
+  //      <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-single-copy-04" />
+  //    ),
+  //    component: <MyCompany />,
+  //  },
   
   {
     type: "route",
