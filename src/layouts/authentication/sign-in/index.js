@@ -31,11 +31,11 @@ import ArgonButton from "components/ArgonButton";
 
 // Authentication layout components
 import IllustrationLayout from "layouts/authentication/components/IllustrationLayout";
-import Admin from "layouts/admin-dashboard";
+import Admin from "layouts/admin-layout";
 import { ArgonControllerProvider } from "context";
 import PerfectScrollbar from "react-perfect-scrollbar";
-import PersonelApp from "layouts/personel-dashboard/PersonelApp";
-import Profile from "layouts/profile";
+import PersonelApp from "layouts/employee-layout/PersonelApp";
+
 
 // Image
 const bgImage =
