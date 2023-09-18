@@ -32,7 +32,7 @@ function ApproveNewCompanies() {
 //Functions
 
    //Get Number of All Companies Method
-   const apiUrl2 = 'http://localhost:9091/api/v1/company/get-number-company';
+   const apiUrl2 = 'http://10.92.2.28:9091/api/v1/company/get-number-company';
    const [newCompanies, setNewCompanies] = useState(null);
    
    const fetchNewCompanies = () => {
@@ -58,7 +58,7 @@ function ApproveNewCompanies() {
 
    const [companyTableData2, setCompanyTableData2] = useState([]);
    useEffect(() => {
-     axios.get('http://localhost:9091/api/v1/company/get-not-authorized-companies')
+     axios.get('http://10.92.2.28:9091/api/v1/company/get-not-authorized-companies')
        .then(response => {
          const apiData = response.data;
  

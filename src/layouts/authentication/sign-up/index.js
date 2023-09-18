@@ -208,7 +208,7 @@ function CompanyRegister() {
     };
 
     axios
-      .post("http://localhost:9090/api/v1/auth/company-register", companyRegisterRequestDto)
+      .post("http://10.92.2.45:9090/api/v1/auth/company-register", companyRegisterRequestDto)
       .then((response) => {
         console.log("Company register successfull!", response.data);
         handleCompanyRegisterSuccess();
