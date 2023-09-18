@@ -31,10 +31,10 @@ import ArgonButton from "components/ArgonButton";
 
 // Authentication layout components
 import IllustrationLayout from "layouts/authentication/components/IllustrationLayout";
-import Admin from "layouts/admin-layout";
+// import Admin from "layouts/admin-layout";
 import { ArgonControllerProvider } from "context";
-import PerfectScrollbar from "react-perfect-scrollbar";
-import PersonelApp from "layouts/employee-layout/PersonelApp";
+// import PerfectScrollbar from "react-perfect-scrollbar";
+// import PersonelApp from "layouts/employee-layout/PersonelApp";
 
 
 // Image
@@ -64,27 +64,27 @@ function Illustration() {
       const decoded = jwt_decode(token);
       console.log(decoded);
 
-      if (decoded.role === "ADMIN") {
-        root.render(
-          <BrowserRouter>
-            <ArgonControllerProvider>
-              <PerfectScrollbar>
-                <Admin />
-              </PerfectScrollbar>
-            </ArgonControllerProvider>
-          </BrowserRouter>
-        );
-      } else if (decoded.role === "EMPLOYEE") {
-        <BrowserRouter>
-          <ArgonControllerProvider>
-            <PerfectScrollbar>
-              <PersonelApp />
-            </PerfectScrollbar>
-          </ArgonControllerProvider>
-        </BrowserRouter>;
-      } else {
-        navigate("/guest-home");
-      }
+      // if (decoded.role === "ADMIN") {
+      //   root.render(
+      //     <BrowserRouter>
+      //       <ArgonControllerProvider>
+      //         <PerfectScrollbar>
+      //           <Admin />
+      //         </PerfectScrollbar>
+      //       </ArgonControllerProvider>
+      //     </BrowserRouter>
+      //   );
+      // } else if (decoded.role === "EMPLOYEE") {
+      //   <BrowserRouter>
+      //     <ArgonControllerProvider>
+      //       <PerfectScrollbar>
+      //         <PersonelApp />
+      //       </PerfectScrollbar>
+      //     </ArgonControllerProvider>
+      //   </BrowserRouter>;
+      // } else {
+      //   navigate("/guest-home");
+      // }
     }
   }, [isLoggedIn, navigate]);
 

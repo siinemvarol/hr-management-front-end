@@ -35,21 +35,21 @@ Coded by www.creative-tim.com
 
 // Argon Dashboard 2 MUI layouts
 
-import Profile from "layouts/employee-layout/profile";
+import Profile from "layouts/guest-layout/profile";
 // Argon Dashboard 2 MUI components
 import ArgonBox from "components/ArgonBox";
-import PersonelHomePage from "./dashboard";
+import GuestHomePage from "./dashboard";
 
 
-const PersonelRoutes = [
+const GuestRoutes = [
 
   {
     type: "route",
-    name: "Personel",
-    key: "personel",
-    route: "/personel",
+    name: "Guest",
+    key: "guest",
+    route: "/guest-layout",
     icon: <ArgonBox component="i" color="success" fontSize="14px" className="ni ni-single-copy-04" />,
-    component: <PersonelHomePage/>,
+    component: <GuestHomePage/>,
   },
   
   {
@@ -62,7 +62,6 @@ const PersonelRoutes = [
   },
 
 
-
 ];
 
-export default PersonelRoutes;
+export default GuestRoutes;
