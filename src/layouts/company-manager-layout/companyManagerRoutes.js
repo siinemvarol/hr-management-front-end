@@ -34,51 +34,60 @@ Coded by www.creative-tim.com
 */
 
 // Argon Dashboard 2 MUI layouts
-import ApproveNewCompanies from "./approve-new-companies";
-import AddNewCompany from "./add-new-company";
-import ApproveNewComments from "./approve-new-comments";
+import AddNewEmployee from "./add-new-employee";
+import CompanyInformation from "./company-info";
+import Employees from "./employees";
+import Profile from "./profile"
 
 // Argon Dashboard 2 MUI components
 import ArgonBox from "components/ArgonBox";
-import AdminHomePage from "./dashboard";
+import CompanyManagerHomePage from "./dashboard";
 
-const adminRoutes = [
+const companyManagerRoutes = [
 
   {
     type: "route",
-    name: "Admin",
+    name: "Company Manager",
     key: "dashboard",
-    route: "/admin-layout",
-
+    route: "/dashboard",
     icon: <ArgonBox component="i" color="success" fontSize="14px" className="ni ni-single-copy-04" />,
-    component: < AdminHomePage/>,
+    component: < CompanyManagerHomePage/>,
   },
  
   {
     type: "route",
-    name: "Approve New Companies",
-    key: "approve-new-companies",
-    route: "/approve-new-companies",
+    name: "Add New Employee",
+    key: "add-new-employee",
+    route: "/add-new-employee",
     icon: <ArgonBox component="i" color="success" fontSize="14px" className="ni ni-single-copy-04" />,
-    component: <ApproveNewCompanies />,
+    component: <AddNewEmployee />,
   },
   {
     type: "route",
-    name: "Add New Company",
-    key: "add-new-company",
-    route: "/add-new-company",
+    name: "Employees",
+    key: "employees",
+    route: "/employees",
     icon: <ArgonBox component="i" color="success" fontSize="14px" className="ni ni-single-copy-04" />,
-    component: <AddNewCompany />,
+    component: <Employees />,
   },
   {
     type: "route",
-    name: "Approve New Comments",
-    key: "approve-new-comments",
-    route: "/approve-new-comments",
+    name: "Company Information",
+    key: "company-info",
+    route: "/company-info",
     icon: <ArgonBox component="i" color="success" fontSize="14px" className="ni ni-single-copy-04" />,
-    component: <ApproveNewComments />,
+    component: <CompanyInformation />,
+  },
+
+  {
+    type: "route",
+    name: "Profile",
+    key: "profile",
+    route: "/profile",
+    icon: <ArgonBox component="i" color="dark" fontSize="14px" className="ni ni-single-02" />,
+    component: <Profile />,
   },
 
 ];
 
-export default adminRoutes;
+export default  companyManagerRoutes;

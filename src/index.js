@@ -26,9 +26,9 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 
 // react-perfect-scrollbar styles
 import "react-perfect-scrollbar/dist/css/styles.css";
-import Admin from "layouts/admin-layout";
+// import Admin from "layouts/admin-layout";
 
-import PersonelApp from "layouts/employee-layout/PersonelApp";
+// import PersonelApp from "layouts/employee-layout/PersonelApp";
 
 
 const container = document.getElementById("root");
@@ -38,10 +38,11 @@ root.render(
   <BrowserRouter>
     <ArgonControllerProvider>
       <PerfectScrollbar>
-        <App>
+        {/* <App>
           <Admin/>
           <PersonelApp/>
-        </App>
+        </App> */}
+        <App/>
       </PerfectScrollbar>
     </ArgonControllerProvider>
   </BrowserRouter>
