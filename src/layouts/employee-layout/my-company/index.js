@@ -24,16 +24,12 @@ import ArgonTypography from "components/ArgonTypography";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
-import Table from "examples/Tables/Table";
 
 // Data
-import companyInformationData from "layouts/employee-layout/my-company/data/companyInformationData";
-import companyCommentData from "layouts/employee-layout/my-company/data/companyCommentData";
+import CompanyCommentData from "./data/companyCommentData";
+import CompanyInformationData from "./data/companyInformationData";
 
 function MyCompany() {
-  const { columns, rows } = companyInformationData;
-  const { columns: prCols, rows: prRows } = companyCommentData;
-
   return (
     <DashboardLayout>
       <DashboardNavbar />
@@ -53,7 +49,7 @@ function MyCompany() {
                 },
               }}
             >
-               <Table columns={columns} rows={rows} /> 
+              <CompanyInformationData />
             </ArgonBox>
           </Card>
         </ArgonBox>
@@ -71,7 +67,7 @@ function MyCompany() {
               },
             }}
           >
-            <Table columns={prCols} rows={prRows} />
+            <CompanyCommentData />
           </ArgonBox>
         </Card>
       </ArgonBox>
