@@ -5,77 +5,66 @@
 import ArgonBox from "components/ArgonBox";
 import ArgonTypography from "components/ArgonTypography";
 import ArgonProgress from "components/ArgonProgress";
-import { func } from "prop-types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
+import Table from "examples/Tables/Table";
+import jwt_decode from "jwt-decode";
 
-const companyCommentData = {
-  columns: [
-    { name: "employee", align: "left" },
-    { name: "header", align: "left" },
-    { name: "comment", align: "left" },
-  ],
+function CompanyCommentData() {
+  const storedToken = localStorage.getItem("Authorization");
+  const [commentInfo, setCommentInfo] = useState(null);
 
-  rows: [
-    {
-      employee: (
-        <ArgonBox display="flex" alignItems="center" px={0.5} py={0.5}>
-          <ArgonTypography fontWeight="medium" fontSize="1em">
-            employee1
-          </ArgonTypography>
-        </ArgonBox>
-      ),
-      header: (
-        <ArgonTypography variant="caption" color="text" fontWeight="medium">
-          $2,500
-        </ArgonTypography>
-      ),
-      comment: (
-        <ArgonTypography variant="caption" color="text" fontWeight="medium">
-          working
-        </ArgonTypography>
-      ),
-    },
-    {
-      employee: (
-        <ArgonBox display="flex" alignItems="center" px={0.5} py={0.5}>
-          <ArgonTypography fontWeight="medium" fontSize="1em">
-            employee1
-          </ArgonTypography>
-        </ArgonBox>
-      ),
-      header: (
-        <ArgonTypography variant="caption" color="text" fontWeight="medium">
-          $5,000
-        </ArgonTypography>
-      ),
-      comment: (
-        <ArgonTypography variant="caption" color="text" fontWeight="medium">
-          done
-        </ArgonTypography>
-      ),
-    },
-    {
-      employee: (
-        <ArgonBox display="flex" alignItems="center" px={0.5} py={0.5}>
-          <ArgonTypography fontWeight="medium" fontSize="1em">
-            employee1
-          </ArgonTypography>
-        </ArgonBox>
-      ),
-      header: (
-        <ArgonTypography variant="caption" color="text" fontWeight="medium">
-          $3,400
-        </ArgonTypography>
-      ),
-      comment: (
-        <ArgonTypography variant="caption" color="text" fontWeight="medium">
-          canceled
-        </ArgonTypography>
-      ),
-    },
-  ],
-};
+  if (commentInfo === null) {
+    console.log("An error occured while trying to retrieve comment information: ");
+    return <div>Loading...</div>;
+  }
 
+  const rows = commentInfo.map((comment, index) => ({
+    // employee: (
+    //   <ArgonTypography key={index} fontWeight="medium" fontSize="0.9em">
+    //     employee1
+    //   </ArgonTypography>
+    // ),
+    header: (
+      <ArgonTypography key={index} variant="caption" color="text" fontWeight="medium">
+        {comment?.header}
+      </ArgonTypography>
+    ),
+    comment: (
+      <ArgonTypography key={index} variant="caption" color="text" fontWeight="medium">
+        {comment?.content}
+      </ArgonTypography>
+    ),
+  }));
 
-export default companyCommentData;
+  const companyCommentData = {
+    columns: [
+      // { name: "employee", align: "left" },
+      { name: "header", align: "left" },
+      { name: "comment", align: "left" },
+    ],
+
+    rows: rows,
+  };
+
+  useEffect(() => {
+    if (storedToken) {
+      const decodedToken = jwt_decode(storedToken);
+      console.log(decodedToken);
+// below URL should be changed to `http://localhost:9093/api/v1/comment/get-comments-by-company/${decodedToken.id}` 
+// after navigation by roles is completed
+      axios
+        .get(`http://localhost:9093/api/v1/comment/get-comments-by-company/47`)
+        .then((response) => {
+          setCommentInfo(response.data);
+        })
+        .catch((error) => {
+          console.log("An error occured while trying to retrieve comment information: ", error);
+        });
+    }
+  }, [storedToken]);
+
+  return <Table columns={companyCommentData.columns} rows={companyCommentData.rows} />;
+}
+
+export default CompanyCommentData;
