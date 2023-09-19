@@ -47,6 +47,7 @@ import ApproveNewComments from "layouts/admin-layout/approve-new-comments";
 import ApproveNewCompanies from "layouts/admin-layout/approve-new-companies";
 import CompanyInfo from "layouts/company-manager-layout/company-info/company";
 import MyCompany from "layouts/employee-layout/my-company";
+import AddNewComment from "layouts/employee-layout/add-new-comment";
 
 const routes = [
   {
@@ -73,16 +74,16 @@ const routes = [
   //   icon: <ArgonBox component="i" color="dark" fontSize="14px" className="ni ni-single-02" />,
   //   component: <Employee />,
   // },
-  // {
-  //   type: "route",
-  //   name: "Add New Company",
-  //   key: "add-new-company",
-  //   route: "/add-new-company",
-  //   icon: (
-  //     <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-calendar-grid-58" />
-  //   ),
-  //   component: <AddNewCompany/>,
-  // },
+  //  {
+  //    type: "route",
+  //    name: "Add New Company",
+  //    key: "add-new-company",
+  //    route: "/add-new-company",
+  //    icon: (
+  //      <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-calendar-grid-58" />
+  //    ),
+  //    component: <AddNewCompany/>,
+  //  },
   // {
   //   type: "route",
   //   name: "Approve New Comments",
@@ -124,6 +125,16 @@ const routes = [
       <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-single-copy-04" />
     ),
     component: <MyCompany />,
+  },
+  {
+    type: "route",
+    name: "Add New Comment",
+    key: "add-new-comment",
+    route: "/employee/add-new-comment",
+    icon: (
+      <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-single-copy-04" />
+    ),
+    component: <AddNewComment />,
   },
 
   {

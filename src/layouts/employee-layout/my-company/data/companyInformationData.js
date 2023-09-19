@@ -89,13 +89,13 @@ function CompanyInformationData() {
         information: <Function data={companyInfo?.netIncome} />,
       },
     ],
-  };  
+  };
   useEffect(() => {
     if (storedToken) {
       const decodedToken = jwt_decode(storedToken);
       console.log(decodedToken);
-  // below URL should be changed to `http://localhost:9091/api/v1/company/get-company-information/${decodedToken.id}` 
-// after navigation by roles is completed
+      // below URL should be changed to `http://localhost:9091/api/v1/company/get-company-information/${decodedToken.id}`
+      // after navigation by roles is completed
       axios
         .get(`http://localhost:9091/api/v1/company/get-company-information/47`)
         .then((response) => {
@@ -107,8 +107,7 @@ function CompanyInformationData() {
     }
   }, [storedToken]);
 
-  return <Table columns={companyInformationData.columns} rows={companyInformationData.rows}/>
-
+  return <Table columns={companyInformationData.columns} rows={companyInformationData.rows} />;
 }
 
 export default CompanyInformationData;

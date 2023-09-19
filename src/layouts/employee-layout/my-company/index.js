@@ -28,6 +28,7 @@ import Footer from "examples/Footer";
 // Data
 import CompanyCommentData from "./data/companyCommentData";
 import CompanyInformationData from "./data/companyInformationData";
+import ArgonButton from "components/ArgonButton";
 
 function MyCompany() {
   return (
@@ -55,7 +56,14 @@ function MyCompany() {
         </ArgonBox>
         <Card>
           <ArgonBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
-            <ArgonTypography variant="h6">Company Comments</ArgonTypography>
+            <ArgonBox>
+              <ArgonTypography variant="h6">Company Comments</ArgonTypography>
+            </ArgonBox>
+            <ArgonBox>
+              <ArgonButton color="info" size="large" fullWidth>
+                Add New Comment
+              </ArgonButton>
+            </ArgonBox>
           </ArgonBox>
           <ArgonBox
             sx={{
