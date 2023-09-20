@@ -12,6 +12,8 @@ Coded by www.creative-tim.com
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
+//api urls 
+import {API_URLS} from '../../../config/apiUrls';
 
 // @mui material components
 import Card from "@mui/material/Card";
@@ -75,7 +77,7 @@ function AddNewComment() {
       // after navigation by role is working
 
       axios
-      .post(`http://localhost:9091/api/v1/company/add-comment/47`, addNewCommentRequestDto)
+      .post(`${API_URLS.company.localhost}/add-comment/47`, addNewCommentRequestDto)
       .then((response) => {
         console.log("Adding comment is successfull! ");
         handleAddCommentSuccess();

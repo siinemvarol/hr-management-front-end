@@ -12,6 +12,9 @@ Coded by www.creative-tim.com
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
+//api urls 
+import {API_URLS} from '../../config/apiUrls';
+
 import { useEffect, useState } from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
@@ -66,10 +69,9 @@ function Overview() {
       const decodedToken = jwt_decode(storedToken);
       console.log(decodedToken);
       axios
-        .get(`http://10.92.12.248:9095/api/v1/user/find-by-id/${decodedToken.id}`)
+        .get(`${API_URLS.user.localhost}/find-by-id/${decodedToken.id}`)
         .then((response) => {
           setUserInfo(response.data);
-
         })
         .catch((error) => {
           console.error("An error occurred while trying to retrieve user information:", error);

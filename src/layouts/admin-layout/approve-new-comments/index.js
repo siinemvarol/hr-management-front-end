@@ -12,6 +12,8 @@ Coded by www.creative-tim.com
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
+//api urls 
+import {API_URLS} from '../../../config/apiUrls';
 
 // @mui material components
 import Grid from "@mui/material/Grid";
@@ -32,8 +34,7 @@ import axios from "axios";
 
 function ApproveNewComments() {
 
-
-  const apiUrl2 = 'http://10.92.11.181:9093/api/v1/comment/get-comments';
+  const apiUrl2 = `${API_URLS.comment.localhost}/get-comments`;
    const [totalComments, setTotalComments] = useState(null);
    
    const fetchTotalComments = () => {
@@ -59,7 +60,7 @@ function ApproveNewComments() {
 
    const [newComments2, setnewComments2] = useState([]);
    useEffect(() => {
-     axios.get('http://10.92.11.181:9093/api/v1/comment/get-pending-comments')
+     axios.get( `${API_URLS.comment.localhost}/get-pending-comments`)
        .then(response => {
          const apiData = response.data;
  

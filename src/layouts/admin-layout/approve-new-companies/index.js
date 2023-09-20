@@ -12,6 +12,8 @@ Coded by www.creative-tim.com
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
+//api urls 
+import {API_URLS} from '../../../config/apiUrls';
 
 // @mui material components
 import Grid from "@mui/material/Grid";
@@ -32,7 +34,7 @@ function ApproveNewCompanies() {
 //Functions
 
    //Get Number of All Companies Method
-   const apiUrl2 = 'http://10.92.2.28:9091/api/v1/company/get-number-company';
+   const apiUrl2 = `${API_URLS.company.localhost}/get-number-company`;
    const [newCompanies, setNewCompanies] = useState(null);
    
    const fetchNewCompanies = () => {
@@ -55,10 +57,10 @@ function ApproveNewCompanies() {
      fetchNewCompanies();
    }, []);
 
-
+  
    const [companyTableData2, setCompanyTableData2] = useState([]);
    useEffect(() => {
-     axios.get('http://10.92.2.28:9091/api/v1/company/get-not-authorized-companies')
+     axios.get(`${API_URLS.company.localhost}/get-not-authorized-companies`)
        .then(response => {
          const apiData = response.data;
  
