@@ -12,6 +12,8 @@ Coded by www.creative-tim.com
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
+//api urls 
+import {API_URLS} from '../../../config/apiUrls';
 
 import axios from "axios";
 
@@ -170,9 +172,9 @@ function GuestRegister() {
       personalEmail: guestEmail,
       password: guestPassword,
     };
-
+    
     axios
-      .post("http://10.92.2.45:9090/api/v1/auth/guest-register", guestRegisterRequestDto)
+      .post(`${API_URLS.auth.localhost}/guest-register`, guestRegisterRequestDto)
       .then((response) => {
         console.log("Guest register successfull!", response.data);
         handleGuestRegisterSuccess();

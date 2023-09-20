@@ -12,6 +12,9 @@ Coded by www.creative-tim.com
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
+//api urls 
+import {API_URLS} from '../../../config/apiUrls';
+
 import axios from "axios";
 import { useState, useEffect } from "react";
 import jwt_decode from "jwt-decode";
@@ -93,9 +96,8 @@ function Login() {
       companyEmail: email,
       password: password,
     };
-
     axios
-      .post("http://10.92.2.45:9090/api/v1/auth/login", data)
+      .post(`${API_URLS.auth.localhost}/login`, data)
       .then((response) => {
         let token = response.data;
         localStorage.setItem("Authorization", "Bearer " + token);

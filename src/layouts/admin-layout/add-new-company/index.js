@@ -12,6 +12,8 @@ Coded by www.creative-tim.com
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
+//api urls 
+import {API_URLS} from '../../../config/apiUrls';
 
 // @mui material components
 import Card from "@mui/material/Card";
@@ -211,9 +213,8 @@ function AddNewCompany() {
       companyAddress: companyAddress,
       city: selectedCity,
     };
-
     axios
-      .post("http://10.92.2.45:9090/api/v1/auth/company-register", companyRegisterRequestDto)
+      .post(`${API_URLS.auth.localhost}/company-register`, companyRegisterRequestDto)
       .then((response) => {
         console.log("Company register successfull!", response.data);
         handleCompanyRegisterSuccess();
