@@ -12,6 +12,9 @@ Coded by www.creative-tim.com
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
+//api urls
+import { API_URLS } from "../../../config/apiUrls";
+
 import { useEffect, useState } from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
@@ -66,6 +69,7 @@ function Overview() {
       const decodedToken = jwt_decode(storedToken);
       console.log(decodedToken);
       axios
+
         .get(`http://localhost:9095/api/v1/user/find-by-id/${decodedToken.id}`)
         .then((response) => {
           console.log(response.data)
@@ -79,9 +83,9 @@ function Overview() {
             info: String(response.data.info),
             birthday: String(response.data.createdDate),
             role: String(response.data.role)
-            
-            // Diğer alanları da ekleyin
+
           });
+
         })
         .catch((error) => {
           console.error("An error occurred while trying to retrieve user information:", error);
@@ -101,13 +105,13 @@ function Overview() {
     >
       <Header />
       <ArgonBox mt={5} mb={3}>
-        <Grid container spacing={3} >
+        <Grid container spacing={3}>
           {/* <Grid item xs={12} md={6} xl={4}>
             <PlatformSettings />
           </Grid> */}
           <Grid item xs={12} md={6} xl={4}>
             {/* <ProfileInfoCard */}
-            <EmployeeInfoCard 
+            <EmployeeInfoCard
               title="profile information"
               // description=""
               info={{
@@ -142,7 +146,7 @@ function Overview() {
               action={{ route: "", tooltip: "Edit Profile" }}
               edit={true}
               sx={{
-                maxWidth: "400px", 
+                maxWidth: "400px",
                 overflow: "auto",
               }}
             />

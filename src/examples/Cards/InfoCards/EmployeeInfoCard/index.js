@@ -25,6 +25,8 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
+//api urls 
+import {API_URLS} from '../../../../config/apiUrls';
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
@@ -100,9 +102,8 @@ function EmployeeInfoCard({ title, description, info, social, action }) {
 
   const handleSubmit = () => {
     const decodedToken = jwt_decode(storedToken);
-
     axios
-      .put(`http://10.92.12.248:9095/api/v1/user/update/${decodedToken.id}`, editedInfo)
+      .put(`${API_URLS.user.localhost}/update/${decodedToken.id}`, editedInfo)
       .then((response) => {
         console.log("User data updated:", response.data);
         setEditMode(false);
