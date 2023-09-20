@@ -92,11 +92,6 @@ function AddNewComment() {
     }
    }
 
-  // useEffect(() => {
-
-
-  // }, [storedToken]);
-
   return (
     <DashboardLayout>
       <DashboardNavbar />

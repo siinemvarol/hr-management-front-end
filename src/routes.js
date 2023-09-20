@@ -48,6 +48,7 @@ import MyCompany from "layouts/employee-layout/my-company";
 import AddNewComment from "layouts/employee-layout/add-new-comment";
 import CompanyRegister from "layouts/authentication/company-register";
 import Login from "layouts/authentication/login";
+import AddNewEmployee from "layouts/company-manager-layout/add-new-employee";
 
 const routes = [
   {
@@ -104,6 +105,16 @@ const routes = [
      ),
      component: <ApproveNewCompanies />,
    },
+   {
+    type: "route",
+    name: "Add New Employee",
+    key: "add-new-employee",
+    route: "/add-new-employee",
+    icon: (
+      <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-calendar-grid-58" />
+    ),
+    component: <AddNewEmployee />,
+  },
   {
     type: "route",
     name: "Company Information",
