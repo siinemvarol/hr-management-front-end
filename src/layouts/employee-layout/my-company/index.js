@@ -29,6 +29,7 @@ import Footer from "examples/Footer";
 import CompanyCommentData from "./data/companyCommentData";
 import CompanyInformationData from "./data/companyInformationData";
 import ArgonButton from "components/ArgonButton";
+import { Link } from "react-router-dom";
 
 function MyCompany() {
   return (
@@ -60,7 +61,7 @@ function MyCompany() {
               <ArgonTypography variant="h6">Company Comments</ArgonTypography>
             </ArgonBox>
             <ArgonBox>
-              <ArgonButton color="info" size="large" fullWidth>
+              <ArgonButton component={Link} to="/employee/add-new-comment" color="info" size="large" fullWidth>
                 Add New Comment
               </ArgonButton>
             </ArgonBox>

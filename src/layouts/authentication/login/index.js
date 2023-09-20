@@ -44,7 +44,7 @@ const bgImage =
 const container = document.getElementById("root");
 const root = createRoot(container);
 
-function Illustration() {
+function Login() {
   const [rememberMe, setRememberMe] = useState(false);
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
@@ -191,4 +191,4 @@ function Illustration() {
   );
 }
 
-export default Illustration;
+export default Login;

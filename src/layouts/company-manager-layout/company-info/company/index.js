@@ -27,11 +27,12 @@ import Footer from "examples/Footer";
 import Table from "examples/Tables/Table";
 
 // Data
-import companyTableData from "layouts/company-manager-layout/company-info/company/companyTableData";
+import companyInformationData from "layouts/company-manager-layout/company-info/company/companyInformationData";
 import companyValuationTable from "layouts/company-manager-layout/company-info/company/companyValuationTable";
+import ArgonButton from "components/ArgonButton";
 
-function Tables() {
-  const { columns, rows } = companyTableData;
+function CompanyInfo() {
+  const { columns, rows } = companyInformationData;
   const { columns: prCols, rows: prRows } = companyValuationTable;
 
   return (
@@ -41,7 +42,14 @@ function Tables() {
         <ArgonBox mb={3}>
           <Card>
             <ArgonBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
-              <ArgonTypography variant="h6">Company Informations</ArgonTypography>
+              <ArgonBox>
+                <ArgonTypography variant="h6">Company Information</ArgonTypography>
+              </ArgonBox>
+              <ArgonBox>
+                <ArgonButton color="primary" size="large" fullWidth>
+                  Go to Employee Profile
+                </ArgonButton>
+              </ArgonBox>
             </ArgonBox>
             <ArgonBox
               sx={{
@@ -80,4 +88,4 @@ function Tables() {
   );
 }
 
-export default Tables;
+export default CompanyInfo;
