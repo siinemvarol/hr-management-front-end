@@ -19,6 +19,9 @@ function CompanyCommentData() {
       const decodedToken = jwt_decode(storedToken);
       console.log(decodedToken);
 
+      // below URL should be changed to `http://localhost:9093/api/v1/comment/get-comments-by-company/${decodedToken.id}`
+      // after navigation by roles is completed
+
       axios
         .get(`http://localhost:9093/api/v1/comment/get-comments-by-company/47`)
         .then((response) => {
