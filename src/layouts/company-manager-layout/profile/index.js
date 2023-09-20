@@ -69,9 +69,23 @@ function Overview() {
       const decodedToken = jwt_decode(storedToken);
       console.log(decodedToken);
       axios
-        .get(`${API_URLS.user.localhost}/find-by-id/${decodedToken.id}`)
+
+        .get(`http://localhost:9095/api/v1/user/find-by-id/${decodedToken.id}`)
         .then((response) => {
-          setUserInfo(response.data);
+          console.log(response.data)
+          setUserInfo({
+            name: String(response.data.name),
+            surname: String(response.data.surname),
+            companyEmail: String(response.data.companyEmail),
+            personalEmail: String(response.data.personalEmail),
+            phone: String(response.data.phone),
+            address: String(response.data.address),
+            info: String(response.data.info),
+            birthday: String(response.data.createdDate),
+            role: String(response.data.role)
+
+          });
+
         })
         .catch((error) => {
           console.error("An error occurred while trying to retrieve user information:", error);
@@ -109,6 +123,8 @@ function Overview() {
                 address: userInfo?.address || "",
                 info: userInfo?.info || "",
                 birthday: userInfo?.birthday || "",
+                role: userInfo?.role || "Belirtilmedi",
+
               }}
               social={[
                 {

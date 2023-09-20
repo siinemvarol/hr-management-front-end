@@ -58,6 +58,17 @@ import { Button, Stack, TextField } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 
 function EmployeeInfoCard({ title, description, info, social, action }) {
+  const propertyLabels = {
+    name: "Name",
+    surname: "Surname",
+    companyEmail: "Company Email",
+    personalEmail: "Personal Email",
+    phone: "Phone",
+    address: "Address",
+    info: "Info",
+    birthday: "Birthday",
+    role: "Role",
+  };
   const storedToken = localStorage.getItem("Authorization");
   const { socialMediaColors } = colors;
   const { size } = typography;
@@ -76,6 +87,7 @@ function EmployeeInfoCard({ title, description, info, social, action }) {
       [name]: value,
     });
   };
+  
 
   const handleEditClick = () => {
     setEditMode(!editMode);
@@ -121,41 +133,46 @@ function EmployeeInfoCard({ title, description, info, social, action }) {
   const uniqueLabels = [...uniqueLabelsSet];
   const uniqueValues = [...uniqueValuesSet];
 
-  const renderItems = uniqueLabels.map((label, index) => (
-    <ArgonBox key={label} display="flex" alignItems="center" py={1} pr={2}>
-      <ArgonBox>
-        <ArgonTypography variant="button" fontWeight="bold" textTransform="capitalize">
-          {label}: &nbsp;
-        </ArgonTypography>
+  const renderItems = Object.keys(info).map((key, index) => {
+    const label = propertyLabels[key]; // Label'ı burada tanımlıyoruz
+    return (
+      <ArgonBox key={key} display="flex" alignItems="center" py={1} pr={2}>
+        <ArgonBox>
+          <ArgonTypography variant="button" fontWeight="bold" textTransform="capitalize">
+            {label}: &nbsp;
+          </ArgonTypography>
+        </ArgonBox>
+        <ArgonBox>
+          <ArgonTypography variant="button" fontWeight="regular" color="text">
+            &nbsp;
+            {editMode ? (
+              <TextField
+                label={label}
+                name={label}
+                value={uniqueValues[index]}
+                onChange={handleFieldChange}
+                fullWidth
+                sx={{
+                  width: "200%",
+                  marginTop: "-20px",
+                }}
+                InputLabelProps={{
+                  sx: {
+                    fontSize: "0.01rem",
+                    display: "none",
+         
+                  },
+                }}
+              />
+            ) : (
+              editedInfo[key]
+            )}
+          </ArgonTypography>
+        </ArgonBox>
       </ArgonBox>
-      <ArgonBox>
-        <ArgonTypography variant="button" fontWeight="regular" color="text">
-          &nbsp;
-          {editMode ? (
-            <TextField
-              label={label}
-              name={label}
-              value={uniqueValues[index]}
-              onChange={handleFieldChange}
-              fullWidth
-              sx={{
-                width: "200%",
-                marginTop: "-20px",
-              }}
-              InputLabelProps={{
-                sx: {
-                  fontSize: "0.775rem",
-                  display: "none",
-                },
-              }}
-            />
-          ) : (
-            uniqueValues[index]
-          )}
-        </ArgonTypography>
-      </ArgonBox>
-    </ArgonBox>
-  ));
+    );
+  });
+  
 
   const renderSocial = social.map(({ link, icon, color }) => (
     <ArgonBox

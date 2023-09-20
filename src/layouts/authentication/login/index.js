@@ -36,7 +36,8 @@ import ArgonButton from "components/ArgonButton";
 import IllustrationLayout from "layouts/authentication/components/IllustrationLayout";
 // import Admin from "layouts/admin-layout";
 import { ArgonControllerProvider } from "context";
-// import PerfectScrollbar from "react-perfect-scrollbar";
+import CompanyManager from "layouts/company-manager-layout";
+import PerfectScrollbar from "react-perfect-scrollbar";
 // import PersonelApp from "layouts/employee-layout/PersonelApp";
 
 
@@ -66,6 +67,18 @@ function Login() {
       const token = localStorage.getItem("Authorization");
       const decoded = jwt_decode(token);
       console.log(decoded);
+      // if (decoded.role === "COMPANY_MANAGER") {
+      // root.render(
+      //   <BrowserRouter>
+      //     <ArgonControllerProvider>
+      //       <PerfectScrollbar>
+      //         <CompanyManager/>
+      //       </PerfectScrollbar>
+      //     </ArgonControllerProvider>
+      //   </BrowserRouter>
+      // );
+      //       }
+      
 
       // if (decoded.role === "ADMIN") {
       //   root.render(
