@@ -66,10 +66,22 @@ function Overview() {
       const decodedToken = jwt_decode(storedToken);
       console.log(decodedToken);
       axios
-        .get(`http://10.92.12.248:9095/api/v1/user/find-by-id/${decodedToken.id}`)
+        .get(`http://localhost:9095/api/v1/user/find-by-id/${decodedToken.id}`)
         .then((response) => {
-          setUserInfo(response.data);
-
+          console.log(response.data)
+          setUserInfo({
+            name: String(response.data.name),
+            surname: String(response.data.surname),
+            companyEmail: String(response.data.companyEmail),
+            personalEmail: String(response.data.personalEmail),
+            phone: String(response.data.phone),
+            address: String(response.data.address),
+            info: String(response.data.info),
+            birthday: String(response.data.createdDate),
+            role: String(response.data.role)
+            
+            // Diğer alanları da ekleyin
+          });
         })
         .catch((error) => {
           console.error("An error occurred while trying to retrieve user information:", error);
@@ -107,6 +119,8 @@ function Overview() {
                 address: userInfo?.address || "",
                 info: userInfo?.info || "",
                 birthday: userInfo?.birthday || "",
+                role: userInfo?.role || "Belirtilmedi",
+
               }}
               social={[
                 {

@@ -35,13 +35,17 @@ Coded by www.creative-tim.com
 
 // Argon Dashboard 2 MUI layouts
 import AddNewEmployee from "./add-new-employee";
-import CompanyInformation from "./company-info";
+// import CompanyInformation from "./company-info";
 import Employees from "./employees";
 import Profile from "./profile"
 
 // Argon Dashboard 2 MUI components
 import ArgonBox from "components/ArgonBox";
 import CompanyManagerHomePage from "./dashboard";
+import Overview from "./profile";
+import AddNewCompany from "./profile";
+import CompanyManager from ".";
+import CompanyInfo from "./company-info/company";
 
 const companyManagerRoutes = [
 
@@ -51,7 +55,7 @@ const companyManagerRoutes = [
     key: "dashboard",
     route: "/dashboard",
     icon: <ArgonBox component="i" color="success" fontSize="14px" className="ni ni-single-copy-04" />,
-    component: < CompanyManagerHomePage/>,
+    component: < CompanyManager/>,
   },
  
   {
@@ -76,16 +80,16 @@ const companyManagerRoutes = [
     key: "company-info",
     route: "/company-info",
     icon: <ArgonBox component="i" color="success" fontSize="14px" className="ni ni-single-copy-04" />,
-    component: <CompanyInformation />,
+    component: <CompanyInfo />,
   },
 
   {
     type: "route",
     name: "Profile",
     key: "profile",
-    route: "/profile",
+    route: "/company-manager-profile",
     icon: <ArgonBox component="i" color="dark" fontSize="14px" className="ni ni-single-02" />,
-    component: <Profile />,
+    component: <AddNewCompany />,
   },
 
 ];
