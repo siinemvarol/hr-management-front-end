@@ -14,8 +14,25 @@ function CompanyCommentData() {
   const storedToken = localStorage.getItem("Authorization");
   const [commentInfo, setCommentInfo] = useState(null);
 
+  useEffect(() => {
+    if (storedToken) {
+      const decodedToken = jwt_decode(storedToken);
+      console.log(decodedToken);
+
+      axios
+        .get(`http://localhost:9093/api/v1/comment/get-comments-by-company/47`)
+        .then((response) => {
+          setCommentInfo(response.data);
+          console.log("response data is...", response.data);
+        })
+        .catch((error) => {
+          console.log("An error occured while trying to retrieve comment information: ", error);
+        });
+    }
+  }, [storedToken]);
+
   if (commentInfo === null) {
-    console.log("An error occured while trying to retrieve comment information: ");
+    console.log("An error occured while trying to retrieve comment information.. ");
     return <div>Loading...</div>;
   }
 
@@ -26,14 +43,18 @@ function CompanyCommentData() {
     //   </ArgonTypography>
     // ),
     header: (
-      <ArgonTypography key={index} variant="caption" color="text" fontWeight="medium">
-        {comment?.header}
-      </ArgonTypography>
+      <ArgonBox sx={{ padding: "0 0 0 13px" }}>
+        <ArgonTypography key={index} variant="caption" color="text" fontWeight="medium">
+          {comment?.header}
+        </ArgonTypography>
+      </ArgonBox>
     ),
     comment: (
-      <ArgonTypography key={index} variant="caption" color="text" fontWeight="medium">
-        {comment?.content}
-      </ArgonTypography>
+      <ArgonBox sx={{ padding: "0 0 0 11px" }}>
+        <ArgonTypography key={index} variant="caption" color="text" fontWeight="medium">
+          {comment?.content}
+        </ArgonTypography>
+      </ArgonBox>
     ),
   }));
 
@@ -43,26 +64,8 @@ function CompanyCommentData() {
       { name: "header", align: "left" },
       { name: "comment", align: "left" },
     ],
-
     rows: rows,
   };
-
-  useEffect(() => {
-    if (storedToken) {
-      const decodedToken = jwt_decode(storedToken);
-      console.log(decodedToken);
-      // below URL should be changed to `http://localhost:9093/api/v1/comment/get-comments-by-company/${decodedToken.id}`
-      // after navigation by roles is completed
-      axios
-        .get(`http://localhost:9093/api/v1/comment/get-comments-by-company/47`)
-        .then((response) => {
-          setCommentInfo(response.data);
-        })
-        .catch((error) => {
-          console.log("An error occured while trying to retrieve comment information: ", error);
-        });
-    }
-  }, [storedToken]);
 
   return <Table columns={companyCommentData.columns} rows={companyCommentData.rows} />;
 }
