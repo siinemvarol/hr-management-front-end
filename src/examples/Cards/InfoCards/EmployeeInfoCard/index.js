@@ -121,34 +121,38 @@ function EmployeeInfoCard({ title, description, info, social, action }) {
   const uniqueValues = [...uniqueValuesSet];
 
   const renderItems = uniqueLabels.map((label, index) => (
-    <ArgonBox key={label} display="flex"alignItems="center" py={1} pr={2}>
-      <ArgonTypography variant="button" fontWeight="bold" textTransform="capitalize">
-        {label}: &nbsp;
-      </ArgonTypography>
-      <ArgonTypography variant="button" fontWeight="regular" color="text">
-        &nbsp;
-        {editMode ? (
-          <TextField
-            label={label}
-            name={label}
-            value={uniqueValues[index]}
-            onChange={handleFieldChange}
-            fullWidth
-            sx={{
-              width: "200%",
-              marginTop: "-20px",
-            }}
-            InputLabelProps={{
-              sx: {
-                fontSize: "0.775rem",
-                display: "none",
-              },
-            }}
-          />
-        ) : (
-          uniqueValues[index]
-        )}
-      </ArgonTypography>
+    <ArgonBox key={label} display="flex" alignItems="center" py={1} pr={2}>
+      <ArgonBox>
+        <ArgonTypography variant="button" fontWeight="bold" textTransform="capitalize">
+          {label}: &nbsp;
+        </ArgonTypography>
+      </ArgonBox>
+      <ArgonBox>
+        <ArgonTypography variant="button" fontWeight="regular" color="text">
+          &nbsp;
+          {editMode ? (
+            <TextField
+              label={label}
+              name={label}
+              value={uniqueValues[index]}
+              onChange={handleFieldChange}
+              fullWidth
+              sx={{
+                width: "200%",
+                marginTop: "-20px",
+              }}
+              InputLabelProps={{
+                sx: {
+                  fontSize: "0.775rem",
+                  display: "none",
+                },
+              }}
+            />
+          ) : (
+            uniqueValues[index]
+          )}
+        </ArgonTypography>
+      </ArgonBox>
     </ArgonBox>
   ));
 

@@ -36,8 +36,6 @@ Coded by www.creative-tim.com
 // Argon Dashboard 2 MUI layouts
 import Dashboard from "layouts/dashboard";
 import Profile from "layouts/profile";
-import SignIn from "layouts/authentication/sign-in";
-import SignUp from "layouts/authentication/sign-up";
 import GuestRegister from "layouts/authentication/guest-register";
 // Argon Dashboard 2 MUI components
 import ArgonBox from "components/ArgonBox";
@@ -48,6 +46,8 @@ import ApproveNewCompanies from "layouts/admin-layout/approve-new-companies";
 import CompanyInfo from "layouts/company-manager-layout/company-info/company";
 import MyCompany from "layouts/employee-layout/my-company";
 import AddNewComment from "layouts/employee-layout/add-new-comment";
+import CompanyRegister from "layouts/authentication/company-register";
+import Login from "layouts/authentication/login";
 
 const routes = [
   {
@@ -66,55 +66,55 @@ const routes = [
     icon: <ArgonBox component="i" color="dark" fontSize="14px" className="ni ni-single-02" />,
     component: <Profile />,
   },
-  // {
-  //   type: "route",
-  //   name: "Employees",
-  //   key: "employee",
-  //   route: "/employee",
-  //   icon: <ArgonBox component="i" color="dark" fontSize="14px" className="ni ni-single-02" />,
-  //   component: <Employee />,
-  // },
-  //  {
-  //    type: "route",
-  //    name: "Add New Company",
-  //    key: "add-new-company",
-  //    route: "/add-new-company",
-  //    icon: (
-  //      <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-calendar-grid-58" />
-  //    ),
-  //    component: <AddNewCompany/>,
-  //  },
-  // {
-  //   type: "route",
-  //   name: "Approve New Comments",
-  //   key: "approve-new-comments",
-  //   route: "/approve-new-comments",
-  //   icon: (
-  //     <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-calendar-grid-58" />
-  //   ),
-  //   component: <ApproveNewComments />,
-  // },
-  // {
-  //   type: "route",
-  //   name: "Approve New Companies",
-  //   key: "approve-new-companies",
-  //   route: "/approve-new-companies",
-  //   icon: (
-  //     <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-calendar-grid-58" />
-  //   ),
-  //   component: <ApproveNewCompanies />,
-  // },
-  // {
-  //   type: "route",
-  //   name: "Company Information",
-  //   key: "company-information",
-  //   route: "/company-information",
-  //   icon: (
-  //     <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-calendar-grid-58" />
-  //   ),
-  //   component: <CompanyInfo/>,
-  // },
-  // { type: "title", title: "Account Pages", key: "account-pages" },
+   {
+     type: "route",
+     name: "Employees",
+    key: "employee",
+     route: "/employee",
+     icon: <ArgonBox component="i" color="dark" fontSize="14px" className="ni ni-single-02" />,
+     component: <Employee />,
+   },
+    {
+      type: "route",
+      name: "Add New Company",
+      key: "add-new-company",
+      route: "/add-new-company",
+      icon: (
+        <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-calendar-grid-58" />
+      ),
+      component: <AddNewCompany/>,
+    },
+   {
+     type: "route",
+     name: "Approve New Comments",
+     key: "approve-new-comments",
+     route: "/approve-new-comments",
+     icon: (
+       <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-calendar-grid-58" />
+     ),
+     component: <ApproveNewComments />,
+   },
+   {
+     type: "route",
+     name: "Approve New Companies",
+     key: "approve-new-companies",
+     route: "/approve-new-companies",
+     icon: (
+       <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-calendar-grid-58" />
+     ),
+     component: <ApproveNewCompanies />,
+   },
+  {
+    type: "route",
+    name: "Company Information",
+    key: "company-information",
+    route: "/company-information",
+    icon: (
+      <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-calendar-grid-58" />
+    ),
+    component: <CompanyInfo />,
+  },
+ 
 
   {
     type: "route",
@@ -136,28 +136,28 @@ const routes = [
     ),
     component: <AddNewComment />,
   },
-
+  { type: "title", title: "Account Pages", key: "account-pages" },
   {
     type: "route",
     name: "Login",
-    key: "sign-in",
-    route: "/authentication/sign-in",
+    key: "login",
+    route: "/authentication/login",
     icon: (
       <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-single-copy-04" />
     ),
-    component: <SignIn />,
+    component: <Login />,
   },
   {
     type: "route",
-    name: "Company Register",
-    key: "sign-up",
-    route: "/authentication/sign-up",
+    name: "Register as Company",
+    key: "company-register",
+    route: "/authentication/company-register",
     icon: <ArgonBox component="i" color="info" fontSize="14px" className="ni ni-collection" />,
-    component: <SignUp />,
+    component: <CompanyRegister />,
   },
   {
     type: "route",
-    name: "Guest Register",
+    name: "Register as Guest",
     key: "guest-register",
     route: "/authentication/guest-register",
     icon: <ArgonBox component="i" color="info" fontSize="14px" className="ni ni-collection" />,
