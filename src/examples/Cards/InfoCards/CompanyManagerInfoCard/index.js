@@ -25,8 +25,6 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-//api urls
-import { API_URLS } from "../../../../config/apiUrls";
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
@@ -48,7 +46,6 @@ import Grid from "@mui/material/Grid";
 // Argon Dashboard 2 MUI components
 import ArgonBox from "components/ArgonBox";
 import ArgonTypography from "components/ArgonTypography";
-import ArgonButton from "components/ArgonButton";
 
 // Argon Dashboard 2 MUI base styles
 import colors from "assets/theme/base/colors";
@@ -59,17 +56,6 @@ import { Button, Stack, TextField } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 
 function CompanyManagerInfoCard({ title, description, info, social, action }) {
-  const propertyLabels = {
-    name: "Name",
-    surname: "Surname",
-    companyEmail: "Company Email",
-    personalEmail: "Personal Email",
-    phone: "Phone",
-    address: "Address",
-    info: "Info",
-    birthday: "Birthday",
-    role: "Role",
-  };
   const storedToken = localStorage.getItem("Authorization");
   const { socialMediaColors } = colors;
   const { size } = typography;
@@ -102,8 +88,9 @@ function CompanyManagerInfoCard({ title, description, info, social, action }) {
 
   const handleSubmit = () => {
     const decodedToken = jwt_decode(storedToken);
+
     axios
-      .put(`${API_URLS.user.localhost}/update/${decodedToken.id}`, editedInfo)
+      .put(`http://localhost:9095/api/v1/user/update/${decodedToken.id}`, editedInfo)
       .then((response) => {
         console.log("User data updated:", response.data);
         setEditMode(false);
@@ -113,12 +100,6 @@ function CompanyManagerInfoCard({ title, description, info, social, action }) {
       });
 
     setEditMode(false);
-  };
-
-  const handleGoToEmployeeProfile = () => {
-    const decodedToken = jwt_decode(storedToken);
-    decodedToken.role = "EMPLOYEE";
-    console.log(decodedToken);
   };
 
   // Create sets to store unique labels and values
@@ -139,44 +120,35 @@ function CompanyManagerInfoCard({ title, description, info, social, action }) {
   const uniqueLabels = [...uniqueLabelsSet];
   const uniqueValues = [...uniqueValuesSet];
 
-  const renderItems = Object.keys(info).map((key, index) => {
-    const label = propertyLabels[key]; // Label'ı burada tanımlıyoruz
-    return (
-      <ArgonBox key={key} display="flex" alignItems="center" py={1} pr={2}>
-        <ArgonBox>
-          <ArgonTypography variant="button" fontWeight="bold" textTransform="capitalize">
-            {label}: &nbsp;
-          </ArgonTypography>
-        </ArgonBox>
-        <ArgonBox>
-          <ArgonTypography variant="button" fontWeight="regular" color="text">
-            &nbsp;
-            {editMode ? (
-              <TextField
-                label={label}
-                name={label}
-                value={uniqueValues[index]}
-                onChange={handleFieldChange}
-                fullWidth
-                sx={{
-                  width: "200%",
-                  marginTop: "-20px",
-                }}
-                InputLabelProps={{
-                  sx: {
-                    fontSize: "0.01rem",
-                    display: "none",
-                  },
-                }}
-              />
-            ) : (
-              editedInfo[key]
-            )}
-          </ArgonTypography>
-        </ArgonBox>
-      </ArgonBox>
-    );
-  });
+  const renderItems = uniqueLabels.map((label, index) => (
+    <ArgonBox key={label} display="flex" py={1} pr={2}>
+      <ArgonTypography variant="button" fontWeight="bold" textTransform="capitalize">
+        {label}: &nbsp;
+      </ArgonTypography>
+      <ArgonTypography variant="button" fontWeight="regular" color="text">
+        &nbsp;
+        {editMode ? (
+          <TextField
+            label={label}
+            name={label}
+            value={uniqueValues[index]}
+            onChange={handleFieldChange}
+            fullWidth
+             sx={{
+               width: "317%" }}
+            InputLabelProps={{
+              sx: {
+                fontSize: "0.775rem", 
+                display:"none",
+              },
+            }}
+          />
+        ) : (
+          uniqueValues[index]
+        )}
+      </ArgonTypography>
+    </ArgonBox>
+  ));
 
   const renderSocial = social.map(({ link, icon, color }) => (
     <ArgonBox
@@ -196,7 +168,7 @@ function CompanyManagerInfoCard({ title, description, info, social, action }) {
   ));
 
   return (
-    <Card sx={{ width: "309%" }}>
+    <Card sx={{ width:"317%"}}>
       <Grid container>
         <Grid item xs={12}>
           <ArgonBox display="flex" justifyContent="space-between" alignItems="center" pt={2} px={2}>
@@ -207,30 +179,16 @@ function CompanyManagerInfoCard({ title, description, info, social, action }) {
             <ArgonTypography component={Link} to={action.route} variant="body2" color="secondary">
               <Tooltip title={action.tooltip} placement="top">
                 <Stack direction="row">
-                  <ArgonBox sx={{ padding: "0 1em 0 0" }}>
-                    <ArgonButton
-                      color="primary"
-                      size="medium"
-                      fullWidth
-                      onClick={handleGoToEmployeeProfile}
-                      component={Link}
-                      to="/employee/profile"
-                    >
-                      Go to Employee Profile
-                    </ArgonButton>
-                  </ArgonBox>
-                  <ArgonBox>
-                    <ArgonButton
-                      size="medium"
-                      color="info"
-                      variant="contained"
-                      startIcon={<EditIcon />}
-                      onClick={handleEditClick}
-                      sx={{ p: "8px 16px", fontSize: "0.9rem" }}
-                    >
-                      Edit
-                    </ArgonButton>
-                  </ArgonBox>
+                  <Button
+                    size="small"
+                    color="primary"
+                    variant="contained"
+                    startIcon={<EditIcon />}
+                    onClick={handleEditClick}
+                    sx={{ p: "8px 16px", fontSize: "0.75rem" }}
+                  >
+                    Edit
+                  </Button>
                 </Stack>
               </Tooltip>
             </ArgonTypography>
@@ -244,9 +202,9 @@ function CompanyManagerInfoCard({ title, description, info, social, action }) {
               </ArgonTypography>
             </ArgonBox>
 
-            <ArgonBox width="185%" ml={2}>
+            <ArgonBox width="180%" ml={2}>
               {editMode ? (
-                <form>
+                <form >
                   {renderItems}
                   <Stack direction="row" spacing={2} sx={{ justifyContent: "center" }}>
                     <Button

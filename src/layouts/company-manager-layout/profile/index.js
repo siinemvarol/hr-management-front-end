@@ -12,9 +12,6 @@ Coded by www.creative-tim.com
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
-//api urls
-import { API_URLS } from "../../../config/apiUrls";
-
 import { useEffect, useState } from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
@@ -42,7 +39,7 @@ import EmployeeInfoCard from "examples/Cards/InfoCards/EmployeeInfoCard";
 // import PlaceholderCard from "examples/Cards/PlaceholderCard";
 
 // Overview page components
-import Header from "layouts/company-manager-layout/profile/components/Header";
+import Header from "layouts/profile/components/Header";
 import CompanyManagerInfoCard from "examples/Cards/InfoCards/CompanyManagerInfoCard";
 // import PlatformSettings from "layouts/profile/components/PlatformSettings";
 
@@ -70,21 +67,10 @@ function Overview() {
       const decodedToken = jwt_decode(storedToken);
       console.log(decodedToken);
       axios
-
         .get(`http://localhost:9095/api/v1/user/find-by-id/${decodedToken.id}`)
         .then((response) => {
-          console.log(response.data);
-          setUserInfo({
-            name: String(response.data.name),
-            surname: String(response.data.surname),
-            companyEmail: String(response.data.companyEmail),
-            personalEmail: String(response.data.personalEmail),
-            phone: String(response.data.phone),
-            address: String(response.data.address),
-            info: String(response.data.info),
-            birthday: String(response.data.createdDate),
-            role: String(response.data.role),
-          });
+          setUserInfo(response.data);
+
         })
         .catch((error) => {
           console.error("An error occurred while trying to retrieve user information:", error);
@@ -104,13 +90,13 @@ function Overview() {
     >
       <Header />
       <ArgonBox mt={5} mb={3}>
-        <Grid container spacing={3}>
+        <Grid container spacing={3} >
           {/* <Grid item xs={12} md={6} xl={4}>
             <PlatformSettings />
           </Grid> */}
           <Grid item xs={12} md={6} xl={4}>
             {/* <ProfileInfoCard */}
-            <CompanyManagerInfoCard
+            <CompanyManagerInfoCard 
               title="profile information"
               // description=""
               info={{
@@ -122,7 +108,6 @@ function Overview() {
                 address: userInfo?.address || "",
                 info: userInfo?.info || "",
                 birthday: userInfo?.birthday || "",
-                role: userInfo?.role || "Belirtilmedi",
               }}
               social={[
                 {
@@ -143,10 +128,6 @@ function Overview() {
               ]}
               action={{ route: "", tooltip: "Edit Profile" }}
               edit={true}
-              sx={{
-                maxWidth: "400px",
-                overflow: "auto",
-              }}
             />
           </Grid>
           {/* <Grid item xs={12} xl={4}>
