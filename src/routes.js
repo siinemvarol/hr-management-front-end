@@ -35,7 +35,7 @@ Coded by www.creative-tim.com
 
 // Argon Dashboard 2 MUI layouts
 import Dashboard from "layouts/dashboard";
-import Profile from "layouts/profile";
+import EmployeeProfile from "layouts/employee-layout/profile";
 import GuestRegister from "layouts/authentication/guest-register";
 // Argon Dashboard 2 MUI components
 import ArgonBox from "components/ArgonBox";
@@ -49,6 +49,7 @@ import AddNewComment from "layouts/employee-layout/add-new-comment";
 import CompanyRegister from "layouts/authentication/company-register";
 import Login from "layouts/authentication/login";
 import AddNewEmployee from "layouts/company-manager-layout/add-new-employee";
+import CompanyManagerProfile from "layouts/company-manager-layout/profile"
 
 const routes = [
   {
@@ -61,11 +62,11 @@ const routes = [
   },
   {
     type: "route",
-    name: "Profile",
+    name: "Employee Profile",
     key: "profile",
-    route: "/profile",
+    route: "/employee/profile",
     icon: <ArgonBox component="i" color="dark" fontSize="14px" className="ni ni-single-02" />,
-    component: <Profile />,
+    component: <EmployeeProfile />,
   },
    {
      type: "route",
@@ -146,6 +147,16 @@ const routes = [
       <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-single-copy-04" />
     ),
     component: <AddNewComment />,
+  },
+  {
+    type: "route",
+    name: "Company Manager Profile",
+    key: "company-manager-profile",
+    route: "/company-manager/profile",
+    icon: (
+      <ArgonBox component="i" color="dark" fontSize="14px" className="ni ni-single-02" />
+    ),
+    component: <CompanyManagerProfile />,
   },
   { type: "title", title: "Account Pages", key: "account-pages" },
   {
