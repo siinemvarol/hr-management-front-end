@@ -43,6 +43,7 @@ import EmployeeInfoCard from "examples/Cards/InfoCards/EmployeeInfoCard";
 
 // Overview page components
 import Header from "layouts/company-manager-layout/profile/components/Header";
+import CompanyManagerInfoCard from "examples/Cards/InfoCards/CompanyManagerInfoCard";
 // import PlatformSettings from "layouts/profile/components/PlatformSettings";
 
 // Data
@@ -72,7 +73,7 @@ function Overview() {
 
         .get(`http://localhost:9095/api/v1/user/find-by-id/${decodedToken.id}`)
         .then((response) => {
-          console.log(response.data)
+          console.log(response.data);
           setUserInfo({
             name: String(response.data.name),
             surname: String(response.data.surname),
@@ -82,10 +83,8 @@ function Overview() {
             address: String(response.data.address),
             info: String(response.data.info),
             birthday: String(response.data.createdDate),
-            role: String(response.data.role)
-
+            role: String(response.data.role),
           });
-
         })
         .catch((error) => {
           console.error("An error occurred while trying to retrieve user information:", error);
@@ -111,7 +110,7 @@ function Overview() {
           </Grid> */}
           <Grid item xs={12} md={6} xl={4}>
             {/* <ProfileInfoCard */}
-            <EmployeeInfoCard
+            <CompanyManagerInfoCard
               title="profile information"
               // description=""
               info={{
@@ -124,7 +123,6 @@ function Overview() {
                 info: userInfo?.info || "",
                 birthday: userInfo?.birthday || "",
                 role: userInfo?.role || "Belirtilmedi",
-
               }}
               social={[
                 {

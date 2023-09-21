@@ -45,11 +45,6 @@ function CompanyInfo() {
               <ArgonBox>
                 <ArgonTypography variant="h6">Company Information</ArgonTypography>
               </ArgonBox>
-              <ArgonBox>
-                <ArgonButton color="primary" size="large" fullWidth>
-                  Go to Employee Profile
-                </ArgonButton>
-              </ArgonBox>
             </ArgonBox>
             <ArgonBox
               sx={{
