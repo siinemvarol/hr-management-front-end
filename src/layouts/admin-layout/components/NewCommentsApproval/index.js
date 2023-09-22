@@ -46,6 +46,8 @@ function NewCommentsApproval() {
             header: item.header,
             content: item.content,
             status: item.status,
+            company: item.companyName,
+            employee: item.employeeNameSurname
           };
         });
 
@@ -88,6 +90,8 @@ function NewCommentsApproval() {
               header={item.header}
               content={item.content}
               status={item.status}
+              company={item.company}
+              employee={item.employee}
             />
           ))}
         </ArgonBox>
