@@ -48,11 +48,43 @@ import MyCompany from "layouts/employee-layout/my-company";
 import AddNewComment from "layouts/employee-layout/add-new-comment";
 import CompanyRegister from "layouts/authentication/company-register";
 import Login from "layouts/authentication/login";
+
+import GuestDashboard from "layouts/guest-layout/dashboard";
+import GuestProfile from "layouts/guest-layout/profile";
+import Companies from "layouts/guest-layout/company-details";
+
 import AddNewEmployee from "layouts/company-manager-layout/add-new-employee";
 import CompanyManagerProfile from "layouts/company-manager-layout/profile"
 
 const routes = [
   {
+    type: "route",
+    name: "Dashboard",
+    key: "dashboard",
+    route: "/dashboard",
+    icon: <ArgonBox component="i" color="primary" fontSize="14px" className="ni ni-tv-2" />,
+    component: <GuestDashboard />,
+  },
+  {
+    type: "route",
+    name: "Profile",
+    key: "profile",
+    route: "/guest-profile",
+    icon: <ArgonBox component="i" color="dark" fontSize="14px" className="ni ni-single-02" />,
+    component: <GuestProfile />,
+  },
+  {
+    type: "route",
+    name: "Employees",
+   key: "employee",
+    route: "/employee",
+    icon: <ArgonBox component="i" color="dark" fontSize="14px" className="ni ni-single-02" />,
+    component: <Companies />,
+  },
+
+
+
+ {
     type: "route",
     name: "Dashboard",
     key: "dashboard",
