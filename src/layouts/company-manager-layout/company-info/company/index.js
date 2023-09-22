@@ -30,11 +30,10 @@ import Table from "examples/Tables/Table";
 import companyInformationData from "layouts/company-manager-layout/company-info/company/companyInformationData";
 import companyValuationTable from "layouts/company-manager-layout/company-info/company/companyValuationTable";
 import ArgonButton from "components/ArgonButton";
+import CompanyInformationData from "./companyInformationData";
+import CompanyValuationTable from "./companyValuationTable";
 
-function CompanyInfo() {
-  const { columns, rows } = companyInformationData;
-  const { columns: prCols, rows: prRows } = companyValuationTable;
-
+function CompanyInfo() {  
   return (
     <DashboardLayout>
       <DashboardNavbar />
@@ -56,7 +55,7 @@ function CompanyInfo() {
                 },
               }}
             >
-              <Table columns={columns} rows={rows} />
+              <CompanyInformationData/>
             </ArgonBox>
           </Card>
         </ArgonBox>
@@ -74,7 +73,7 @@ function CompanyInfo() {
               },
             }}
           >
-            <Table columns={prCols} rows={prRows} />
+            <CompanyValuationTable/>
           </ArgonBox>
         </Card>
       </ArgonBox>
