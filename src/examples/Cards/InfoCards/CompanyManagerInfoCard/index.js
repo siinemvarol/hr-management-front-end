@@ -90,7 +90,7 @@ function CompanyManagerInfoCard({ title, description, info, social, action }) {
     const decodedToken = jwt_decode(storedToken);
 
     axios
-      .put(`http://localhost:9095/api/v1/user/update/${decodedToken.id}`, editedInfo)
+      .put(`http://localhost:9095/api/v1/user/update-guest/${decodedToken.id}`, editedInfo)
       .then((response) => {
         console.log("User data updated:", response.data);
         setEditMode(false);
@@ -101,6 +101,12 @@ function CompanyManagerInfoCard({ title, description, info, social, action }) {
 
     setEditMode(false);
   };
+
+  const handleGoToEmployeeClick = () => {
+    const decodedToken = jwt_decode(storedToken);
+    decodedToken.role = "EMPLOYEE";
+    // this function should be completed 
+  }
 
   // Create sets to store unique labels and values
   const uniqueLabelsSet = new Set();
@@ -135,7 +141,9 @@ function CompanyManagerInfoCard({ title, description, info, social, action }) {
             onChange={handleFieldChange}
             fullWidth
              sx={{
-               width: "317%" }}
+               width: "200%" ,
+               fontSize: "0.775rem",
+              marginTop:"-20px",}}
             InputLabelProps={{
               sx: {
                 fontSize: "0.775rem", 
@@ -179,6 +187,16 @@ function CompanyManagerInfoCard({ title, description, info, social, action }) {
             <ArgonTypography component={Link} to={action.route} variant="body2" color="secondary">
               <Tooltip title={action.tooltip} placement="top">
                 <Stack direction="row">
+                <Button
+                    size="small"
+                    color="secondary"
+                    variant="contained"
+                    startIcon={<EditIcon />}
+                    onClick={handleGoToEmployeeClick}
+                    sx={{ p: "8px 16px", fontSize: "0.75rem" }}
+                  >
+                    Go to Employee Profile
+                  </Button>
                   <Button
                     size="small"
                     color="primary"
