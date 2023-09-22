@@ -90,7 +90,7 @@ function CompanyManagerInfoCard({ title, description, info, social, action }) {
     const decodedToken = jwt_decode(storedToken);
 
     axios
-      .put(`http://localhost:9095/api/v1/user/update-guest/${decodedToken.id}`, editedInfo)
+      .put(`${API_URLS.user.localhost}/update/${decodedToken.id}`, editedInfo)
       .then((response) => {
         console.log("User data updated:", response.data);
         setEditMode(false);
@@ -127,7 +127,7 @@ function CompanyManagerInfoCard({ title, description, info, social, action }) {
   const uniqueValues = [...uniqueValuesSet];
 
   const renderItems = uniqueLabels.map((label, index) => (
-    <ArgonBox key={label} display="flex" py={1} pr={2}>
+    <ArgonBox key={label} display="flex"alignItems="center" py={1} pr={2}>
       <ArgonTypography variant="button" fontWeight="bold" textTransform="capitalize">
         {label}: &nbsp;
       </ArgonTypography>
@@ -140,14 +140,14 @@ function CompanyManagerInfoCard({ title, description, info, social, action }) {
             value={uniqueValues[index]}
             onChange={handleFieldChange}
             fullWidth
-             sx={{
-               width: "200%" ,
-               fontSize: "0.775rem",
-              marginTop:"-20px",}}
+            sx={{
+              width: "200%",
+              marginTop: "-20px",
+            }}
             InputLabelProps={{
               sx: {
-                fontSize: "0.775rem", 
-                display:"none",
+                fontSize: "0.775rem",
+                display: "none",
               },
             }}
           />
@@ -176,7 +176,7 @@ function CompanyManagerInfoCard({ title, description, info, social, action }) {
   ));
 
   return (
-    <Card sx={{ width:"317%"}}>
+    <Card sx={{ width: "309%" }}>
       <Grid container>
         <Grid item xs={12}>
           <ArgonBox display="flex" justifyContent="space-between" alignItems="center" pt={2} px={2}>
@@ -220,9 +220,9 @@ function CompanyManagerInfoCard({ title, description, info, social, action }) {
               </ArgonTypography>
             </ArgonBox>
 
-            <ArgonBox width="180%" ml={2}>
+            <ArgonBox width="185%" ml={2}>
               {editMode ? (
-                <form >
+                <form>
                   {renderItems}
                   <Stack direction="row" spacing={2} sx={{ justifyContent: "center" }}>
                     <Button
