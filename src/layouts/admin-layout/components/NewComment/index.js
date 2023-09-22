@@ -28,7 +28,7 @@ import ArgonButton from "components/ArgonButton";
 import { useArgonController } from "context";
 import axios from "axios";
 
-function NewComment({ content, commentId, createDate, updateDate, noGutter, userId, header,status }) {
+function NewComment({ content, commentId, createDate, updateDate, noGutter, userId, header,status, company, employee }) {
 
 
   const handleAcceptClick = (userId) => {
@@ -74,6 +74,8 @@ function NewComment({ content, commentId, createDate, updateDate, noGutter, user
     userId: PropTypes.number,
     header: PropTypes.string.isRequired,
     status: PropTypes.string.isRequired,
+    company: PropTypes.string.isRequired,
+    employee: PropTypes.string.isRequired
   };
 
 
@@ -126,14 +128,14 @@ function NewComment({ content, commentId, createDate, updateDate, noGutter, user
             </ArgonButton>
           </ArgonBox>
         </ArgonBox>
-        <ArgonBox mb={1} lineHeight={0}>
+        {/* <ArgonBox mb={1} lineHeight={0}>
           <ArgonTypography variant="caption" color="text">
             Create Date - Update Date :&nbsp;&nbsp;&nbsp;
             <ArgonTypography variant="caption" fontWeight="medium" textTransform="capitalize">
               {createDate} {updateDate}
             </ArgonTypography>
           </ArgonTypography>
-        </ArgonBox>
+        </ArgonBox> */}
         <ArgonBox mb={1} lineHeight={0}>
           <ArgonTypography variant="caption" color="text">
             Header :&nbsp;&nbsp;&nbsp;
@@ -147,6 +149,22 @@ function NewComment({ content, commentId, createDate, updateDate, noGutter, user
             Content :&nbsp;&nbsp;&nbsp;
             <ArgonTypography variant="caption" fontWeight="medium">
               {content}
+            </ArgonTypography>
+          </ArgonTypography>
+        </ArgonBox>
+        <ArgonBox mb={1} lineHeight={0}>
+          <ArgonTypography variant="caption" color="text">
+            Company :&nbsp;&nbsp;&nbsp;
+            <ArgonTypography variant="caption" fontWeight="medium">
+              {company}
+            </ArgonTypography>
+          </ArgonTypography>
+        </ArgonBox>
+        <ArgonBox mb={1} lineHeight={0}>
+          <ArgonTypography variant="caption" color="text">
+            Employee :&nbsp;&nbsp;&nbsp;
+            <ArgonTypography variant="caption" fontWeight="medium">
+              {employee}
             </ArgonTypography>
           </ArgonTypography>
         </ArgonBox>
