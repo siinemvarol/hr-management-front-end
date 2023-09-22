@@ -67,6 +67,7 @@ function Login() {
       const token = localStorage.getItem("Authorization");
       const decoded = jwt_decode(token);
       console.log(decoded);
+      navigate("/guest-profile")
       // if (decoded.role === "COMPANY_MANAGER") {
       // root.render(
       //   <BrowserRouter>
@@ -110,7 +111,7 @@ function Login() {
       password: password,
     };
     axios
-      .post(`${API_URLS.auth.localhost}/login`, data)
+      .post("http://localhost:9090/api/v1/auth/login", data)
       .then((response) => {
         let token = response.data;
         localStorage.setItem("Authorization", "Bearer " + token);

@@ -42,7 +42,7 @@ import gradientLineChartData from "layouts/guest-layout/dashboard/data/gradientL
 import holidaysTableData from "layouts/guest-layout/dashboard/data/holidaysTableData";
 import categoriesListData from "layouts/guest-layout/dashboard/data/categoriesListData";
 
-function Default() {
+function GuestDashboard() {
   const { size } = typography;
   return (
     <DashboardLayout>
@@ -120,4 +120,4 @@ function Default() {
   );
 }
 
-export default Default;
+export default GuestDashboard;

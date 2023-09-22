@@ -39,6 +39,7 @@ import Profile from "layouts/guest-layout/profile";
 // Argon Dashboard 2 MUI components
 import ArgonBox from "components/ArgonBox";
 import GuestHomePage from "./dashboard";
+import Companies from "./company-details";
 
 
 const GuestRoutes = [
@@ -59,6 +60,14 @@ const GuestRoutes = [
     route: "/profile",
     icon: <ArgonBox component="i" color="dark" fontSize="14px" className="ni ni-single-02" />,
     component: <Profile/>,
+  },
+  {
+    type: "route",
+    name: "Companies",
+    key: "companies",
+    route: "/companies",
+    icon: <ArgonBox component="i" color="dark" fontSize="14px" className="ni ni-single-02" />,
+    component: <Companies/>,
   },
 
 

@@ -55,7 +55,7 @@ import typography from "assets/theme/base/typography";
 import { Button, Stack, TextField } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 
-function EmployeeInfoCard({ title, description, info, social, action }) {
+function GuestInfoCard({ title, description, info, social, action }) {
   const storedToken = localStorage.getItem("Authorization");
   const { socialMediaColors } = colors;
   const { size } = typography;
@@ -90,7 +90,7 @@ function EmployeeInfoCard({ title, description, info, social, action }) {
     const decodedToken = jwt_decode(storedToken);
 
     axios
-      .put(`http://localhost:9095/api/v1/user/update/${decodedToken.id}`, editedInfo)
+      .put(`http://localhost:9095/api/v1/user/update-guest/${decodedToken.id}`, editedInfo)
       .then((response) => {
         console.log("User data updated:", response.data);
         setEditMode(false);
@@ -135,7 +135,9 @@ function EmployeeInfoCard({ title, description, info, social, action }) {
             onChange={handleFieldChange}
             fullWidth
              sx={{
-               width: "317%" }}
+               width: "200%" ,
+               fontSize: "0.775rem",
+              marginTop:"-20px",}}
             InputLabelProps={{
               sx: {
                 fontSize: "0.775rem", 
@@ -234,7 +236,7 @@ function EmployeeInfoCard({ title, description, info, social, action }) {
   );
 }
 
-EmployeeInfoCard.propTypes = {
+GuestInfoCard.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   info: PropTypes.objectOf(PropTypes.string).isRequired,
@@ -245,4 +247,4 @@ EmployeeInfoCard.propTypes = {
   }).isRequired,
 };
 
-export default EmployeeInfoCard;
+export default GuestInfoCard;
