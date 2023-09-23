@@ -54,6 +54,7 @@ import typography from "assets/theme/base/typography";
 //Edit button
 import { Button, Stack, TextField } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
+import { API_URLS } from "config/apiUrls";
 
 function CompanyManagerInfoCard({ title, description, info, social, action }) {
   const storedToken = localStorage.getItem("Authorization");
@@ -71,6 +72,7 @@ function CompanyManagerInfoCard({ title, description, info, social, action }) {
     const { name, value } = e.target;
     setEditedInfo({
       ...editedInfo,
+      
       [name]: value,
     });
   };
@@ -94,6 +96,7 @@ function CompanyManagerInfoCard({ title, description, info, social, action }) {
       .then((response) => {
         console.log("User data updated:", response.data);
         setEditMode(false);
+        window.location.reload(); //! 2 Sayfayı yenilemeee (yeni eklendi-- değişiklik yapıldıktan sonra save dendiği anda sayfayı yenileyip güncel verileri çekiyor)
       })
       .catch((error) => {
         console.error("An error occurred while updating user information:", error);
@@ -108,18 +111,23 @@ function CompanyManagerInfoCard({ title, description, info, social, action }) {
     // this function should be completed 
   }
 
-  // Create sets to store unique labels and values
-  const uniqueLabelsSet = new Set();
-  const uniqueValuesSet = new Set();
+ // Create sets to store unique labels and values
+ const uniqueLabelsSet =  [];
+ const uniqueValuesSet =  [];
+//!1-- bunlar set olarak tanımlanmıştı ama ben arraye çevirdim hataların hepsi buradan kaynaklanıyordu
+
 
   // Convert this form `objectKey` of the object key into this `object key`
-  Object.keys(info).forEach((el) => {
+  Object.keys(info).forEach((el, index) => {
     const label = el.match(/[A-Z\s]+/)
       ? el.replace(/[A-Z]+/g, (match) => ` ${match.toLowerCase()}`)
       : el;
-
-    uniqueLabelsSet.add(label);
-    uniqueValuesSet.add(editedInfo[el]);
+  
+    const value = Object.values(info)[index]; // Değerleri doğrudan al
+  
+  
+    uniqueLabelsSet.push(label);
+    uniqueValuesSet.push(value); //!3 add yerine push kullanıldı artık bu bir array çünkü
   });
 
   // Convert sets back to arrays
@@ -127,30 +135,31 @@ function CompanyManagerInfoCard({ title, description, info, social, action }) {
   const uniqueValues = [...uniqueValuesSet];
 
   const renderItems = uniqueLabels.map((label, index) => (
-    <ArgonBox key={label} display="flex"alignItems="center" py={1} pr={2}>
+    
+    <ArgonBox key={label} display="flex" py={1} pr={2}>
       <ArgonTypography variant="button" fontWeight="bold" textTransform="capitalize">
         {label}: &nbsp;
       </ArgonTypography>
       <ArgonTypography variant="button" fontWeight="regular" color="text">
         &nbsp;
         {editMode ? (
+          
           <TextField
-            label={label}
-            name={label}
-            value={uniqueValues[index]}
-            onChange={handleFieldChange}
-            fullWidth
-            sx={{
-              width: "200%",
-              marginTop: "-20px",
-            }}
-            InputLabelProps={{
-              sx: {
-                fontSize: "0.775rem",
-                display: "none",
-              },
-            }}
-          />
+  label={label}
+  name={label}
+  value={editedInfo[label]} //! 4 uniqueValues[index] değil, editedInfo[label] olmalı
+  onChange={handleFieldChange}
+  fullWidth
+  sx={{
+    width: "317%",
+  }}
+  InputLabelProps={{
+    sx: {
+      fontSize: "0.775rem",
+      display: "none",
+    },
+  }}
+/>
         ) : (
           uniqueValues[index]
         )}
