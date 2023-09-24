@@ -40,6 +40,7 @@ import Profile from "layouts/guest-layout/profile";
 import ArgonBox from "components/ArgonBox";
 import GuestHomePage from "./dashboard";
 import Companies from "./company-details";
+import CompanyDetails from "./company-details/company-card-guest";
 
 
 const GuestRoutes = [
@@ -68,6 +69,15 @@ const GuestRoutes = [
     route: "/companies",
     icon: <ArgonBox component="i" color="dark" fontSize="14px" className="ni ni-single-02" />,
     component: <Companies/>,
+  },
+  {
+    type: "route",
+    name: "Company Details",
+    key: "company-details",
+    route: "/company-details",
+    icon: <ArgonBox component="i" color="dark" fontSize="14px" className="ni ni-single-02" />,
+    component: <CompanyDetails/>,
+
   },
 
 
