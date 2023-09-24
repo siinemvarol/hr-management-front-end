@@ -54,8 +54,13 @@ import GuestProfile from "layouts/guest-layout/profile";
 import Companies from "layouts/guest-layout/company-details";
 
 import AddNewEmployee from "layouts/company-manager-layout/add-new-employee";
+
+import CompanyManagerProfile from "layouts/company-manager-layout/profile"
+import CompanyDetails from "layouts/guest-layout/company-details/company-card-guest";
+
 import CompanyManagerProfile from "layouts/company-manager-layout/profile";
 import EmployeeDashboard from "layouts/employee-layout/dashboard";
+
 
 const routes = [
   {
@@ -84,14 +89,21 @@ const routes = [
   },
   {
     type: "route",
-    name: "Employees",
-   key: "employee",
-    route: "/employee",
+    name: "Companies",
+   key: "companies",
+    route: "/companies",
     icon: <ArgonBox component="i" color="dark" fontSize="14px" className="ni ni-single-02" />,
     component: <Companies />,
   },
+  {
+    type: "route",
+    name: "Company Details",
+    key: "company-details",
+    route: "/company-details",
+    icon: <ArgonBox component="i" color="dark" fontSize="14px" className="ni ni-single-02" />,
+    component: <CompanyDetails/>,
 
-
+  },
 
  {
     type: "route",

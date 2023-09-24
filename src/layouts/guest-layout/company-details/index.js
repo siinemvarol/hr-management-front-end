@@ -1,63 +1,61 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom"; // react-router-dom yerine react-router import edildi
+// Companies.js
+
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
+import Pagination from "@mui/material/Pagination";
+import { Link, useNavigate } from "react-router-dom";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import Container from "@mui/material/Container";
-import Pagination from "@mui/material/Pagination";
 import Box from "@mui/material/Box";
 import Header from "layouts/guest-layout/company-details/Header";
+import { API_URLS } from "config/apiUrls";
 
-function generateRandomTaxNo() {
-  const randomPart = Math.floor(Math.random() * 100000).toString().padStart(5, "0");
-  return `12-${randomPart}-0`;
-}
-
-const generateRandomCompanies = () => {
-  const companies = [];
-  for (let i = 1; i <= 17; i++) {
-    companies.push({
-      id: i,
-      name: `Şirket ${i}`,
-      address: `Adres ${i}`,
-      phone: `123-456-${i.toString().padStart(2, "0")}`,
-      email: `sirket${i}@example.com`,
-      taxNo: generateRandomTaxNo(),
-      website: `www.sirket${i}.com`,
-      foundationDate: `01/01/${2000 + i}`,
-    });
-  }
-  return companies;
-};
-
-const bgImage =
-  "URL_YOUR_BACKGROUND_IMAGE_HERE"; // Arka plan resminin URL'sini buraya ekleyin
-
-const companiesPerPage = 6;
+// CompanyDetails bileşenini içe aktarın
+import CompanyDetails from "./company-card-guest/index";
 
 function Companies() {
+  const [companies, setCompanies] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const mockCompanies = generateRandomCompanies();
-  const navigate = useNavigate(); // useHistory yerine useNavigate kullanılıyor
+  const [error, setError] = useState(null);
+  const [totalPages, setTotalPages] = useState(1);
+  const bgImage = "URL_YOUR_BACKGROUND_IMAGE_HERE";
+  const navigate = useNavigate();
+  const [selectedCompany, setSelectedCompany] = useState(null);
 
-  const totalPages = Math.ceil(mockCompanies.length / companiesPerPage);
+  const companiesPerPage = 6;
+
+  useEffect(() => {
+    axios
+      .get(`${API_URLS.company.localhost}/activate-companies-list`)
+      .then((response) => {
+        setCompanies(response.data);
+        setTotalPages(Math.ceil(response.data.length / companiesPerPage));
+      })
+      .catch((error) => {
+        setError(error);
+      });
+  }, []);
+
   const indexOfLastCompany = currentPage * companiesPerPage;
   const indexOfFirstCompany = indexOfLastCompany - companiesPerPage;
-  const currentCompanies = mockCompanies.slice(indexOfFirstCompany, indexOfLastCompany);
+  const currentCompanies = companies.slice(indexOfFirstCompany, indexOfLastCompany);
 
-  // Şirket Card'ına tıklandığında şirketin sayfasına yönlendirme işlemi
+  const handlePageChange = (event, newPage) => {
+    setCurrentPage(newPage);
+  };
+
   const handleCompanyClick = (companyId) => {
-    // Şirketin sayfa URL'sini oluşturun, örneğin "/company/1" gibi
-    const companyPageUrl = `/company/${companyId}`;
-    // React Router'ın `navigate` fonksiyonunu kullanarak yönlendirme yapın
-    navigate(companyPageUrl);
+    const selected = companies.find((company) => company.id === companyId);
+    setSelectedCompany(selected);
+    navigate(`/company-detail/${companyId}`);
   };
 
   return (
     <DashboardLayout
-    
       sx={{
         backgroundImage: ({ functions: { rgba, linearGradient }, palette: { gradients } }) =>
           `${linearGradient(
@@ -68,47 +66,53 @@ function Companies() {
       }}
     >
       <Header />
-      <Container sx={{ marginTop: '20px' }}>
-        <Box sx={{ textAlign: 'center' }}>
+      <Container sx={{ marginTop: "20px" }}>
+        <Box sx={{ textAlign: "center" }}>
           <Typography variant="h4" gutterBottom>
             Companies
           </Typography>
         </Box>
         <Grid container spacing={2}>
-          {currentCompanies.map((company) => (
+          {companies.map((company) => (
             <Grid item xs={12} sm={6} md={4} key={company.id}>
-              <Card
-                sx={{ height: "100%", width: "100%", margin: "16px", cursor: "pointer" }}
-                onClick={() => handleCompanyClick(company.id)} // Card'a tıklama işleyici
-              >
-                <CardContent>
-                  <Typography variant="h6" gutterBottom sx={{ marginBottom: "16px", textAlign: "center" }}>
-                    {company.name}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary">
-                    Adres: {company.address}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary">
-                    Telefon: {company.phone}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary">
-                    E-Posta: {company.email}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary">
-                    Vergi No: {company.taxNo}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary">
-                    Web Sitesi: {company.website}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary">
-                    Kuruluş Tarihi: {company.foundationDate}
-                  </Typography>
-                </CardContent>
-              </Card>
+              <Link to={`/company-detail/${company.id}`} style={{ textDecoration: "none" }}>
+                <Card
+                  sx={{ height: "100%", width: "100%", margin: "16px", cursor: "pointer" }}
+                  onClick={() => handleCompanyClick(company.id)}
+                >
+                  <CardContent>
+                    <Typography
+                      variant="h6"
+                      gutterBottom
+                      sx={{ marginBottom: "16px", textAlign: "center" }}
+                    >
+                      {company.companyName}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary">
+                      Adress: {company.companyAddress}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary">
+                      Phone: {company.companyPhone}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary">
+                      E-Posta: {company.infoEmail}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary">
+                      Tax Id: {company.taxId}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary">
+                      City: {company.city}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary">
+                      Establishment Date : {company.establishmentDate}
+                    </Typography>
+                  </CardContent>
+                </Card>
+              </Link>
             </Grid>
           ))}
         </Grid>
-        <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '40px' }}>
+        <Box sx={{ display: "flex", justifyContent: "center", marginTop: "40px" }}>
           <Pagination
             count={totalPages}
             page={currentPage}
