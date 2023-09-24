@@ -33,7 +33,7 @@ function NewComment({ content, commentId, createDate, updateDate, noGutter, user
 
   const handleAcceptClick = (userId) => {
 
-    axios.put(`http://localhost:9093/api/v1/comment/active-comment?id=${commentId}`, {
+    axios.put(`http://localhost:9093/api/v1/comment/activate-comment?id=${commentId}`, {
       status: 'APPROVED' 
     })
       .then(response => {
