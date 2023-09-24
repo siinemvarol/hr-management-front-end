@@ -153,7 +153,8 @@ export default function App() {
               color={sidenavColor}
               brand={darkSidenav || darkMode ? brand : brandDark}
               brandName="HR Management"
-              routes={routes}
+              routes={filteredRoutes}
+              userRole="guest"
               onMouseEnter={handleOnMouseEnter}
               onMouseLeave={handleOnMouseLeave}
             />
