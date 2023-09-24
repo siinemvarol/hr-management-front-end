@@ -28,9 +28,10 @@ function Slider() {
   // SwiperJS navigation buttons ref
   const navigationPrevRef = useRef(null);
   const navigationNextRef = useRef(null);
-
+  
   return (
-    <Card sx={{ position: "relative", display: "block", height: "100%", overflow: "hidden" }}>
+    <div style={{ justifyContent: "center", alignItems: "center", height: "30vh" }}>
+      <Card sx={{ position: "relative", display: "block", height: "100%", overflow: "hidden" }}>
       <Swiper
         onInit={({ params, navigation }) => {
           const { navigation: nav } = params;
@@ -196,6 +197,7 @@ function Slider() {
         </SwiperSlide>
       </Swiper>
     </Card>
+    </div>
   );
 }
 
