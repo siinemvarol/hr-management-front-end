@@ -1,8 +1,7 @@
-FROM node:14
-COPY public /app/public
-COPY src /app/src
-COPY package.json /app/package.json
+FROM node:18.17.1-buster
+COPY ./ /app
 RUN apt-get update -y
+RUN npm install -g serve
 WORKDIR /app
-RUN npm install
-ENTRYPOINT ["npm","start"]
+EXPOSE 3000
+ENTRYPOINT [ "npm","start" ]

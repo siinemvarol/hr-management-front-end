@@ -55,6 +55,8 @@ import typography from "assets/theme/base/typography";
 import { Button, Stack, TextField } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 
+import { API_URLS } from "../../../../config/apiUrls";
+
 function EmployeeInfoCard({ title, description, info, social, action }) {
   const storedToken = localStorage.getItem("Authorization");
   const { socialMediaColors } = colors;
@@ -90,7 +92,7 @@ function EmployeeInfoCard({ title, description, info, social, action }) {
     const decodedToken = jwt_decode(storedToken);
 
     axios
-      .put(`http://localhost:9095/api/v1/user/update/${decodedToken.id}`, editedInfo)
+      .put(`${API_URLS.user.localhost}/update/${decodedToken.id}`, editedInfo)
       .then((response) => {
         console.log("User data updated:", response.data);
         setEditMode(false);
@@ -135,7 +137,8 @@ function EmployeeInfoCard({ title, description, info, social, action }) {
             onChange={handleFieldChange}
             fullWidth
              sx={{
-               width: "317%" }}
+               width: "309%" ,
+               marginTop: "-30px"}}
             InputLabelProps={{
               sx: {
                 fontSize: "0.775rem", 
@@ -168,7 +171,7 @@ function EmployeeInfoCard({ title, description, info, social, action }) {
   ));
 
   return (
-    <Card sx={{ width:"317%"}}>
+    <Card sx={{ width:"309%"}}>
       <Grid container>
         <Grid item xs={12}>
           <ArgonBox display="flex" justifyContent="space-between" alignItems="center" pt={2} px={2}>
