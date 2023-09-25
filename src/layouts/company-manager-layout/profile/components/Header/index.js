@@ -1,70 +1,76 @@
-/**
-=========================================================
-* Argon Dashboard 2 MUI - v3.0.1
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-material-ui
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { useState, useEffect } from "react";
-
-// @mui material components
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
-import AppBar from "@mui/material/AppBar";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-
-// Argon Dashboard 2 MUI components
+import jwt_decode from "jwt-decode";
 import ArgonBox from "components/ArgonBox";
-import ArgonTypography from "components/ArgonTypography";
 import ArgonAvatar from "components/ArgonAvatar";
-
-// Argon Dashboard 2 MUI example components
-import DashboardNavbar from "examples/Navbars/DashboardNavbar";
-
-// Argon Dashboard 2 MUI base styles
-import breakpoints from "assets/theme/base/breakpoints";
-
-// Images
+import ArgonButton from "components/ArgonButton";
+import axios from "axios";
 import burceMars from "assets/images/bruce-mars.jpg";
 
+ // Burada doğru yolu kontrol edin
+ const images = require.context('assets/images', true);
 function Header() {
-  const [tabsOrientation, setTabsOrientation] = useState("horizontal");
-  const [tabValue, setTabValue] = useState(0);
+  const handleUpload = async () => {
+    const selectedFile = await promptForFile();
+    if (!selectedFile) return;
 
-  useEffect(() => {
-    // A function that sets the orientation state of the tabs.
-    function handleTabsOrientation() {
-      return window.innerWidth < breakpoints.values.sm
-        ? setTabsOrientation("vertical")
-        : setTabsOrientation("horizontal");
+    if (selectedFile.size > 1024 * 1024) {
+      alert('Dosya boyutu 1MB\'tan büyük olamaz.');
+      return;
     }
 
-    /** 
-     The event listener that's calling the handleTabsOrientation function when resizing the window.
-    */
-    window.addEventListener("resize", handleTabsOrientation);
+    try {
+      const formData = new FormData();
+      formData.append('file', selectedFile);  // dosyayı seçiyoruz
 
-    // Call the handleTabsOrientation function to set the state with the initial value.
-    handleTabsOrientation();
+      const storedToken = localStorage.getItem("Authorization");
+      const decodedToken = jwt_decode(storedToken);
 
-    // Remove event listener on cleanup
-    return () => window.removeEventListener("resize", handleTabsOrientation);
-  }, [tabsOrientation]);
+      formData.append('userId', decodedToken.id);
 
-  const handleSetTabValue = (event, newValue) => setTabValue(newValue);
+      const response = await axios.post('http://localhost:9095/api/v1/user/transfer-photo', formData, { 
+        headers: {
+          'Content-Type': 'multipart/form-data'   //Multi part data olarak database deki metota gönderiyorum
+        }
+      });
+
+      console.log('Dosya yükleme başarılı:', response.data);
+      alert('Fotoğraf başarıyla değiştirildi. ID: ' + decodedToken.id);
+      window.location.reload();                 //sayfa yenileniyor
+    } catch (error) {
+      console.error('Dosya yükleme hatası:', error);
+      alert('Fotoğraf değiştirme sırasında bir hata oluştu.');
+    }
+  }
+
+  const promptForFile = () => {
+    return new Promise((resolve) => {
+      const input = document.createElement('input');
+      input.type = 'file';
+      input.accept = 'image/*';
+      input.onchange = (event) => {
+        resolve(event.target.files[0]);
+      };
+      input.click();
+    });
+  };
+  const handleImageError = () => {
+    // Burce Mars fotoğrafını yükleme hatası durumunda kullan
+    setProfileImage(burceMars);
+  };
+  const storedToken = localStorage.getItem("Authorization");
+  const decodedToken = jwt_decode(storedToken);
+  const [profileImage, setProfileImage] = useState(
+    "http://localhost:9095/api/v1/user/images/" + decodedToken.id
+  );
+
+  
+
+
 
   return (
     <ArgonBox position="relative">
-      <DashboardNavbar absolute light />
       <ArgonBox height="220px" />
       <Card
         sx={{
@@ -76,52 +82,28 @@ function Header() {
         <Grid container spacing={3} alignItems="center">
           <Grid item>
             <ArgonAvatar
-              src={burceMars}
+              src={profileImage}  //getImage metotundan dönen image profil fotosu olarak yazdırılıyor
               alt="profile-image"
               variant="rounded"
               size="xl"
               shadow="sm"
+              onError={handleImageError}
             />
+            
+            <ArgonButton
+              color="info"
+              variant="gradient"
+              size="small"
+              onClick={handleUpload}
+            >
+              Fotoğrafı Değiştir
+            </ArgonButton>
           </Grid>
           <Grid item>
             <ArgonBox height="100%" mt={0.5} lineHeight={1}>
-              {/* <ArgonTypography variant="h5" fontWeight="medium">
-                Alex Thompson
-              </ArgonTypography>
-              <ArgonTypography variant="button" color="text" fontWeight="medium">
-                CEO / Co-Founder
-              </ArgonTypography> */}
             </ArgonBox>
           </Grid>
           <Grid item xs={12} md={6} lg={4} sx={{ ml: "auto" }}>
-            {/* <AppBar position="static">
-              <Tabs orientation={tabsOrientation} value={tabValue} onChange={handleSetTabValue}>
-                <Tab
-                  label="App"
-                  icon={
-                    <i className="ni ni-app" style={{ marginTop: "6px", marginRight: "8px" }} />
-                  }
-                />
-                <Tab
-                  label="Message"
-                  icon={
-                    <i
-                      className="ni ni-email-83"
-                      style={{ marginTop: "6px", marginRight: "8px" }}
-                    />
-                  }
-                />
-                <Tab
-                  label="Settings"
-                  icon={
-                    <i
-                      className="ni ni-settings-gear-65"
-                      style={{ marginTop: "6px", marginRight: "8px" }}
-                    />
-                  }
-                />
-              </Tabs>
-            </AppBar> */}
           </Grid>
         </Grid>
       </Card>

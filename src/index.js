@@ -26,6 +26,7 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 
 // react-perfect-scrollbar styles
 import "react-perfect-scrollbar/dist/css/styles.css";
+import CompanyManager from "layouts/company-manager-layout";
 // import Admin from "layouts/admin-layout";
 
 // import PersonelApp from "layouts/employee-layout/PersonelApp";
@@ -42,7 +43,7 @@ root.render(
           <Admin/>
           <PersonelApp/>
         </App> */}
-        <App/>
+        <CompanyManager/>
       </PerfectScrollbar>
     </ArgonControllerProvider>
   </BrowserRouter>
