@@ -57,7 +57,6 @@ import AddNewEmployee from "layouts/company-manager-layout/add-new-employee";
 
 import CompanyManagerProfile from "layouts/company-manager-layout/profile"
 import CompanyDetails from "layouts/guest-layout/company-details/company-card-guest";
-
 import EmployeeDashboard from "layouts/employee-layout/dashboard";
 
 
@@ -67,98 +66,112 @@ const routes = [
     name: "Dashboard",
     key: "dashboard",
     route: "/dashboard",
-    icon: <ArgonBox component="i" color="primary" fontSize="14px" className="ni ni-tv-2" />,
+    icon: (
+      <ArgonBox component="i" color="primary" fontSize="14px" className="ni ni-tv-2" />
+    ),
     component: <GuestDashboard />,
+    allowedRoles: ["GUEST"],
   },
   {
     type: "route",
     name: "Employee Dashboard",
-    key: "dashboard",
-    route: "layouts/employee-layout/dashboard",
-    icon: <ArgonBox component="i" color="primary" fontSize="14px" className="ni ni-tv-2" />,
+    key: "employee-dashboard",
+    route: "/employee/dashboard",
+    icon: (
+      <ArgonBox component="i" color="primary" fontSize="14px" className="ni ni-tv-2" />
+    ),
     component: <EmployeeDashboard />,
+    allowedRoles: ["EMPLOYEE"],
   },
   {
     type: "route",
     name: "Profile",
     key: "profile",
     route: "/guest-profile",
-    icon: <ArgonBox component="i" color="dark" fontSize="14px" className="ni ni-single-02" />,
+    icon: (
+      <ArgonBox component="i" color="dark" fontSize="14px" className="ni ni-single-02" />
+    ),
     component: <GuestProfile />,
+    allowedRoles: ["GUEST"],
   },
   {
     type: "route",
     name: "Companies",
-   key: "companies",
+    key: "companies",
     route: "/companies",
-    icon: <ArgonBox component="i" color="dark" fontSize="14px" className="ni ni-single-02" />,
+    icon: (
+      <ArgonBox component="i" color="dark" fontSize="14px" className="ni ni-single-02" />
+    ),
     component: <Companies />,
+    allowedRoles: ["GUEST"],
   },
   {
     type: "route",
     name: "Company Details",
     key: "company-details",
-    route: "/company-details",
-    icon: <ArgonBox component="i" color="dark" fontSize="14px" className="ni ni-single-02" />,
-    component: <CompanyDetails/>,
-
-  },
-
- {
-    type: "route",
-    name: "Dashboard",
-    key: "dashboard",
-    route: "/dashboard",
-    icon: <ArgonBox component="i" color="primary" fontSize="14px" className="ni ni-tv-2" />,
-    component: <Dashboard />,
+    route: "/company-detail/:companyName",
+    icon: (
+      <ArgonBox component="i" color="dark" fontSize="14px" className="ni ni-single-02" />
+    ),
+    component: <CompanyDetails />,
+    allowedRoles: ["GUEST"],
   },
   {
     type: "route",
     name: "Employee Profile",
-    key: "profile",
+    key: "employee-profile",
     route: "/employee/profile",
-    icon: <ArgonBox component="i" color="dark" fontSize="14px" className="ni ni-single-02" />,
+    icon: (
+      <ArgonBox component="i" color="dark" fontSize="14px" className="ni ni-single-02" />
+    ),
     component: <EmployeeProfile />,
+    allowedRoles: ["EMPLOYEE"],
   },
-   {
-     type: "route",
-     name: "Employees",
-    key: "employee",
-     route: "/employee",
-     icon: <ArgonBox component="i" color="dark" fontSize="14px" className="ni ni-single-02" />,
-     component: <Employee />,
-   },
-    {
-      type: "route",
-      name: "Add New Company",
-      key: "add-new-company",
-      route: "/add-new-company",
-      icon: (
-        <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-calendar-grid-58" />
-      ),
-      component: <AddNewCompany/>,
-    },
-   {
-     type: "route",
-     name: "Approve New Comments",
-     key: "approve-new-comments",
-     route: "/approve-new-comments",
-     icon: (
-       <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-calendar-grid-58" />
-     ),
-     component: <ApproveNewComments />,
-   },
-   {
-     type: "route",
-     name: "Approve New Companies",
-     key: "approve-new-companies",
-     route: "/approve-new-companies",
-     icon: (
-       <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-calendar-grid-58" />
-     ),
-     component: <ApproveNewCompanies />,
-   },
-   {
+  {
+    type: "route",
+    name: "Employees",
+    key: "employees",
+    route: "/employee",
+    icon: (
+      <ArgonBox component="i" color="dark" fontSize="14px" className="ni ni-single-02" />
+    ),
+    component: <Employee />,
+    allowedRoles: ["EMPLOYEE"],
+  },
+  {
+    type: "route",
+    name: "Add New Company",
+    key: "add-new-company",
+    route: "/add-new-company",
+    icon: (
+      <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-calendar-grid-58" />
+    ),
+    component: <AddNewCompany />,
+    allowedRoles: ["ADMIN"],
+  },
+  {
+    type: "route",
+    name: "Approve New Comments",
+    key: "approve-new-comments",
+    route: "/approve-new-comments",
+    icon: (
+      <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-calendar-grid-58" />
+    ),
+    component: <ApproveNewComments />,
+    allowedRoles: ["ADMIN"],
+  },
+  {
+    type: "route",
+    name: "Approve New Companies",
+    key: "approve-new-companies",
+    route: "/approve-new-companies",
+    icon: (
+      <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-calendar-grid-58" />
+    ),
+    component: <ApproveNewCompanies />,
+    allowedRoles: ["ADMIN"],
+  },
+  {
     type: "route",
     name: "Add New Employee",
     key: "add-new-employee",
@@ -167,6 +180,7 @@ const routes = [
       <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-calendar-grid-58" />
     ),
     component: <AddNewEmployee />,
+    allowedRoles: ["COMPANY_MANAGER"],
   },
   {
     type: "route",
@@ -177,9 +191,8 @@ const routes = [
       <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-calendar-grid-58" />
     ),
     component: <CompanyInfo />,
+    allowedRoles: ["COMPANY_MANAGER"],
   },
- 
-
   {
     type: "route",
     name: "My Company",
@@ -189,6 +202,7 @@ const routes = [
       <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-single-copy-04" />
     ),
     component: <MyCompany />,
+    allowedRoles: ["EMPLOYEE"],
   },
   {
     type: "route",
@@ -199,6 +213,7 @@ const routes = [
       <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-single-copy-04" />
     ),
     component: <AddNewComment />,
+    allowedRoles: ["EMPLOYEE"],
   },
   {
     type: "route",
@@ -209,6 +224,7 @@ const routes = [
       <ArgonBox component="i" color="dark" fontSize="14px" className="ni ni-single-02" />
     ),
     component: <CompanyManagerProfile />,
+    allowedRoles: ["COMPANY_MANAGER"],
   },
   { type: "title", title: "Account Pages", key: "account-pages" },
   {
@@ -220,22 +236,29 @@ const routes = [
       <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-single-copy-04" />
     ),
     component: <Login />,
+    allowedRoles: ["all"],
   },
   {
     type: "route",
     name: "Register as Company",
     key: "company-register",
     route: "/authentication/company-register",
-    icon: <ArgonBox component="i" color="info" fontSize="14px" className="ni ni-collection" />,
+    icon: (
+      <ArgonBox component="i" color="info" fontSize="14px" className="ni ni-collection" />
+    ),
     component: <CompanyRegister />,
+    allowedRoles: ["all"],
   },
   {
     type: "route",
     name: "Register as Guest",
     key: "guest-register",
     route: "/authentication/guest-register",
-    icon: <ArgonBox component="i" color="info" fontSize="14px" className="ni ni-collection" />,
+    icon: (
+      <ArgonBox component="i" color="info" fontSize="14px" className="ni ni-collection" />
+    ),
     component: <GuestRegister />,
+    allowedRoles: ["all"],
   },
 ];
 

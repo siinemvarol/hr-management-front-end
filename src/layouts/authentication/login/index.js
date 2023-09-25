@@ -38,6 +38,7 @@ import IllustrationLayout from "layouts/authentication/components/IllustrationLa
 import { ArgonControllerProvider } from "context";
 import CompanyManager from "layouts/company-manager-layout";
 import PerfectScrollbar from "react-perfect-scrollbar";
+import Admin from 'layouts/admin-layout';
 // import PersonelApp from "layouts/employee-layout/PersonelApp";
 
 

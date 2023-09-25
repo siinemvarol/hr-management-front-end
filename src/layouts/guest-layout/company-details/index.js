@@ -14,8 +14,6 @@ import Box from "@mui/material/Box";
 import Header from "layouts/guest-layout/company-details/Header";
 import { API_URLS } from "config/apiUrls";
 
-// CompanyDetails bileşenini içe aktarın
-import CompanyDetails from "./company-card-guest/index";
 
 function Companies() {
   const [companies, setCompanies] = useState([]);
@@ -48,10 +46,9 @@ function Companies() {
     setCurrentPage(newPage);
   };
 
-  const handleCompanyClick = (companyId) => {
-    const selected = companies.find((company) => company.id === companyId);
-    setSelectedCompany(selected);
-    navigate(`/company-detail/${companyId}`);
+  // Şirket kartına tıklandığında CompanyDetails sayfasını açması için handleCompanyClick'i güncelledim.
+  const handleCompanyClick = (companyName) => {
+    navigate(`/company-detail/${encodeURIComponent(companyName)}`); // Şimdi doğru sayfayı açması gereken yolu kullanıyoruz
   };
 
   return (
@@ -73,42 +70,40 @@ function Companies() {
           </Typography>
         </Box>
         <Grid container spacing={2}>
-          {companies.map((company) => (
+          {currentCompanies.map((company) => (
             <Grid item xs={12} sm={6} md={4} key={company.id}>
-              <Link to={`/company-detail/${company.id}`} style={{ textDecoration: "none" }}>
-                <Card
-                  sx={{ height: "100%", width: "100%", margin: "16px", cursor: "pointer" }}
-                  onClick={() => handleCompanyClick(company.id)}
-                >
-                  <CardContent>
-                    <Typography
-                      variant="h6"
-                      gutterBottom
-                      sx={{ marginBottom: "16px", textAlign: "center" }}
-                    >
-                      {company.companyName}
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary">
-                      Adress: {company.companyAddress}
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary">
-                      Phone: {company.companyPhone}
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary">
-                      E-Posta: {company.infoEmail}
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary">
-                      Tax Id: {company.taxId}
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary">
-                      City: {company.city}
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary">
-                      Establishment Date : {company.establishmentDate}
-                    </Typography>
-                  </CardContent>
-                </Card>
-              </Link>
+              <Card
+                sx={{ height: "100%", width: "100%", margin: "16px", cursor: "pointer" }}
+                onClick={() => handleCompanyClick(company.companyName)}
+              >
+                <CardContent>
+                  <Typography
+                    variant="h6"
+                    gutterBottom
+                    sx={{ marginBottom: "16px", textAlign: "center" }}
+                  >
+                    {company.companyName}
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary">
+                    Adress: {company.companyAddress}
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary">
+                    Phone: {company.companyPhone}
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary">
+                    E-Posta: {company.infoEmail}
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary">
+                    Tax Id: {company.taxId}
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary">
+                    City: {company.city}
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary">
+                    Establishment Date : {company.establishmentDate}
+                  </Typography>
+                </CardContent>
+              </Card>
             </Grid>
           ))}
         </Grid>
