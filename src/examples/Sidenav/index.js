@@ -37,23 +37,24 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
   }, [dispatch, location]);
 
   // Kullanıcı rolünü almak için localStorage'dan bir işlev oluşturun
-  function getUserRole() {
-    if(storedToken === null) return "all"; // Eğer token yoksa, kullanıcı rolü "all" olacak (yani herkes için görüntülenecek
-    else{
-    const decodedToken = jwt_decode(storedToken);
-    const userRole = decodedToken.role;
-    return userRole;
-  }
-  }
+   function getUserRole() {
+     if (storedToken === null)
+       return "all"; // Eğer token yoksa, kullanıcı rolü "all" olacak (yani herkes için görüntülenecek
+     else {
+       const decodedToken = jwt_decode(storedToken);
+      const userRole = decodedToken.role;
+       return userRole;
+     }
+   }
 
-  function filterRoutesByUserRole(routes, userRole) {
-    return routes.filter((route) => {
-      const allowedRoles = route.allowedRoles || [];
+   function filterRoutesByUserRole(routes, userRole) {
+     return routes.filter((route) => {
+       const allowedRoles = route.allowedRoles || [];
       return allowedRoles.length === 0 || allowedRoles.includes(userRole);
-    });
-  }
+     });
+   }
 
-  const userRole = getUserRole();
+ const userRole = getUserRole();
   const filteredRoutes = filterRoutesByUserRole(routes, userRole);
 
   const renderRoutes = filteredRoutes.map(({ type, name, icon, title, key, href, route }) => {
@@ -63,7 +64,12 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
       if (href) {
         returnValue = (
           <Link href={href} key={key} target="_blank" rel="noreferrer">
-            <SidenavItem name={name} icon={icon} active={key === itemName} noCollapse={noCollapse} />
+            <SidenavItem
+              name={name}
+              icon={icon}
+              active={key === itemName}
+              noCollapse={noCollapse}
+            />
           </Link>
         );
       } else {
@@ -94,7 +100,6 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
     } else if (type === "divider") {
       returnValue = <Divider key={key} light={darkSidenav} />;
     }
-
     return returnValue;
   });
 

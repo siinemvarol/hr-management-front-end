@@ -46,6 +46,7 @@ import Overview from "./profile";
 import AddNewCompany from "./profile";
 import CompanyManager from ".";
 import CompanyInfo from "./company-info/company";
+import EmployeeProfile from "layouts/employee-layout/profile";
 
 const companyManagerRoutes = [
 
@@ -91,6 +92,16 @@ const companyManagerRoutes = [
     icon: <ArgonBox component="i" color="dark" fontSize="14px" className="ni ni-single-02" />,
     component: <AddNewCompany />,
   },
+  // {
+  //   type: "route",
+  //   name: "Employee Profile",
+  //   key: "employee-profile",
+  //   route: "/employee/profile",
+  //   icon: (
+  //     <ArgonBox component="i" color="dark" fontSize="14px" className="ni ni-single-02" />
+  //   ),
+  //   component: <EmployeeProfile />,
+  // },
 
 ];
 

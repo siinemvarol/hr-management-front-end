@@ -17,6 +17,7 @@ import { useState, useEffect, useMemo } from "react";
 
 // react-router components
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import jwt_decode from "jwt-decode";
 
 // @mui material components
 import { ThemeProvider } from "@mui/material/styles";
@@ -63,8 +64,6 @@ export default function App() {
   const [onMouseEnter, setOnMouseEnter] = useState(false);
   const [rtlCache, setRtlCache] = useState(null);
   const { pathname } = useLocation();
-
-  
 
   // Cache for the rtl
   useMemo(() => {
@@ -154,7 +153,6 @@ export default function App() {
               brand={darkSidenav || darkMode ? brand : brandDark}
               brandName="HR Management"
               routes={filteredRoutes}
-              userRole="guest"
               onMouseEnter={handleOnMouseEnter}
               onMouseLeave={handleOnMouseLeave}
             />
