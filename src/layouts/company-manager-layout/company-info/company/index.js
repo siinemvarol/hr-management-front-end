@@ -24,12 +24,8 @@ import ArgonTypography from "components/ArgonTypography";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
-import Table from "examples/Tables/Table";
 
 // Data
-import companyInformationData from "layouts/company-manager-layout/company-info/company/companyInformationData";
-import companyValuationTable from "layouts/company-manager-layout/company-info/company/companyValuationTable";
-import ArgonButton from "components/ArgonButton";
 import CompanyInformationData from "./companyInformationData";
 import CompanyValuationTable from "./companyValuationTable";
 

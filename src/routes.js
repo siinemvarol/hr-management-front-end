@@ -58,7 +58,6 @@ import AddNewEmployee from "layouts/company-manager-layout/add-new-employee";
 import CompanyManagerProfile from "layouts/company-manager-layout/profile"
 import CompanyDetails from "layouts/guest-layout/company-details/company-card-guest";
 
-import CompanyManagerProfile from "layouts/company-manager-layout/profile";
 import EmployeeDashboard from "layouts/employee-layout/dashboard";
 
 
