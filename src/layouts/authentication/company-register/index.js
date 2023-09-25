@@ -12,8 +12,8 @@ Coded by www.creative-tim.com
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
-//api urls 
-import {API_URLS} from '../../../config/apiUrls';
+//api urls
+import { API_URLS } from "../../../config/apiUrls";
 
 import axios from "axios";
 
@@ -36,6 +36,10 @@ import Socials from "layouts/authentication/components/Socials";
 import Separator from "layouts/authentication/components/Separator";
 import { useEffect, useState } from "react";
 import { Select } from "@mui/material";
+
+//react-phone-input
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 
 // Images
 const bgImage =
@@ -208,7 +212,7 @@ function CompanyRegister() {
       companyAddress: companyAddress,
       city: selectedCity,
     };
-   
+
     axios
       .post(`${API_URLS.auth.localhost}/company-register`, companyRegisterRequestDto)
       .then((response) => {
@@ -278,17 +282,8 @@ function CompanyRegister() {
                     onChange={handleCompanyManagerEmailChange}
                   />
                 </ArgonBox>
-                <ArgonBox mb={2}>
-                  <ArgonInput
-                    type="password"
-                    placeholder="Company Manager Password"
-                    name="company-manager-password"
-                    value={companyManagerPassword}
-                    onChange={handleCompanyManagerPasswordChange}
-                  />
-                </ArgonBox>
               </div>
-
+              
               {/* Second Column */}
               <div style={{ flex: 1 }}>
                 <ArgonBox mb={2}>
@@ -300,11 +295,23 @@ function CompanyRegister() {
                   />
                 </ArgonBox>
                 <ArgonBox mb={2}>
-                  <ArgonInput
+                  {/* <ArgonInput
                     placeholder="Company Manager Phone No"
                     name="company-manager-phone"
                     value={companyManagerPhone}
                     onChange={handleCompanyManagerPhoneChange}
+                  /> */}
+                  <PhoneInput
+                    inputProps={{
+                      name: "company-manager-phone",
+                      placeholder: "Company Manager Phone No",
+                      style: {
+                        width: "100%",
+                      },
+                    }}
+                    country={"tr"}
+                    value={companyManagerPhone}
+                    onChange={(value) => setCompanyManagerPhone(value)}
                   />
                 </ArgonBox>
               </div>
@@ -340,7 +347,15 @@ function CompanyRegister() {
                     ))}
                   </select>
                 </ArgonBox> */}
-
+                <ArgonBox mb={2}>
+                  <ArgonInput
+                    type="password"
+                    placeholder="Company Manager Password"
+                    name="company-manager-password"
+                    value={companyManagerPassword}
+                    onChange={handleCompanyManagerPasswordChange}
+                  />
+                </ArgonBox>
                 <ArgonBox mb={2}>
                   <ArgonInput
                     placeholder="Company Name"
@@ -350,11 +365,23 @@ function CompanyRegister() {
                   />
                 </ArgonBox>
                 <ArgonBox mb={2}>
-                  <ArgonInput
+                  {/* <ArgonInput
                     placeholder="Company Phone"
                     name="company-phone"
                     value={companyPhone}
                     onChange={handleCompanyPhoneChange}
+                  /> */}
+                   <PhoneInput
+                    inputProps={{
+                      name:"company-phone",
+                      placeholder:"Company Phone",
+                      style: {
+                        width: "100%",
+                      },
+                    }}
+                    country={"tr"}
+                    value={companyPhone}
+                    onChange={(value) => setCompanyPhone(value)}
                   />
                 </ArgonBox>
               </div>

@@ -37,6 +37,10 @@ import Separator from "layouts/authentication/components/Separator";
 import { useEffect, useState } from "react";
 import { Select } from "@mui/material";
 
+//react-phone-input
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+
 // Images
 const bgImage =
   "https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/signup-cover.jpg";
@@ -247,11 +251,23 @@ function GuestRegister() {
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <div style={{ flex: 1 }}>
                 <ArgonBox mb={2}>
-                  <ArgonInput
+                  {/* <ArgonInput
                     placeholder="Phone"
                     name="guest-phone"
                     value={guestPhone}
                     onChange={handleGuestPhoneChange}
+                  /> */}
+                   <PhoneInput
+                    inputProps={{
+                      name: "guest-phone",
+                      placeholder:"Phone",
+                      style: {
+                        width: "100%",
+                      },
+                    }}
+                    country={"tr"}
+                    value={guestPhone}
+                    onChange={(value) => setGuestPhone(value)}
                   />
                 </ArgonBox>
                 <ArgonBox mb={2}>
