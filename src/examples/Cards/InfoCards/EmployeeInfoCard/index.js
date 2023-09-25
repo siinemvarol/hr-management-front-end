@@ -96,6 +96,7 @@ function EmployeeInfoCard({ title, description, info, social, action }) {
       .then((response) => {
         console.log("User data updated:", response.data);
         setEditMode(false);
+        window.location.reload();
       })
       .catch((error) => {
         console.error("An error occurred while updating user information:", error);
@@ -105,17 +106,19 @@ function EmployeeInfoCard({ title, description, info, social, action }) {
   };
 
   // Create sets to store unique labels and values
-  const uniqueLabelsSet = new Set();
-  const uniqueValuesSet = new Set();
+  const uniqueLabelsSet = [];
+  const uniqueValuesSet = [];
 
   // Convert this form `objectKey` of the object key into this `object key`
-  Object.keys(info).forEach((el) => {
+  Object.keys(info).forEach((el, index) => {
     const label = el.match(/[A-Z\s]+/)
       ? el.replace(/[A-Z]+/g, (match) => ` ${match.toLowerCase()}`)
       : el;
 
-    uniqueLabelsSet.add(label);
-    uniqueValuesSet.add(editedInfo[el]);
+      const value = Object.values(info)[index];
+
+      uniqueLabelsSet.push(label);
+      uniqueValuesSet.push(value); 
   });
 
   // Convert sets back to arrays
@@ -133,7 +136,7 @@ function EmployeeInfoCard({ title, description, info, social, action }) {
           <TextField
             label={label}
             name={label}
-            value={uniqueValues[index]}
+            value={editedInfo[label]}
             onChange={handleFieldChange}
             fullWidth
              sx={{
