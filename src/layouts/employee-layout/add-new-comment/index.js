@@ -116,6 +116,8 @@ function AddNewComment() {
                         name="header"
                         value={header}
                         onChange={handleHeaderChange}
+                        multiline
+                        minRows="1"
                       />
                     </ArgonBox>
                     <ArgonBox mb={2}>
@@ -124,6 +126,9 @@ function AddNewComment() {
                         name="content"
                         value={content}
                         onChange={handleContentChange}
+   //                     size="large"
+                        multiline
+                        minRows="5"
                       />
                     </ArgonBox>
                   </div>
@@ -134,8 +139,7 @@ function AddNewComment() {
                     variant="gradient"
                     color="dark"
                     fullWidth
-                    // type="submit"
-                    to="/"
+                    // type="submit"               
                     onClick={() => handleAddNewComment(header, content)}
                   >
                     Add Comment
