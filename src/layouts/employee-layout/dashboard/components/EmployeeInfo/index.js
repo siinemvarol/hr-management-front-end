@@ -32,6 +32,7 @@ import ArgonBox from "components/ArgonBox";
 
 // Argon Dashboard 2 MUI example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
+import DashboardNavbar from 'examples/Navbars/DashboardNavbar';
 import Footer from "examples/Footer";
 import EmployeeInfoCard from "../../EmployeeInfoCard";
 
@@ -62,16 +63,15 @@ function EmployeeInfo() {
   }, [storedToken]);
   return (
     <DashboardLayout
-      sx={{
-        backgroundImage: ({ functions: { rgba, linearGradient }, palette: { gradients } }) =>
-          `${linearGradient(
-            rgba(gradients.info.main, 0.6),
-            rgba(gradients.info.state, 0.6)
-          )}, url(${bgImage})`,
-        backgroundPositionY: "50%",
-      }}
+      // sx={{
+      //   backgroundImage: ({ functions: { rgba, linearGradient }, palette: { gradients } }) =>
+      //     `${linearGradient(
+      //       rgba(gradients.info.main, 0.6),
+      //       rgba(gradients.info.state, 0.6)
+      //     )}, url(${bgImage})`,
+      //   backgroundPositionY: "50%",
+      // }}
     >
-     
       <ArgonBox mt={30} mb={3} >
       <Grid container spacing={0} justifyContent="center" alignItems="center">
           <Grid item xs={12} md={8} >

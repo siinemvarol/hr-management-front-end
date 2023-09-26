@@ -38,8 +38,8 @@ import ArgonInput from "components/ArgonInput";
 import ArgonButton from "components/ArgonButton";
 
 // Argon Dashboard 2 MUI examples
-import DashboardLayout from "layouts/admin-layout/components/DashboardLayout";
-import DashboardNavbar from "layouts/admin-layout/components/DashboardNavbar";
+import DashboardLayout from 'examples/LayoutContainers/DashboardLayout';
+import DashboardNavbar from 'examples/Navbars/DashboardNavbar';
 import Footer from "examples/Footer";
 import axios from "axios";
 import jwt_decode from "jwt-decode";

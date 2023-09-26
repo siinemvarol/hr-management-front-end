@@ -32,6 +32,10 @@ import NewCommentsApproval from "layouts/admin-layout/components/NewCommentsAppr
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+// Argon Dashboard 2 MUI examples
+import DashboardLayout from 'examples/LayoutContainers/DashboardLayout';
+import DashboardNavbar from 'examples/Navbars/DashboardNavbar';
+
 function ApproveNewComments() {
 
   const apiUrl2 = `${API_URLS.comment.localhost}/get-comments`;
@@ -89,7 +93,9 @@ function ApproveNewComments() {
 
 
   return (
-    <BaseLayout stickyNavbar>
+    <DashboardLayout>
+      <DashboardNavbar/>
+      {/* <BaseLayout stickyNavbar> */}
       <ArgonBox mt={4}>
         <ArgonBox mb={3}>
           <Grid container spacing={3}>
@@ -127,7 +133,9 @@ function ApproveNewComments() {
           </Grid>
         </ArgonBox>
       </ArgonBox>
-    </BaseLayout>
+    {/* </BaseLayout> */}
+    </DashboardLayout>
+    
   );
 }
 

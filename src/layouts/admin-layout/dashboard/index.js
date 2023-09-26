@@ -182,7 +182,7 @@ function AdminHomePage() {
               icon={{ color: "warning", component: <i className="ni ni-cart" /> }}
               percentage={{ color: "success", count: "+5%", text: "than last year" }}
             />
-            console.log(usdTry)
+            {/* console.log(usdTry) */}
           </Grid>
         </Grid>
         <Grid container spacing={3} mb={3}>

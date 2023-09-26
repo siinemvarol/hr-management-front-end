@@ -456,7 +456,7 @@ function CompanyRegister() {
             <ArgonBox mt={4} mb={1}>
               <ArgonButton
                 component={Link}
-                to="/authentication/sign-up"
+                to="/authentication/company-register"
                 variant="gradient"
                 color="dark"
                 fullWidth

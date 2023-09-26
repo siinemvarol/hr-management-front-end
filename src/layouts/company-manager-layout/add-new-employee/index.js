@@ -44,6 +44,10 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 import axios from "axios";
 
+//react-phone-input
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+
 function AddNewEmployee() {
   const storedToken = localStorage.getItem("Authorization");
   const [isEmployeeAdded, setIsEmployeeAdded] = useState(false);
@@ -98,7 +102,6 @@ function AddNewEmployee() {
     setIsEmployeeAdded(true);
   };
 
-
   function handleAddNewEmployee() {
     if (storedToken) {
       const decodedToken = jwt_decode(storedToken);
@@ -119,17 +122,21 @@ function AddNewEmployee() {
         birthday: birthday,
       };
 
-      axios.post(`http://localhost:9091/api/v1/company/add-employee/${decodedToken.id}`, addEmployeeCompanyDto)
-      .then((response) => {
-        console.log("Add employee is successfull!");
-        handleAddEmployeeSuccess();
-      })
-      .catch((error) => {
-        console.error("Add employee is failed: ", error);
-      })
-      .finally(() => {
-        console.log("isEmployeeAdded: ", isEmployeeAdded);
-      });
+      axios
+        .post(
+          `http://localhost:9091/api/v1/company/add-employee/${decodedToken.id}`,
+          addEmployeeCompanyDto
+        )
+        .then((response) => {
+          console.log("Add employee is successfull!");
+          handleAddEmployeeSuccess();
+        })
+        .catch((error) => {
+          console.error("Add employee is failed: ", error);
+        })
+        .finally(() => {
+          console.log("isEmployeeAdded: ", isEmployeeAdded);
+        });
       setName("");
       setSurname("");
       setUsername("");
@@ -156,10 +163,7 @@ function AddNewEmployee() {
             </ArgonBox>
 
             <ArgonBox pt={2} pb={3} px={3}>
-              <ArgonBox
-                component="form"
-                role="form"
-              >
+              <ArgonBox component="form" role="form">
                 <div style={{ display: "flex", justifyContent: "space-between" }}>
                   {/* First Column */}
                   <div style={{ flex: 1, marginRight: "16px" }}>
@@ -200,11 +204,23 @@ function AddNewEmployee() {
                       />
                     </ArgonBox>
                     <ArgonBox mb={2}>
-                      <ArgonInput
+                      {/* <ArgonInput
                         placeholder="Phone Number"
                         name="phone"
                         value={phone}
                         onChange={handlePhoneChange}
+                      /> */}
+                      <PhoneInput
+                        inputProps={{
+                          name: "phone",
+                          placeholder: "Phone Number",
+                          style: {
+                            width: "100%",
+                          },
+                        }}
+                        country={"tr"}
+                        value={phone}
+                        onChange={(value) => setPhone(value)}
                       />
                     </ArgonBox>
                     <ArgonBox mb={2}>
@@ -230,7 +246,7 @@ function AddNewEmployee() {
                 </div>
 
                 <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <ArgonBox mb={2} width="100%">
+                  <ArgonBox mb={2} width="100%">
                     <ArgonInput
                       placeholder="Birthday"
                       name="birthday"

@@ -21,8 +21,8 @@ import Grid from "@mui/material/Grid";
 import ArgonBox from "components/ArgonBox";
 
 // Argon Dashboard 2 MUI example components
-import DashboardLayout from "./DashboardLayout";
-import DashboardNavbar from "./DashboardNavbar";
+import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
+import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 import HolidaysTable from "./HolidaysTable";
 
@@ -39,19 +39,19 @@ function EmployeeHomePage() {
   const { size } = typography;
   return (
     <DashboardLayout>
-      <DashboardNavbar />
-      <ArgonBox py={10} >    
-     
-          <Grid item xs={12} md={8} mb={-28} style={{ justifyContent: "center" , width: '70vw'}} >
-                <EmployeeInfo />
-              </Grid>
-          <Grid item xs={12} md={8} style={{ justifyContent: "center" , width: '73vw'}} > 
-                <CompanyInfo />
-              </Grid>
-          <Grid item xs={12} md={8} style={{ justifyContent: "center" , width: '85vw'}} >
+      {/* <DashboardNavbar/> */}
+      <ArgonBox py={3}>
+        <ArgonBox mb={3}>
+          <Grid item xs={12} md={8} mb={-28} style={{ justifyContent: "center", width: "70vw" }}>
+            <EmployeeInfo />
+          </Grid>
+          <Grid item xs={12} md={8} style={{ justifyContent: "center", width: "73vw" }}>
+            <CompanyInfo />
+          </Grid>
+          <Grid item xs={12} md={8} style={{ justifyContent: "center", width: "85vw" }}>
             <HolidaysTable title="Public Holidays" rows={holidaysTableData} />
           </Grid>
- 
+        </ArgonBox>
       </ArgonBox>
       <Footer />
     </DashboardLayout>

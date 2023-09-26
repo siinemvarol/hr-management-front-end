@@ -59,6 +59,7 @@ import CompanyManagerProfile from "layouts/company-manager-layout/profile"
 import CompanyDetails from "layouts/guest-layout/company-details/company-card-guest";
 import EmployeeDashboard from "layouts/employee-layout/dashboard";
 import CompanyManagerDashboard from "layouts/company-manager-layout/dashboard";
+import AdminDashboard from "layouts/admin-layout/dashboard";
 import Welcome from "layouts/authentication/welcome";
 
 
@@ -106,6 +107,17 @@ const routes = [
     ),
     component: <CompanyManagerDashboard />,
     allowedRoles: ["COMPANY_MANAGER"],
+  },
+  {
+    type: "route",
+    name: "Dashboard",
+    key: "admin-dashboard",
+    route: "/admin/dashboard",
+    icon: (
+      <ArgonBox component="i" color="info" fontSize="14px" className="ni ni-collection" />
+    ),
+    component: <AdminDashboard />,
+    allowedRoles: ["ADMIN"],
   },
   {
     type: "route",

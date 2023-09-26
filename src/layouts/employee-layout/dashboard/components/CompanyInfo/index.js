@@ -32,6 +32,7 @@ import ArgonBox from "components/ArgonBox";
 
 // Argon Dashboard 2 MUI example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
+import DashboardNavbar from 'examples/Navbars/DashboardNavbar';
 
 // Overview page components
 import Header from "./components/Header";
@@ -87,7 +88,6 @@ function CompanyInfo() {
         backgroundPositionY: "50%",
       }}
     >
-     
       <ArgonBox mt={30} mb={3} >
         <Grid container spacing={3} >
           {/* <Grid item xs={12} md={6} xl={4}>
