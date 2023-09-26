@@ -164,26 +164,26 @@ function DashboardNavbar({ absolute, light, isMini }) {
         {isMini ? null : (
           <ArgonBox sx={(theme) => navbarRow(theme, { isMini })}>
             <ArgonBox pr={1}>
-              <ArgonInput
+              {/* <ArgonInput
                 placeholder="Type here..."
                 startAdornment={
                   <Icon fontSize="small" style={{ marginRight: "6px" }}>
                     search
                   </Icon>
                 }
-              />
+              /> */}
             </ArgonBox>
             
 
             <ArgonBox color={light ? "white" : "inherit"}>
-              <Link to="/authentication/sign-in/basic">
+              <Link to="/authentication/login">
                 <IconButton sx={navbarIconButton} size="small">
                   <Icon
                     sx={({ palette: { dark, white } }) => ({
                       color: light && transparentNavbar ? white.main : dark.main,
                     })}
                   >
-                    account_circle
+                    exit_to_app
                   </Icon>
                   <ArgonTypography
                     variant="button"
@@ -191,7 +191,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
                     color={light && transparentNavbar ? "white" : "dark"}
                     
                   >
-                    Sign in
+                    Log out
                   </ArgonTypography>
                   
                 </IconButton>
@@ -204,7 +204,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
               >
                 <Icon>{miniSidenav ? "menu_open" : "menu"}</Icon>
               </IconButton>
-              <IconButton
+              {/* <IconButton
                 size="small"
                 color={light && transparentNavbar ? "white" : "dark"}
                 sx={navbarIconButton}
@@ -222,7 +222,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
                 onClick={handleOpenMenu}
               >
                 <Icon>notifications</Icon>
-              </IconButton>
+              </IconButton> */}
               {renderMenu()}
             </ArgonBox>
           </ArgonBox>

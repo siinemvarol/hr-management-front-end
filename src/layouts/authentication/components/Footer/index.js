@@ -86,7 +86,7 @@ function Footer() {
         </Grid>
         <Grid item xs={12} lg={8} sx={{ textAlign: "center" }}>
           <ArgonTypography variant="body2" color="secondary">
-            Copyright &copy; 2022 Argon by Creative Tim.
+            Copyright &copy; 2023 MAKS by Boost Java-8 Team-1.
           </ArgonTypography>
         </Grid>
       </Grid>

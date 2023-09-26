@@ -30,6 +30,10 @@ import NewCompaniesApproval from "layouts/admin-layout/components/NewCompaniesAp
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+// Argon Dashboard 2 MUI examples
+import DashboardLayout from 'examples/LayoutContainers/DashboardLayout';
+import DashboardNavbar from 'examples/Navbars/DashboardNavbar';
+
 function ApproveNewCompanies() {
 //Functions
 
@@ -91,7 +95,9 @@ function ApproveNewCompanies() {
 
 
   return (
-    <BaseLayout stickyNavbar>
+<DashboardLayout>
+  <DashboardNavbar/>
+  {/* <BaseLayout stickyNavbar> */}
       <ArgonBox mt={4}>
         <ArgonBox mb={3}>
           <Grid container spacing={3}>
@@ -128,7 +134,9 @@ function ApproveNewCompanies() {
           </Grid>
         </ArgonBox>
       </ArgonBox>
-    </BaseLayout>
+    {/* </BaseLayout> */}
+</DashboardLayout>
+   
   );
 }
 

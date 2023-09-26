@@ -32,14 +32,14 @@ function Breadcrumbs({ icon, title, route, light }) {
 
   return (
     <ArgonBox mr={{ xs: 0, xl: 8 }}>
-      <MuiBreadcrumbs
+      {/* <MuiBreadcrumbs
         sx={{
           "& .MuiBreadcrumbs-separator": {
             color: ({ palette: { white, grey } }) => (light ? white.main : grey[600]),
           },
         }}
-      >
-        <Link to="/">
+      > */}
+        {/* <Link to="/">
           <ArgonTypography
             component="span"
             variant="body2"
@@ -49,8 +49,8 @@ function Breadcrumbs({ icon, title, route, light }) {
           >
             <Icon>{icon}</Icon>
           </ArgonTypography>
-        </Link>
-        {routes.map((el) => (
+        </Link> */}
+        {/* {routes.map((el) => (
           <Link to={`/${el}`} key={el}>
             <ArgonTypography
               component="span"
@@ -64,8 +64,8 @@ function Breadcrumbs({ icon, title, route, light }) {
               {el}
             </ArgonTypography>
           </Link>
-        ))}
-        <ArgonTypography
+        ))} */}
+        {/* <ArgonTypography
           variant="button"
           fontWeight="regular"
           textTransform="capitalize"
@@ -74,7 +74,7 @@ function Breadcrumbs({ icon, title, route, light }) {
         >
           {title.replace("-", " ")}
         </ArgonTypography>
-      </MuiBreadcrumbs>
+      </MuiBreadcrumbs> */}
       <ArgonTypography
         fontWeight="bold"
         textTransform="capitalize"

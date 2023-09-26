@@ -8,6 +8,7 @@ import ArgonTypography from "components/ArgonTypography";
 import CompanyManagerInfoCard from "examples/Cards/InfoCards/CompanyManagerInfoCard";
 import Header from "layouts/company-manager-layout/profile/components/Header";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
+import DashboardNavbar from 'examples/Navbars/DashboardNavbar';
 import Footer from "examples/Footer";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import TwitterIcon from "@mui/icons-material/Twitter";
@@ -49,6 +50,7 @@ function CompanyManagerProfile() {
         backgroundPositionY: "50%",
       }}
     >
+       <DashboardNavbar/>
       <Header fullName={`${userInfo.name} ${userInfo.surname}`} />
       <ArgonBox mt={5} mb={3}>
         <Grid container spacing={3}>

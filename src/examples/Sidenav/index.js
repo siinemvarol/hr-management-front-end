@@ -142,7 +142,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
       <List>{renderRoutes}</List>
 
       <ArgonBox pt={1} mt="auto" mb={2} mx={2}>
-        <SidenavFooter />
+        {/* <SidenavFooter /> */}
       </ArgonBox>
     </SidenavRoot>
   );
