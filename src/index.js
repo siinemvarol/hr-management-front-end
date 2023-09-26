@@ -43,7 +43,7 @@ root.render(
           <Admin/>
           <PersonelApp/>
         </App> */}
-        <CompanyManager/>
+        <App/>
       </PerfectScrollbar>
     </ArgonControllerProvider>
   </BrowserRouter>

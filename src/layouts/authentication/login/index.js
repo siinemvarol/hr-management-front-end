@@ -12,8 +12,8 @@ Coded by www.creative-tim.com
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
-//api urls 
-import {API_URLS} from '../../../config/apiUrls';
+//api urls
+import { API_URLS } from "../../../config/apiUrls";
 
 import axios from "axios";
 import { useState, useEffect } from "react";
@@ -38,9 +38,8 @@ import IllustrationLayout from "layouts/authentication/components/IllustrationLa
 import { ArgonControllerProvider } from "context";
 import CompanyManager from "layouts/company-manager-layout";
 import PerfectScrollbar from "react-perfect-scrollbar";
-import Admin from 'layouts/admin-layout';
+import Admin from "layouts/admin-layout";
 // import PersonelApp from "layouts/employee-layout/PersonelApp";
-
 
 // Image
 const bgImage =
@@ -68,41 +67,16 @@ function Login() {
       const token = localStorage.getItem("Authorization");
       const decoded = jwt_decode(token);
       console.log(decoded);
-      navigate("/guest-profile")
-      // if (decoded.role === "COMPANY_MANAGER") {
-      // root.render(
-      //   <BrowserRouter>
-      //     <ArgonControllerProvider>
-      //       <PerfectScrollbar>
-      //         <CompanyManager/>
-      //       </PerfectScrollbar>
-      //     </ArgonControllerProvider>
-      //   </BrowserRouter>
-      // );
-      //       }
-      
 
-      // if (decoded.role === "ADMIN") {
-      //   root.render(
-      //     <BrowserRouter>
-      //       <ArgonControllerProvider>
-      //         <PerfectScrollbar>
-      //           <Admin />
-      //         </PerfectScrollbar>
-      //       </ArgonControllerProvider>
-      //     </BrowserRouter>
-      //   );
-      // } else if (decoded.role === "EMPLOYEE") {
-      //   <BrowserRouter>
-      //     <ArgonControllerProvider>
-      //       <PerfectScrollbar>
-      //         <PersonelApp />
-      //       </PerfectScrollbar>
-      //     </ArgonControllerProvider>
-      //   </BrowserRouter>;
-      // } else {
-      //   navigate("/guest-home");
-      // }
+      if (decoded.role === "COMPANY_MANAGER") {
+        navigate("/company-manager/dashboard");
+      } else if (decoded.role === "ADMIN") {
+        navigate("/admin/dashboard");
+      } else if (decoded.role === "EMPLOYEE") {
+        navigate("/employee/dashboard");
+      } else {
+        navigate("/guest/dashboard");
+      }
     }
   }, [isLoggedIn, navigate]);
 
