@@ -80,9 +80,12 @@ function IllustrationLayout({ color, header, title, description, button, illustr
               src={illustration.image}
               alt="background"
               width="100%"
+              height="100%" // Add this line to make the image fill its container
               position="absolute"
               top={0}
               left={0}
+              sx={{ objectFit: 'cover',
+         }} // Add this line for object-fit CSS property
             />
             <ArgonBox
               bgColor={color}
@@ -96,7 +99,7 @@ function IllustrationLayout({ color, header, title, description, button, illustr
             />
             <ArgonBox position="relative">
               {illustration.title && (
-                <ArgonBox mt={6} mb={1}>
+                <ArgonBox mt={0} mb={1}>
                   <ArgonTypography variant="h4" color="white" fontWeight="bold">
                     {illustration.title}
                   </ArgonTypography>

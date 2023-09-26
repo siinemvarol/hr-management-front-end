@@ -324,7 +324,7 @@ function GuestRegister() {
             <ArgonBox mt={4} mb={1}>
               <ArgonButton
                 component={Link}
-                to="/authentication/sign-up"
+                to="/authentication/company-register"
                 variant="gradient"
                 color="dark"
                 fullWidth
@@ -339,7 +339,7 @@ function GuestRegister() {
                 Already have an account?&nbsp;
                 <ArgonTypography
                   component={Link}
-                  to="/authentication/sign-in"
+                  to="/authentication/login"
                   variant="button"
                   color="dark"
                   fontWeight="bold"

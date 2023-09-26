@@ -499,7 +499,7 @@ function CompanyRegister() {
                 Already have an account?&nbsp;
                 <ArgonTypography
                   component={Link}
-                  to="/authentication/sign-in"
+                  to="/authentication/login"
                   variant="button"
                   color="dark"
                   fontWeight="bold"
