@@ -44,7 +44,7 @@ import Admin from 'layouts/admin-layout';
 
 // Image
 const bgImage =
-  "https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/signin-ill.jpg";
+  "https://img.freepik.com/free-photo/copy-space-blank-commercial-advertisement_53876-121262.jpg?w=740&t=st=1695725202~exp=1695725802~hmac=1f0cca951e733f23072c4abb5f3aefea52d7d1c7f3306cf462a8399e4df11137";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
@@ -143,8 +143,8 @@ function Login() {
       description="Enter your email and password to login"
       illustration={{
         image: bgImage,
-        title: "BA Boost Java-8 Team-1",
-        description: "This is an application for HR Management.",
+        title: "MAKS",
+        description: "Human Resources Management Platform",
       }}
     >
       <ArgonBox component="form" role="form">
@@ -194,7 +194,7 @@ function Login() {
             Don&apos;t have an account?{" "}
             <ArgonTypography
               component={Link}
-              to="/authentication/sign-up"
+              to="/authentication/company-register"
               variant="button"
               color="info"
               fontWeight="medium"

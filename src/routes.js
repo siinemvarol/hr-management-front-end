@@ -58,9 +58,22 @@ import AddNewEmployee from "layouts/company-manager-layout/add-new-employee";
 import CompanyManagerProfile from "layouts/company-manager-layout/profile"
 import CompanyDetails from "layouts/guest-layout/company-details/company-card-guest";
 import EmployeeDashboard from "layouts/employee-layout/dashboard";
+import CompanyManagerDashboard from "layouts/company-manager-layout/dashboard";
+import Welcome from "layouts/authentication/welcome";
 
 
 const routes = [
+  {
+    type: "route",
+    name: "Welcome",
+    key: "welcome",
+    route: "/welcome",
+    icon: (
+      <ArgonBox component="i" color="primary" fontSize="14px" className="ni ni-tv-2" />
+    ),
+    component: <Welcome />,
+    allowedRoles: ["all"],
+  },
   {
     type: "route",
     name: "Dashboard",
@@ -82,6 +95,17 @@ const routes = [
     ),
     component: <EmployeeDashboard />,
     allowedRoles: ["EMPLOYEE"],
+  },
+  {
+    type: "route",
+    name: "Dashboard",
+    key: "company-manager-dashboard",
+    route: "/company-manager/dashboard",
+    icon: (
+      <ArgonBox component="i" color="info" fontSize="14px" className="ni ni-collection" />
+    ),
+    component: <CompanyManagerDashboard />,
+    allowedRoles: ["COMPANY_MANAGER"],
   },
   {
     type: "route",
@@ -226,7 +250,7 @@ const routes = [
     component: <CompanyManagerProfile />,
     allowedRoles: ["COMPANY_MANAGER"],
   },
-  { type: "title", title: "Account Pages", key: "account-pages" },
+  // { type: "title", title: "Account Pages", key: "account-pages" },
   {
     type: "route",
     name: "Login",
