@@ -77,8 +77,8 @@ const routes = [
   {
     type: "route",
     name: "Dashboard",
-    key: "dashboard",
-    route: "/dashboard",
+    key: "guest-dashboard",
+    route: "/guest/dashboard",
     icon: (
       <ArgonBox component="i" color="primary" fontSize="14px" className="ni ni-tv-2" />
     ),
@@ -87,7 +87,7 @@ const routes = [
   },
   {
     type: "route",
-    name: "Employee Dashboard",
+    name: "Dashboard",
     key: "employee-dashboard",
     route: "/employee/dashboard",
     icon: (
@@ -110,8 +110,8 @@ const routes = [
   {
     type: "route",
     name: "Profile",
-    key: "profile",
-    route: "/guest-profile",
+    key: "guest-profile",
+    route: "/guest/profile",
     icon: (
       <ArgonBox component="i" color="dark" fontSize="14px" className="ni ni-single-02" />
     ),
@@ -121,8 +121,8 @@ const routes = [
   {
     type: "route",
     name: "Companies",
-    key: "companies",
-    route: "/companies",
+    key: "guest-companies",
+    route: "/guest/companies",
     icon: (
       <ArgonBox component="i" color="dark" fontSize="14px" className="ni ni-single-02" />
     ),
@@ -132,8 +132,8 @@ const routes = [
   {
     type: "route",
     name: "Company Details",
-    key: "company-details",
-    route: "/company-detail/:companyName",
+    key: "guest-company-details",
+    route: "/guest/company-detail/:companyName",
     icon: (
       <ArgonBox component="i" color="dark" fontSize="14px" className="ni ni-single-02" />
     ),
@@ -142,7 +142,7 @@ const routes = [
   },
   {
     type: "route",
-    name: "Employee Profile",
+    name: "Profile",
     key: "employee-profile",
     route: "/employee/profile",
     icon: (
@@ -154,19 +154,19 @@ const routes = [
   {
     type: "route",
     name: "Employees",
-    key: "employees",
-    route: "/employee",
+    key: "company-manager-employees",
+    route: "/company-manager/employees",
     icon: (
       <ArgonBox component="i" color="dark" fontSize="14px" className="ni ni-single-02" />
     ),
     component: <Employee />,
-    allowedRoles: ["EMPLOYEE"],
+    allowedRoles: ["COMPANY_MANAGER"],
   },
   {
     type: "route",
     name: "Add New Company",
-    key: "add-new-company",
-    route: "/add-new-company",
+    key: "admin-add-new-company",
+    route: "/admin/add-new-company",
     icon: (
       <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-calendar-grid-58" />
     ),
@@ -176,8 +176,8 @@ const routes = [
   {
     type: "route",
     name: "Approve New Comments",
-    key: "approve-new-comments",
-    route: "/approve-new-comments",
+    key: "admin-approve-new-comments",
+    route: "/admin/approve-new-comments",
     icon: (
       <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-calendar-grid-58" />
     ),
@@ -187,8 +187,8 @@ const routes = [
   {
     type: "route",
     name: "Approve New Companies",
-    key: "approve-new-companies",
-    route: "/approve-new-companies",
+    key: "admin-approve-new-companies",
+    route: "/admin/approve-new-companies",
     icon: (
       <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-calendar-grid-58" />
     ),
@@ -198,8 +198,8 @@ const routes = [
   {
     type: "route",
     name: "Add New Employee",
-    key: "add-new-employee",
-    route: "/add-new-employee",
+    key: "company-manager-add-new-employee",
+    route: "/company-manager/add-new-employee",
     icon: (
       <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-calendar-grid-58" />
     ),
@@ -209,8 +209,8 @@ const routes = [
   {
     type: "route",
     name: "Company Information",
-    key: "company-information",
-    route: "/company-information",
+    key: "company-manager-company-information",
+    route: "/company-manager/company-information",
     icon: (
       <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-calendar-grid-58" />
     ),
@@ -220,7 +220,7 @@ const routes = [
   {
     type: "route",
     name: "My Company",
-    key: "my-company",
+    key: "employee-my-company",
     route: "/employee/my-company",
     icon: (
       <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-single-copy-04" />
@@ -231,7 +231,7 @@ const routes = [
   {
     type: "route",
     name: "Add New Comment",
-    key: "add-new-comment",
+    key: "employee-add-new-comment",
     route: "/employee/add-new-comment",
     icon: (
       <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-single-copy-04" />
@@ -241,7 +241,7 @@ const routes = [
   },
   {
     type: "route",
-    name: "Company Manager Profile",
+    name: "Profile",
     key: "company-manager-profile",
     route: "/company-manager/profile",
     icon: (

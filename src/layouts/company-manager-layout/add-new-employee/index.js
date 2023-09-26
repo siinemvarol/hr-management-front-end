@@ -106,7 +106,7 @@ function AddNewEmployee() {
 
       const addEmployeeCompanyDto = {
         // authid below line should be "decodedToken.id" when navigate by role is working
-        authid: 47,
+        authid: decodedToken.id,
         name: name,
         surname: surname,
         username: username,
@@ -119,7 +119,7 @@ function AddNewEmployee() {
         birthday: birthday,
       };
 
-      axios.post(`http://localhost:9091/api/v1/company/add-employee/47`, addEmployeeCompanyDto)
+      axios.post(`http://localhost:9091/api/v1/company/add-employee/${decodedToken.id}`, addEmployeeCompanyDto)
       .then((response) => {
         console.log("Add employee is successfull!");
         handleAddEmployeeSuccess();

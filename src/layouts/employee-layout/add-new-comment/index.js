@@ -69,7 +69,7 @@ function AddNewComment() {
 
       const addNewCommentRequestDto = {
         // authid below line should be "decodedToken.id" when navigate by role is working
-        authid: 47,
+        authid: decodedToken.id,
         header: header,
         content: content,
       };
@@ -77,7 +77,7 @@ function AddNewComment() {
       // after navigation by role is working
 
       axios
-      .post(`${API_URLS.company.localhost}/add-comment/47`, addNewCommentRequestDto)
+      .post(`${API_URLS.company.localhost}/add-comment/${decodedToken.id}`, addNewCommentRequestDto)
       .then((response) => {
         console.log("Adding comment is successfull! ");
         handleAddCommentSuccess();
