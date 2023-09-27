@@ -88,7 +88,7 @@ function Header() {
           <Grid item>
             <ArgonBox height="100%" mt={0.5} lineHeight={1}>
               <ArgonTypography variant="h5" fontWeight="medium">
-                COMPANY INFORMATIONS
+                COMPANY INFORMATION
               </ArgonTypography>
               <ArgonTypography variant="button" color="text" fontWeight="medium">
    

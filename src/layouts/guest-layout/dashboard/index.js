@@ -26,7 +26,7 @@ import ArgonTypography from "components/ArgonTypography";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
-import DetailedStatisticsCard from "examples/Cards/StatisticsCards/DetailedStatisticsCard";
+import DetailedStatisticsCard from "./components/DetailedStatisticsCard";
 import SalesTable from "examples/Tables/SalesTable";
 import CategoriesList from "examples/Lists/CategoriesList";
 import GradientLineChart from "examples/Charts/LineCharts/GradientLineChart";
@@ -41,9 +41,39 @@ import Slider from "layouts/guest-layout/dashboard/components/Slider";
 import gradientLineChartData from "layouts/guest-layout/dashboard/data/gradientLineChartData";
 import holidaysTableData from "layouts/guest-layout/dashboard/data/holidaysTableData";
 import categoriesListData from "layouts/guest-layout/dashboard/data/categoriesListData";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { API_URLS } from "config/apiUrls";
 
 function GuestDashboard() {
   const { size } = typography;
+
+  const [companies, setCompanies] = useState("");
+  const [employees, setEmployees] = useState("");
+  const [comments, setComments] = useState("");
+  const [allUsers, setAllUsers] = useState("");
+
+  useEffect(() => {
+    axios.get(`${API_URLS.company.localhost}/get-number-company`).then((response) => {
+      setCompanies(response.data);
+      console.log("companies... ", response.data);
+    });
+
+    axios.get(`${API_URLS.user.localhost}/get-number-of-employees`).then((response) => {
+      setEmployees(response.data);
+    });
+
+    axios.get(`${API_URLS.comment.localhost}/get-number-of-comments`).then((response) => {
+      setComments(response.data);
+    });
+
+    axios.get(`${API_URLS.user.localhost}/get-number-of-all-users`).then((response) => {
+      setAllUsers(response.data);
+    });
+
+  }, []);
+
+
   return (
     <DashboardLayout>
       <DashboardNavbar />
@@ -51,34 +81,30 @@ function GuestDashboard() {
         <Grid container spacing={3} mb={3}>
           <Grid item xs={12} md={6} lg={3}>
             <DetailedStatisticsCard
-              title="new employee"
-              count="22"
-              icon={{ color: "info", component: <i className="ni ni-money-coins" /> }}
-              percentage={{ color: "success", count: "+5%", text: "since last month" }}
+              title="number of companies"
+              count={companies}
+              icon={{ color: "info", component: <i className="ni ni-building" /> }}
             />
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
             <DetailedStatisticsCard
-              title="total employee"
-              count="425"
-              icon={{ color: "error", component: <i className="ni ni-world" /> }}
-              percentage={{ color: "success", count: "+3%", text: "since last year" }}
+              title="number of employees"
+              count={employees}
+              icon={{ color: "error", component: <i className="ni ni-single-02" /> }}
             />
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
             <DetailedStatisticsCard
-              title="total salary"
-              count="$2.8M"
+              title="number of comments"
+              count={comments}
               icon={{ color: "success", component: <i className="ni ni-paper-diploma" /> }}
-              percentage={{ color: "success", count: "+10%", text: "since last year" }}
             />
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
             <DetailedStatisticsCard
-              title="avg. salary"
-              count="$1,250"
-              icon={{ color: "warning", component: <i className="ni ni-cart" /> }}
-              percentage={{ color: "success", count: "+5%", text: "than last year" }}
+              title="number of users in platform"
+              count={allUsers}
+              icon={{ color: "warning", component: <i className="ni ni-world-2" /> }}
             />
           </Grid>
         </Grid>
