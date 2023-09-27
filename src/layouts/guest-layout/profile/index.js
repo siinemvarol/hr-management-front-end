@@ -27,9 +27,8 @@ function GuestProfile() {
       const decodedToken = jwt_decode(storedToken);
       console.log(decodedToken);
       axios
-        .get(`${API_URLS.company.localhost}/activate-companies-list`)
+        .get(`${API_URLS.user.localhost}/find-by-id/${decodedToken.id}`)
         .then((response) => {
-          console.log("User data retrieved:", response.data);
           setUserInfo(response.data);
         })
         .catch((error) => {
