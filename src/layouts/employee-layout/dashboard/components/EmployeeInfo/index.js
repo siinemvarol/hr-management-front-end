@@ -37,7 +37,7 @@ import Footer from "examples/Footer";
 import EmployeeInfoCard from "../../EmployeeInfoCard";
 
 // Overview page components
-import Header from "./components/Header";
+import Header from "../../../dashboard/components/Header";
 
 const bgImage =
   "https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/profile-layout-header.jpg";
@@ -72,11 +72,12 @@ function EmployeeInfo() {
       //   backgroundPositionY: "50%",
       // }}
     >
-      <ArgonBox mt={30} mb={3} >
+      <ArgonBox mt={-5} mb={3} >
       <Grid container spacing={0} justifyContent="center" alignItems="center">
-          <Grid item xs={12} md={8} >
+          <Grid item xs={12} md={0} >
           <Header />
             <EmployeeInfoCard
+            
               title=""
               // description=""
               info={{

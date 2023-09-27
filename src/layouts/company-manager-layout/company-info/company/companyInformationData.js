@@ -91,7 +91,16 @@ function CompanyInformationData() {
   const storedToken = localStorage.getItem("Authorization");
   const [companyInfo, setCompanyInfo] = useState(null);
   const [editMode, setEditMode] = useState(false);
-  const [formData, setFormData] = useState(null);
+  const [formData, setFormData] = useState({
+    companyName: "",
+    infoEmail: "",
+    CompanyPhone: "",
+    TaxId: "",
+    CompanyAddress: "",
+    City: "",
+    EstablishmentDate: "",
+
+  });
 
   const inputCompanyName = useRef(null);
   const inputInfoEmail = useRef(null);
@@ -114,22 +123,22 @@ function CompanyInformationData() {
     setFormData({ ...companyInfo });
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     const decodedToken = jwt_decode(storedToken);
     console.log(formData);
-
-    axios
-      .put(`${API_URLS.company.localhost}/update-company-information/${decodedToken.id}`, formData)
-      .then((response) => {
-        console.log("Company information updated: ", formData);
-        setCompanyInfo(formData);
-        setEditMode(false);
-      })
-      .catch((error) => {
-        console.error("An error occured while updating company information: ", error);
-      });
-    setEditMode(false);
+  
+    try {
+      const response = await axios.put(`${API_URLS.company.localhost}/update-company-information/${decodedToken.id}`, formData);
+      console.log("Company information updated: ", formData);
+      setCompanyInfo(formData);
+      setEditMode(false);
+      handleCancelEdit(false); // Eğer gerekliyse burada çağrılabilir.
+    } catch (error) {
+      console.error("An error occured while updating company information: ", error);
+    }
   };
+  
+  
 
   const handleCancelEdit = () => {
     setEditMode(false);

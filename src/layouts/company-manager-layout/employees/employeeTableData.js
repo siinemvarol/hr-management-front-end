@@ -8,10 +8,25 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { API_URLS } from "config/apiUrls";
+import { Avatar } from "@mui/material";
+import ArgonAvatar from "components/ArgonAvatar";
+import burceMars from "assets/images/bruce-mars.jpg";
 
 function EmployeeTableData() {
   const storedToken = localStorage.getItem("Authorization");
   const [employeeInfo, setEmployeeInfo] = useState([]);
+
+  const handleImageError = () => {
+    // Burce Mars fotoğrafını yükleme hatası durumunda kullan
+    setProfileImage(burceMars);
+  };
+
+  const [profileImage, setProfileImage] = useState(
+    "http://localhost:9095/api/v1/user/images/" 
+  );
+
+
+
 
   useEffect(() => {
     if (storedToken) {
@@ -22,11 +37,17 @@ function EmployeeTableData() {
         .then((response) => {
           console.log("response data is...", response.data);
 
-          const returningEmployees = response.data.map((emp) => ({
+          const returningEmployees = response.data.map((emp) => (console.log(profileImage+emp.authid),
+            
+          {
             avatar: (
-              <ArgonTypography variant="caption" color="secondary" fontWeight="medium">
-                {emp.avatar}
-              </ArgonTypography>
+              <ArgonAvatar
+              src={"http://localhost:9095/api/v1/user/images/"+emp.authid}  //getImage metotundan dönen image profil fotosu olarak yazdırılıyor
+              alt="profile-image"
+              size="l"
+              shadow="sm"
+              onError={handleImageError}
+            />
             ),
             name: (
               <ArgonTypography variant="caption" color="secondary" fontWeight="medium">
