@@ -40,6 +40,7 @@ import CompanyManager from "layouts/company-manager-layout";
 import PerfectScrollbar from "react-perfect-scrollbar";
 import Admin from "layouts/admin-layout";
 // import PersonelApp from "layouts/employee-layout/PersonelApp";
+import { useCentralState } from "context/UserRoleContext/UserRoleContext";
 
 // Image
 const bgImage =
@@ -58,6 +59,8 @@ function Login() {
   const navigate = useNavigate();
   const [token, setToken] = useState("");
 
+  const { setUserRole } = useCentralState();
+
   const handleLoginSuccess = () => {
     setIsLoggedIn(true);
   };
@@ -67,6 +70,7 @@ function Login() {
       const token = localStorage.getItem("Authorization");
       const decoded = jwt_decode(token);
       console.log(decoded);
+      setUserRole(decoded.role);
 
       if (decoded.role === "COMPANY_MANAGER") {
         navigate("/company-manager/dashboard");

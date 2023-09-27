@@ -57,6 +57,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import { API_URLS } from "config/apiUrls";
 import EmployeeProfile from "layouts/employee-layout/profile";
 import ArgonButton from "components/ArgonButton";
+import { useCentralState } from "context/UserRoleContext/UserRoleContext";
 
 function CompanyManagerInfoCard({ title, description, info, social, action }) {
   const storedToken = localStorage.getItem("Authorization");
@@ -64,6 +65,7 @@ function CompanyManagerInfoCard({ title, description, info, social, action }) {
   const { size } = typography;
   const navigate = useNavigate();
   const [isEmployeeProfileOpen, setEmployeeProfileOpen] = useState(false);
+  const { setUserRole } = useCentralState();
 
   const [editMode, setEditMode] = useState(false);
   const [editedInfo, setEditedInfo] = useState({ ...info });
@@ -113,6 +115,7 @@ function CompanyManagerInfoCard({ title, description, info, social, action }) {
     const decodedToken = jwt_decode(storedToken);
     console.log("decoded role is..", decodedToken.role);
     decodedToken.role = "EMPLOYEE";
+    setUserRole("EMPLOYEE");
     console.log(decodedToken.role);
     setEmployeeProfileOpen(true);
  //   navigate("/employee/profile");

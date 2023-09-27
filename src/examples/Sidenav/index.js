@@ -13,6 +13,7 @@ import SidenavRoot from "examples/Sidenav/SidenavRoot";
 import sidenavLogoLabel from "examples/Sidenav/styles/sidenav";
 import { useArgonController, setMiniSidenav } from "context";
 import jwt_decode from "jwt-decode";
+import { useCentralState } from "context/UserRoleContext/UserRoleContext";
 
 function Sidenav({ color, brand, brandName, routes, ...rest }) {
   const [controller, dispatch] = useArgonController();
@@ -21,6 +22,8 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
   const { pathname } = location;
   const itemName = pathname.split("/").slice(1)[0];
   const storedToken = localStorage.getItem("Authorization");
+
+  const {userRole} = useCentralState();
 
   const closeSidenav = () => setMiniSidenav(dispatch, true);
 
@@ -54,7 +57,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
      });
    }
 
- const userRole = getUserRole();
+//  const userRole = getUserRole();
   const filteredRoutes = filterRoutesByUserRole(routes, userRole);
 
   const renderRoutes = filteredRoutes.map(({ type, name, icon, title, key, href, route }) => {
