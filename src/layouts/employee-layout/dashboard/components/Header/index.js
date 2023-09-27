@@ -89,14 +89,14 @@ function Header() {
               onError={handleImageError}
             />
             
-            <ArgonButton
+            {/* <ArgonButton
               color="info"
               variant="gradient"
               size="small"
               onClick={handleUpload}
             >
               Fotoğrafı Değiştir
-            </ArgonButton>
+            </ArgonButton> */}
           </Grid>
           <Grid item>
             <ArgonBox height="100%" mt={0.5} lineHeight={1}>

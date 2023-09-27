@@ -18,6 +18,8 @@ import ArgonTypography from "components/ArgonTypography";
 
 
 import WelcomeCoverLayout from "../components/WelcomeCoverLayout";
+import DefaultBlogCard from "examples/Cards/BlogCards/DefaultBlogCard";
+import { Grid } from "swiper";
 
 // Images
 const bgImage =
@@ -126,10 +128,18 @@ function Welcome() {
             }}
           >
             <ArgonTypography sx={{ fontSize: "1.1rem", lineHeight: "1.4" }}>{sentence}</ArgonTypography>
+            
           </ArgonBox>
+          
         ))}
       </ArgonBox>
-    </WelcomeCoverLayout>
+      <br></br>
+      
+
+
+      </WelcomeCoverLayout>
+      
+
   );
 }
 

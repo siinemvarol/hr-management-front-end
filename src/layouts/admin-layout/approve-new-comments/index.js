@@ -79,12 +79,13 @@ function ApproveNewComments() {
              city: item.city,
              taxId: item.taxId,
              status: item.status,
+             authId: item.authId,
            };
          });
 
 
          setnewComments2(mappedData.length);
-          console.log(mappedData)
+          
        })
        .catch(error => {
          console.error('Error fetching company data:', error);

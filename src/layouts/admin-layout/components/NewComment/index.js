@@ -27,8 +27,11 @@ import ArgonButton from "components/ArgonButton";
 // Argon Dashboard 2 MUI contexts
 import { useArgonController } from "context";
 import axios from "axios";
+import ArgonAvatar from "components/ArgonAvatar";
+import { useState } from "react";
+import burceMars from "assets/images/bruce-mars.jpg";
 
-function NewComment({ content, commentId, createDate, updateDate, noGutter, userId, header,status, company, employee }) {
+function NewComment({ content, commentId, createDate, updateDate, noGutter, userId, header,status, company, employee, authId }) {
 
 
   const handleAcceptClick = (userId) => {
@@ -75,14 +78,22 @@ function NewComment({ content, commentId, createDate, updateDate, noGutter, user
     header: PropTypes.string.isRequired,
     status: PropTypes.string.isRequired,
     company: PropTypes.string.isRequired,
-    employee: PropTypes.string.isRequired
+    employee: PropTypes.string.isRequired,
+    authId : PropTypes.string.isRequired
   };
 
 
-
+  const handleImageError = () => {
+    // Burce Mars fotoğrafını yükleme hatası durumunda kullan
+    setProfileImage(burceMars);
+  };
 
   const [controller] = useArgonController();
   const { darkMode } = controller;
+  const [profileImage, setProfileImage] = useState(
+    "http://localhost:9095/api/v1/user/images/" + userId
+  );
+// console.log(authId)
 
   return (
     <ArgonBox
@@ -106,10 +117,18 @@ function NewComment({ content, commentId, createDate, updateDate, noGutter, user
           flexDirection={{ xs: "column", sm: "row" }}
           mb={1}
         >
+              <ArgonAvatar
+              src={profileImage}  //getImage metotundan dönen image profil fotosu olarak yazdırılıyor
+              alt="profile-image"
+              variant="rounded"
+              size="xl"
+              shadow="sm"
+              onError={handleImageError}
+            />
           <ArgonTypography variant="button" fontWeight="medium" 
           // textTransform="capitalize"
           >
-            {content}
+            {header}
           </ArgonTypography>
 
           <ArgonBox
@@ -162,7 +181,7 @@ function NewComment({ content, commentId, createDate, updateDate, noGutter, user
         </ArgonBox>
         <ArgonBox mb={1} lineHeight={0}>
           <ArgonTypography variant="caption" color="text">
-            Employee :&nbsp;&nbsp;&nbsp;
+            Name :&nbsp;&nbsp;&nbsp;
             <ArgonTypography variant="caption" fontWeight="medium">
               {employee}
             </ArgonTypography>

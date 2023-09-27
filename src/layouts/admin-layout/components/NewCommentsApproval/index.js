@@ -47,12 +47,13 @@ function NewCommentsApproval() {
             content: item.content,
             status: item.status,
             company: item.companyName,
-            employee: item.employeeNameSurname
+            employee: item.employeeNameSurname,
+            authId: item.authId
           };
         });
 
         setCommentTableData2(mappedData);
-        console.log(mappedData);
+
       })
       .catch((error) => {
         console.error("Error fetching comment data:", error);
@@ -92,6 +93,7 @@ function NewCommentsApproval() {
               status={item.status}
               company={item.company}
               employee={item.employee}
+              authId={item.authId}
             />
           ))}
         </ArgonBox>
