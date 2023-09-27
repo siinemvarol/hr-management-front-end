@@ -24,14 +24,11 @@ import ArgonTypography from "components/ArgonTypography";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
-import Table from "examples/Tables/Table";
 
 // Data
-import employeeTableData from "layouts/company-manager-layout/employees/employeeTableData";
+import EmployeeTableData from "./employeeTableData";
 
-function Tables() {
-  const { columns, rows } = employeeTableData;
-
+function Employees() {
   return (
     <DashboardLayout>
       <DashboardNavbar />
@@ -51,7 +48,7 @@ function Tables() {
                 },
               }}
             >
-              <Table columns={columns} rows={rows} />
+              <EmployeeTableData/>
             </ArgonBox>
           </Card>
         </ArgonBox>
@@ -61,4 +58,4 @@ function Tables() {
   );
 }
 
-export default Tables;
+export default Employees;
