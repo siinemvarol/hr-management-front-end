@@ -27,10 +27,11 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 // react-perfect-scrollbar styles
 import "react-perfect-scrollbar/dist/css/styles.css";
 import CompanyManager from "layouts/company-manager-layout";
+import { CentralStateProvider } from "context/UserRoleContext/UserRoleContext";
+import { UserRoleProvider } from "context/UserRoleContext/UserRoleContext";
 // import Admin from "layouts/admin-layout";
 
 // import PersonelApp from "layouts/employee-layout/PersonelApp";
-
 
 const container = document.getElementById("root");
 const root = createRoot(container);
@@ -38,9 +39,11 @@ const root = createRoot(container);
 root.render(
   <BrowserRouter>
     <ArgonControllerProvider>
-      <PerfectScrollbar>
-        <App/>
-      </PerfectScrollbar>
+      <UserRoleProvider>
+        <PerfectScrollbar>
+          <App />
+        </PerfectScrollbar>
+      </UserRoleProvider>
     </ArgonControllerProvider>
   </BrowserRouter>
 );
