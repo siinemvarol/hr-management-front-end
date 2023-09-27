@@ -97,7 +97,12 @@ function DashboardNavbar({ absolute, light, isMini }) {
   const handleConfiguratorOpen = () => setOpenConfigurator(dispatch, !openConfigurator);
   const handleOpenMenu = (event) => setOpenMenu(event.currentTarget);
   const handleCloseMenu = () => setOpenMenu(false);
+  const [isLogOut, setIsLogOut] = useState(false);
 
+  function handleLogOut ()  {
+    setIsLogOut(true);
+    localStorage.clear();
+  };
   // Render the notifications menu
   const renderMenu = () => (
     <Menu
@@ -136,9 +141,6 @@ function DashboardNavbar({ absolute, light, isMini }) {
       />
     </Menu>
   );
-  const handleLogout = () => {
-    localStorage.removeItem("Authorization");
-  };
 
   return (
     <AppBar
@@ -147,6 +149,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
       sx={(theme) => navbar(theme, { transparentNavbar, absolute, light })}
     >
       <Toolbar sx={(theme) => navbarContainer(theme, { navbarType })}>
+      
         <ArgonBox
           color={light && transparentNavbar ? "white" : "dark"}
           mb={{ xs: 1, md: 0 }}
@@ -174,15 +177,11 @@ function DashboardNavbar({ absolute, light, isMini }) {
                 }
               /> */}
             </ArgonBox>
+            
 
             <ArgonBox color={light ? "white" : "inherit"}>
               <Link to="/authentication/login">
-                <IconButton
-                  size="small"
-                  color={light && transparentNavbar ? "white" : "dark"}
-                  sx={navbarIconButton}
-                  onClick={handleLogout}
-                >
+                <IconButton sx={navbarIconButton} size="small">
                   <Icon
                     sx={({ palette: { dark, white } }) => ({
                       color: light && transparentNavbar ? white.main : dark.main,
@@ -194,9 +193,11 @@ function DashboardNavbar({ absolute, light, isMini }) {
                     variant="button"
                     fontWeight="medium"
                     color={light && transparentNavbar ? "white" : "dark"}
+                    onClick={handleLogOut}
                   >
                     Log out
                   </ArgonTypography>
+                  
                 </IconButton>
               </Link>
               <IconButton
