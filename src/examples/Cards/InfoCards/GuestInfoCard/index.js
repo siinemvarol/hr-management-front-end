@@ -170,7 +170,7 @@ function GuestInfoCard({ title, description, info, social, action }) {
   ));
 
   return (
-    <Card sx={{ width:"317%"}}>
+    <Card sx={{ width:"309%"}}>
       <Grid container>
         <Grid item xs={12}>
           <ArgonBox display="flex" justifyContent="space-between" alignItems="center" pt={2} px={2}>
