@@ -60,7 +60,6 @@ import team2 from "assets/images/team-2.jpg";
 import logoSpotify from "assets/images/small-logos/logo-spotify.svg";
 import { Grid } from "@mui/material";
 
-
 function DashboardNavbar({ absolute, light, isMini }) {
   const [navbarType, setNavbarType] = useState();
   const [controller, dispatch] = useArgonController();
@@ -137,6 +136,9 @@ function DashboardNavbar({ absolute, light, isMini }) {
       />
     </Menu>
   );
+  const handleLogout = () => {
+    localStorage.removeItem("Authorization");
+  };
 
   return (
     <AppBar
@@ -145,7 +147,6 @@ function DashboardNavbar({ absolute, light, isMini }) {
       sx={(theme) => navbar(theme, { transparentNavbar, absolute, light })}
     >
       <Toolbar sx={(theme) => navbarContainer(theme, { navbarType })}>
-      
         <ArgonBox
           color={light && transparentNavbar ? "white" : "dark"}
           mb={{ xs: 1, md: 0 }}
@@ -173,11 +174,15 @@ function DashboardNavbar({ absolute, light, isMini }) {
                 }
               /> */}
             </ArgonBox>
-            
 
             <ArgonBox color={light ? "white" : "inherit"}>
               <Link to="/authentication/login">
-                <IconButton sx={navbarIconButton} size="small">
+                <IconButton
+                  size="small"
+                  color={light && transparentNavbar ? "white" : "dark"}
+                  sx={navbarIconButton}
+                  onClick={handleLogout}
+                >
                   <Icon
                     sx={({ palette: { dark, white } }) => ({
                       color: light && transparentNavbar ? white.main : dark.main,
@@ -189,11 +194,9 @@ function DashboardNavbar({ absolute, light, isMini }) {
                     variant="button"
                     fontWeight="medium"
                     color={light && transparentNavbar ? "white" : "dark"}
-                    
                   >
                     Log out
                   </ArgonTypography>
-                  
                 </IconButton>
               </Link>
               <IconButton

@@ -59,12 +59,11 @@ function Header() {
 
   const handleSetTabValue = (event, newValue) => setTabValue(newValue);
 
-  const fullName = "John Doe"; // İsim ve soyisim
 
   return (
     <ArgonBox position="relative">
       <DashboardNavbar absolute light />
-      <ArgonBox height="220px" />
+      <ArgonBox height="280px" />
     </ArgonBox>
   );
 }
