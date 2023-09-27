@@ -138,7 +138,7 @@ const routes = [
     key: "admin-add-new-company",
     route: "/admin/add-new-company",
     icon: (
-      <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-briefcase-24" />
+      <ArgonBox component="i" color="success" fontSize="14px" className="ni ni-briefcase-24" />
     ),
     component: <AddNewCompany />,
     allowedRoles: ["ADMIN"],
@@ -160,7 +160,7 @@ const routes = [
     key: "admin-approve-new-companies",
     route: "/admin/approve-new-companies",
     icon: (
-      <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-building" />
+      <ArgonBox component="i" color="secondary" fontSize="14px" className="ni ni-building" />
     ),
     component: <ApproveNewCompanies />,
     allowedRoles: ["ADMIN"],

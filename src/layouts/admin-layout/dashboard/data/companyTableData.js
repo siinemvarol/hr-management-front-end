@@ -14,6 +14,7 @@ Coded by www.creative-tim.com
 */
 
 import axios from "axios";
+import { API_URLS } from "config/apiUrls";
 import { useEffect, useState } from "react";
 
 // // Countries flags
@@ -26,19 +27,19 @@ const companyTableData =()=>{
   const [companyTableData2, setCompanyTableData2] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:9091/api/v1/company/get-companies')
+    axios.get(`${API_URLS.company.localhost}/get-companies`)
       .then(response => {
         const apiData = response.data;
 
         const mappedData = apiData.map(item => {
           console.log(item)
           return {
-            id: item.id,
-            companyName: item.companyName,
-            companyPhone: item.companyPhone,
-            companyAddress: item.companyAddress,
+       //     id: item.id,
+            company: item.companyName,
+            phone: item.companyPhone,
+            address: item.companyAddress,
             city: item.city,
-            taxId: item.taxId,
+            taxID: item.taxId,
             status: item.status,
           };
         });

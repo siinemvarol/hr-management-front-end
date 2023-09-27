@@ -153,7 +153,7 @@ function AdminHomePage() {
         <Grid container spacing={3} mb={3}>
           <Grid item xs={12} md={6} lg={3}>
             <DetailedStatisticsCard
-              title="new company"
+              title="new companies"
               count={employeeCount !== null ? employeeCount : 'Loading...'}
               icon={{ color: "info", component: <i className="ni ni-money-coins" /> }}
               percentage={{ color: "success", count: "+5%", text: "since last month" }}
@@ -161,7 +161,7 @@ function AdminHomePage() {
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
            <DetailedStatisticsCard
-            title="total company"
+            title="total companies"
             count={newCompanies !== null ? newCompanies : 'Loading...'}
             icon={{ color: "error", component: <i className="ni ni-world" /> }}
             percentage={{ color: "success", count: "+3%", text: "since last year" }}
