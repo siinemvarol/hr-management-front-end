@@ -1,204 +1,90 @@
 /* eslint-disable react/prop-types */
 // Argon Dashboard 2 MUI components
-import ArgonBox from "components/ArgonBox";
 import ArgonTypography from "components/ArgonTypography";
-import ArgonAvatar from "components/ArgonAvatar";
-import ArgonBadge from "components/ArgonBadge";
+import Table from "examples/Tables/Table";
 
-// Images
-import team2 from "assets/images/team-2.jpg";
-import team3 from "assets/images/team-3.jpg";
-import team4 from "assets/images/team-4.jpg";
+//utils
+import { useEffect, useState } from "react";
+import axios from "axios";
+import jwt_decode from "jwt-decode";
+import { API_URLS } from "config/apiUrls";
 
-//new added button and icons
-import { Button, Stack } from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
+function EmployeeTableData() {
+  const storedToken = localStorage.getItem("Authorization");
+  const [employeeInfo, setEmployeeInfo] = useState([]);
 
-function Author({ image, name, email }) {
-  return (
-    <ArgonBox display="flex" alignItems="center" px={1} py={0.5}>
-      <ArgonBox mr={2}>
-        <ArgonAvatar src={image} alt={name} size="sm" variant="rounded" />
-      </ArgonBox>
-      <ArgonBox display="flex" flexDirection="column">
-        <ArgonTypography variant="button" fontWeight="medium">
-          {name}
-        </ArgonTypography>
-        <ArgonTypography variant="caption" color="secondary">
-          {email}
-        </ArgonTypography>
-      </ArgonBox>
-    </ArgonBox>
-  );
+  useEffect(() => {
+    if (storedToken) {
+      const decodedToken = jwt_decode(storedToken);
+
+      axios
+        .get(`${API_URLS.company.localhost}/get-company-employees/${decodedToken.id}`)
+        .then((response) => {
+          console.log("response data is...", response.data);
+
+          const returningEmployees = response.data.map((emp) => ({
+            avatar: (
+              <ArgonTypography variant="caption" color="secondary" fontWeight="medium">
+                {emp.avatar}
+              </ArgonTypography>
+            ),
+            name: (
+              <ArgonTypography variant="caption" color="secondary" fontWeight="medium">
+                {emp.name} {emp.surname}
+              </ArgonTypography>
+            ),
+            email: (
+              <ArgonTypography variant="caption" color="secondary" fontWeight="medium">
+                {emp.companyEmail}
+              </ArgonTypography>
+            ),
+            phone: (
+              <ArgonTypography variant="caption" color="secondary" fontWeight="medium">
+                {emp.phone}
+              </ArgonTypography>
+            ),
+            address: (
+              <ArgonTypography variant="caption" color="secondary" fontWeight="medium">
+                {emp.address}
+              </ArgonTypography>
+            ),
+            info: (
+              <ArgonTypography variant="caption" color="secondary" fontWeight="medium">
+                {emp.info}
+              </ArgonTypography>
+            ),
+            birthday: (
+              <ArgonTypography variant="caption" color="secondary" fontWeight="medium">
+                {emp.birthday}
+              </ArgonTypography>
+            ),
+          }));
+
+          console.log("returning employees array is... ", returningEmployees);
+
+          setEmployeeInfo(returningEmployees);
+        })
+        .catch((error) => {
+          console.error("An error occured while trying to retrieve employee information: ", error);
+        });
+    }
+  }, [storedToken]);
+
+  const employeeTableData = {
+    columns: [
+      { name: "avatar", align: "center" },
+      { name: "name", align: "center" },
+      { name: "email", align: "center" },
+      { name: "phone", align: "center" },
+      { name: "address", align: "center" },
+      { name: "info", align: "center" },
+      { name: "birthday", align: "center" },
+    ],
+
+    rows: employeeInfo,
+  };
+
+  return <Table columns={employeeTableData.columns} rows={employeeTableData.rows} />;
 }
 
-function Function({ job, org }) {
-  return (
-    <ArgonBox display="flex" flexDirection="column">
-      <ArgonTypography variant="caption" fontWeight="medium" color="text">
-        {job}
-      </ArgonTypography>
-      <ArgonTypography variant="caption" color="secondary">
-        {org}
-      </ArgonTypography>
-    </ArgonBox>
-  );
-}
-
-const authorsTableData = {
-  columns: [
-    { name: "employee", align: "left" },
-    { name: "employee_id", align: "left" },
-    { name: "department", align: "left" },
-    { name: "salary", align: "center" },
-    { name: "status", align: "center" },
-    { name: "holiday", align: "center" },
-    { name: "edit", align: "center" },
-  ],
-
-  rows: [
-    {
-      employee: <Author image={team2} name="John Michael" email="john@creative-tim.com" />,
-      employee_id: (
-        <ArgonTypography variant="caption" color="secondary" fontWeight="medium">
-          345
-        </ArgonTypography>
-      ),
-      department: <Function job="Manager" org="Organization" />,
-      salary: (
-        <ArgonTypography variant="caption" color="secondary" fontWeight="medium">
-          $1000
-        </ArgonTypography>
-      ),
-      status: (
-        <ArgonBadge variant="gradient" badgeContent="active" color="success" size="xs" container />
-      ),
-      holiday: (
-        <ArgonTypography variant="caption" color="secondary" fontWeight="medium">
-          5 days
-        </ArgonTypography>
-      ),
-      edit: (
-        <Stack direction="row" spacing={2}>
-          <Button size="small" color="primary" variant="contained" startIcon={<EditIcon />}>
-            Edit
-          </Button>
-          <Button size="small" color="error" variant="contained" endIcon={<DeleteIcon />}>
-            Delete
-          </Button>
-        </Stack>
-      ),
-    },
-    {
-      employee: <Author image={team3} name="Alexa Liras" email="alexa@creative-tim.com" />,
-      employee_id: (
-        <ArgonTypography variant="caption" color="secondary" fontWeight="medium">
-          346
-        </ArgonTypography>
-      ),
-      department: <Function job="Programator" org="Developer" />,
-      salary: (
-        <ArgonTypography variant="caption" color="secondary" fontWeight="medium">
-          $1830
-        </ArgonTypography>
-      ),
-      status: (
-        <ArgonBadge
-          variant="gradient"
-          badgeContent="deleted"
-          color="secondary"
-          size="xs"
-          container
-        />
-      ),
-      holiday: (
-        <ArgonTypography variant="caption" color="secondary" fontWeight="medium">
-          10 days
-        </ArgonTypography>
-      ),
-      edit: (
-        <Stack direction="row" spacing={2}>
-          <Button size="small" color="primary" variant="contained" startIcon={<EditIcon />}>
-            Edit
-          </Button>
-          <Button size="small" color="error" variant="contained" endIcon={<DeleteIcon />}>
-            Delete
-          </Button>
-        </Stack>
-      ),
-    },
-    {
-      employee: <Author image={team2} name="John Michael" email="john@creative-tim.com" />,
-      employee_id: (
-        <ArgonTypography variant="caption" color="secondary" fontWeight="medium">
-          347
-        </ArgonTypography>
-      ),
-      department: <Function job="Manager" org="Organization" />,
-      salary: (
-        <ArgonTypography variant="caption" color="secondary" fontWeight="medium">
-          $2450
-        </ArgonTypography>
-      ),
-      status: (
-        <ArgonBadge variant="gradient" badgeContent="active" color="success" size="xs" container />
-      ),
-      holiday: (
-        <ArgonTypography variant="caption" color="secondary" fontWeight="medium">
-          2 days
-        </ArgonTypography>
-      ),
-      edit: (
-        <Stack direction="row" spacing={2}>
-          <Button size="small" color="primary" variant="contained" startIcon={<EditIcon />}>
-            Edit
-          </Button>
-          <Button size="small" color="error" variant="contained" endIcon={<DeleteIcon />}>
-            Delete
-          </Button>
-        </Stack>
-      ),
-    },
-    {
-      employee: <Author image={team4} name="Alexa Liras" email="alexa@creative-tim.com" />,
-      employee_id: (
-        <ArgonTypography variant="caption" color="secondary" fontWeight="medium">
-          348
-        </ArgonTypography>
-      ),
-      department: <Function job="Programator" org="Developer" />,
-      salary: (
-        <ArgonTypography variant="caption" color="secondary" fontWeight="medium">
-          $2000
-        </ArgonTypography>
-      ),
-      status: (
-        <ArgonBadge
-          variant="gradient"
-          badgeContent="deleted"
-          color="secondary"
-          size="xs"
-          container
-        />
-      ),
-      holiday: (
-        <ArgonTypography variant="caption" color="secondary" fontWeight="medium">
-          17 days
-        </ArgonTypography>
-      ),
-      edit: (
-        <Stack direction="row" spacing={2}>
-          <Button size="small" color="primary" variant="contained" startIcon={<EditIcon />}>
-            Edit
-          </Button>
-          <Button size="small" color="error" variant="contained" endIcon={<DeleteIcon />}>
-            Delete
-          </Button>
-        </Stack>
-      ),
-    },
-  ],
-};
-
-export default authorsTableData;
+export default EmployeeTableData;
