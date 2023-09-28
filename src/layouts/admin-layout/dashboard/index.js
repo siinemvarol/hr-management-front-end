@@ -55,7 +55,7 @@ function AdminHomePage() {
     axios.get('http://localhost:9091/api/v1/company/get-new-number-company')
       .then(response => {
         console.log(response.data)
-        setEmployeeCount(response.data.length);
+        setCompanyCount(response.data.length);
       })
       .catch(error => {
         console.error('Error fetching employee count:', error);
