@@ -23,7 +23,7 @@ function CompanyCommentData() {
       // after navigation by roles is completed
 
       axios
-        .get(`http://localhost:9093/api/v1/comment/get-comments-by-company/47`)
+        .get(`http://localhost:9093/api/v1/comment/get-comments-by-company/`+decodedToken.id)
         .then((response) => {
           setCommentInfo(response.data);
           console.log("response data is...", response.data);

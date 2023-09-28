@@ -50,7 +50,7 @@ function AdminHomePage() {
 
 
   //Get New Company Number Metodu
-  const [employeeCount, setEmployeeCount] = useState(null);
+  const [companyCount, setCompanyCount] = useState(null);
   const fetchEmployeeCount = () => {
     axios.get('http://localhost:9091/api/v1/company/get-new-number-company')
       .then(response => {
@@ -154,7 +154,7 @@ function AdminHomePage() {
           <Grid item xs={12} md={6} lg={3}>
             <DetailedStatisticsCard
               title="new companies"
-              count={employeeCount !== null ? employeeCount : 'Loading...'}
+              count={companyCount !== null ? companyCount : 'Loading...'}
               icon={{ color: "info", component: <i className="ni ni-money-coins" /> }}
               percentage={{ color: "success", count: "+5%", text: "since last month" }}
             />
