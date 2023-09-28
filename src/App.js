@@ -29,7 +29,7 @@ import ArgonBox from "components/ArgonBox";
 
 // Argon Dashboard 2 MUI example components
 import Sidenav from "examples/Sidenav";
-import Configurator from "examples/Configurator";
+// import Configurator from "examples/Configurator";
 
 // Argon Dashboard 2 MUI themes
 import theme from "assets/theme";
@@ -155,11 +155,11 @@ export default function App() {
               onMouseEnter={handleOnMouseEnter}
               onMouseLeave={handleOnMouseLeave}
             />
-            <Configurator />
-            {configsButton}
+            {/* <Configurator />
+            {configsButton} */}
           </>
         )}
-        {layout === "vr" && <Configurator />}
+        {layout === "vr"}
         <Routes>
           {getRoutes(routes)}
           <Route path="*" element={<Navigate to="/welcome" />} />
@@ -179,11 +179,11 @@ export default function App() {
             onMouseEnter={handleOnMouseEnter}
             onMouseLeave={handleOnMouseLeave}
           />
-          <Configurator />
-          {configsButton}
+          {/* <Configurator />
+          {configsButton} */}
         </>
       )}
-      {layout === "vr" && <Configurator />}
+      {/* {layout === "vr" && <Configurator />} */}
       <Routes>
         {getRoutes(routes)}
          <Route path="/" element={<Navigate to="/welcome" />} /> 

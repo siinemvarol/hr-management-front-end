@@ -41,6 +41,7 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 import Admin from "layouts/admin-layout";
 // import PersonelApp from "layouts/employee-layout/PersonelApp";
 import { useCentralState } from "context/UserRoleContext/UserRoleContext";
+import Footer from "examples/Footer";
 
 // Image
 const bgImage =
@@ -182,8 +183,10 @@ function Login() {
           </ArgonTypography>
         </ArgonBox>
       </ArgonBox>
+      <Footer/>
     </IllustrationLayout>
   );
+  
 }
 
 export default Login;

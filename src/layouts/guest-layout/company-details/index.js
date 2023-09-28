@@ -17,6 +17,7 @@ import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
 import EventNoteIcon from "@mui/icons-material/EventNote";
 import { API_URLS } from "../../../config/apiUrls";
 import { Typography } from "@mui/material";
+import Footer from "examples/Footer";
 
 function Companies() {
   const [companies, setCompanies] = useState([]);
@@ -245,6 +246,7 @@ function Companies() {
           />
         </Box>
       </Container>
+      <Footer/>
     </DashboardLayout>
   );
 }
