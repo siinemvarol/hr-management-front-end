@@ -411,7 +411,7 @@ function AddNewCompany() {
                 <ArgonBox mt={4} mb={1}>
                   <ArgonButton
                     variant="gradient"
-                    color="dark"
+                    color="primary"
                     fullWidth
                     // type="submit"
                     to="/"

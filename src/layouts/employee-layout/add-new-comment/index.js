@@ -137,7 +137,7 @@ function AddNewComment() {
                 <ArgonBox mt={4} mb={1}>
                   <ArgonButton
                     variant="gradient"
-                    color="dark"
+                    color="primary"
                     fullWidth
                     // type="submit"               
                     onClick={() => handleAddNewComment(header, content)}
