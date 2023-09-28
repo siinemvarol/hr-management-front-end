@@ -58,6 +58,13 @@ import { API_URLS } from "config/apiUrls";
 import EmployeeProfile from "layouts/employee-layout/profile";
 import ArgonButton from "components/ArgonButton";
 import { useCentralState } from "context/UserRoleContext/UserRoleContext";
+import LocationOnIcon from "@mui/icons-material/LocationOn"; 
+import PhoneIcon from "@mui/icons-material/Phone"; 
+import EmailIcon from "@mui/icons-material/Email"; 
+import AccountCircleTwoToneIcon from "@mui/icons-material/AccountCircleTwoTone";
+import AccountBoxTwoToneIcon from "@mui/icons-material/AccountBoxTwoTone";
+import InfoIcon from '@mui/icons-material/Info';
+import CakeTwoToneIcon from '@mui/icons-material/CakeTwoTone';
 
 function CompanyManagerInfoCard({ title, description, info, social, action }) {
   const storedToken = localStorage.getItem("Authorization");
@@ -124,71 +131,133 @@ function CompanyManagerInfoCard({ title, description, info, social, action }) {
   };
 
   // Create sets to store unique labels and values
-  const uniqueLabelsSet = [];
-  const uniqueValuesSet = [];
-  //!1-- bunlar set olarak tanımlanmıştı ama ben arraye çevirdim hataların hepsi buradan kaynaklanıyordu
+  // const uniqueLabelsSet = [];
+  // const uniqueValuesSet = [];
+  // //!1-- bunlar set olarak tanımlanmıştı ama ben arraye çevirdim hataların hepsi buradan kaynaklanıyordu
 
-  // Convert this form `objectKey` of the object key into this `object key`
-  Object.keys(info).forEach((el, index) => {
+  // // Convert this form `objectKey` of the object key into this `object key`
+  // Object.keys(info).forEach((el, index) => {
+  //   const label = el.match(/[A-Z\s]+/)
+  //     ? el.replace(/[A-Z]+/g, (match) => ` ${match.toLowerCase()}`)
+  //     : el;
+
+  //   const value = Object.values(info)[index]; // Değerleri doğrudan al
+
+  //   uniqueLabelsSet.push(label);
+  //   uniqueValuesSet.push(value); //!3 add yerine push kullanıldı artık bu bir array çünkü
+  // });
+
+  // // Convert sets back to arrays
+  // const uniqueLabels = [...uniqueLabelsSet];
+  // const uniqueValues = [...uniqueValuesSet];
+
+
+  const uniqueLabelsSet = new Set();
+  const uniqueValuesSet = new Set();
+
+  Object.keys(info).forEach((el) => {
     const label = el.match(/[A-Z\s]+/)
       ? el.replace(/[A-Z]+/g, (match) => ` ${match.toLowerCase()}`)
       : el;
 
-    const value = Object.values(info)[index]; // Değerleri doğrudan al
-
-    uniqueLabelsSet.push(label);
-    uniqueValuesSet.push(value); //!3 add yerine push kullanıldı artık bu bir array çünkü
+    uniqueLabelsSet.add(label);
+    uniqueValuesSet.add(editedInfo[el]);
   });
 
-  // Convert sets back to arrays
   const uniqueLabels = [...uniqueLabelsSet];
   const uniqueValues = [...uniqueValuesSet];
+  
+  const getIcon = (label) => {
+    switch (label) {
+      case "address":
+        return <LocationOnIcon />;
+      case "phone":
+        return <PhoneIcon />;
+      case "company email":
+        return <EmailIcon />;
+      case "name":
+        return <AccountCircleTwoToneIcon />;
+      case "surname":
+        return <AccountBoxTwoToneIcon />;
+      case "info":
+          return <InfoIcon />;
+        case "birthday":
+          return <CakeTwoToneIcon />;
+      default:
+        return null;
+    }
+  };
 
   const renderItems = uniqueLabels.map((label, index) => (
-    <ArgonBox key={label} display="flex" py={1} pr={2}>
-      <ArgonTypography variant="button" fontWeight="bold" textTransform="capitalize">
-        {label}: &nbsp;
+    <ArgonBox key={label} display="flex" py={2} pr={2} alignItems="center">
+      <ArgonBox
+        sx={{
+          position: "absolute",
+          left: "30px",
+          transform: "translateY(-50%)",
+          color: "blue",
+          fontSize: "1.35rem",
+          marginTop: "38px",
+        }}
+      >
+        {getIcon(label)}
+      </ArgonBox>
+
+      <ArgonTypography
+        variant="button"
+        fontWeight="bold"
+        textTransform="capitalize"
+        sx={{ fontSize: "1.3rem", paddingLeft: "30px", marginTop: "-1px" }}
+      >
+        {editMode ? "" : `${label}:`}
       </ArgonTypography>
       <ArgonTypography variant="button" fontWeight="regular" color="text">
-        &nbsp;
         {editMode ? (
-          <TextField
-            label={label}
-            name={label}
-            value={editedInfo[label]} //! 4 uniqueValues[index] değil, editedInfo[label] olmalı
-            onChange={handleFieldChange}
-            fullWidth
-            sx={{
-              width: "317%",
-            }}
-            InputLabelProps={{
-              sx: {
-                fontSize: "0.775rem",
-                display: "none",
-              },
-            }}
-          />
+          <React.Fragment>
+            <TextField
+              label={label}
+              name={label}
+              defaultValue={uniqueValues[index]}
+              onChange={handleFieldChange}
+              fullWidth
+              variant="outlined"
+              sx={{
+                fontSize: "0.9rem",
+                backgroundColor: "#f0f0f0",
+                marginTop: "1px",
+                marginLeft: "5px",
+                border: "1px solid #ced4da",
+                borderRadius: "4px",
+              }}
+              InputProps={{
+                style: {
+                  paddingTop: "4px",
+                  paddingBottom: "4px",
+                  paddingLeft: "5px",
+                  pointerEvents: label === "company email" && "none",
+                },
+              }}
+              InputLabelProps={{
+                sx: {
+                  fontSize: "0.9rem",
+                  display: "block",
+                  marginTop: "-8px",
+                },
+              }}
+            />
+          </React.Fragment>
         ) : (
-          uniqueValues[index]
+          <ArgonTypography
+          variant="button"
+          fontWeight="regular"
+          textTransform="capitalize"
+          color="text"
+          sx={{ fontSize: "1.3rem", paddingLeft: "10px" }} 
+        >
+          {uniqueValues[index]}
+        </ArgonTypography>
         )}
       </ArgonTypography>
-    </ArgonBox>
-  ));
-
-  const renderSocial = social.map(({ link, icon, color }) => (
-    <ArgonBox
-      key={color}
-      component="a"
-      href={link}
-      target="_blank"
-      rel="noreferrer"
-      fontSize={size.lg}
-      color={socialMediaColors[color].main}
-      pr={1}
-      pl={0.5}
-      lineHeight={1}
-    >
-      {icon}
     </ArgonBox>
   ));
 

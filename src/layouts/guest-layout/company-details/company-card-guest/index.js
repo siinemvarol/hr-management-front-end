@@ -18,6 +18,7 @@ import ListItemText from "@mui/material/ListItemText";
 import { Box, Pagination} from "@mui/material";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import { API_URLS } from "config/apiUrls";
 
 
 
@@ -41,10 +42,11 @@ function CompanyDetails() {
 
   useEffect(() => {
     const companyId = company && company.companyId;
+    console.log("companyId", companyId);
 
     if (companyId) {
       axios
-      .get(`${API_URLS.comment.localhost}/get-comments-by-guest/{companyId}`)
+      .get(`${API_URLS.comment.localhost}/get-comments-by-guest/${companyId}`)
       .then((response) => {
         setComments(response.data);
       })

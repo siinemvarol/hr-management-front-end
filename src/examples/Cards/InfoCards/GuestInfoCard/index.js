@@ -1,59 +1,22 @@
-/**
-
-=========================================================
-
-* Argon Dashboard 2 MUI - v3.0.1
-
-=========================================================
-
-  
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-material-ui
-
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-  
-
-Coded by www.creative-tim.com
-
-  
-
- =========================================================
-
-  
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-
-// react-routers components
 import { Link } from "react-router-dom";
-
-// prop-types is library for typechecking of props
 import PropTypes from "prop-types";
-
-// @mui material components
 import Card from "@mui/material/Card";
-import Divider from "@mui/material/Divider";
 import Tooltip from "@mui/material/Tooltip";
-import Icon from "@mui/material/Icon";
 import Grid from "@mui/material/Grid";
-
-// Argon Dashboard 2 MUI components
 import ArgonBox from "components/ArgonBox";
 import ArgonTypography from "components/ArgonTypography";
-
-// Argon Dashboard 2 MUI base styles
 import colors from "assets/theme/base/colors";
 import typography from "assets/theme/base/typography";
-
-//Edit button
 import { Button, Stack, TextField } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
+import LocationOnIcon from "@mui/icons-material/LocationOn"; 
+import PhoneIcon from "@mui/icons-material/Phone"; 
+import EmailIcon from "@mui/icons-material/Email"; 
+import AccountCircleTwoToneIcon from "@mui/icons-material/AccountCircleTwoTone";
+import AccountBoxTwoToneIcon from "@mui/icons-material/AccountBoxTwoTone";
 
 function GuestInfoCard({ title, description, info, social, action }) {
   const storedToken = localStorage.getItem("Authorization");
@@ -94,6 +57,7 @@ function GuestInfoCard({ title, description, info, social, action }) {
       .then((response) => {
         console.log("User data updated:", response.data);
         setEditMode(false);
+        window.location.reload(); // Sayfayı yenilendigi zaman soldaki sidenav bozuluyor.
       })
       .catch((error) => {
         console.error("An error occurred while updating user information:", error);
@@ -102,11 +66,9 @@ function GuestInfoCard({ title, description, info, social, action }) {
     setEditMode(false);
   };
 
-  // Create sets to store unique labels and values
   const uniqueLabelsSet = new Set();
   const uniqueValuesSet = new Set();
 
-  // Convert this form `objectKey` of the object key into this `object key`
   Object.keys(info).forEach((el) => {
     const label = el.match(/[A-Z\s]+/)
       ? el.replace(/[A-Z]+/g, (match) => ` ${match.toLowerCase()}`)
@@ -116,37 +78,94 @@ function GuestInfoCard({ title, description, info, social, action }) {
     uniqueValuesSet.add(editedInfo[el]);
   });
 
-  // Convert sets back to arrays
   const uniqueLabels = [...uniqueLabelsSet];
   const uniqueValues = [...uniqueValuesSet];
+  
+  const getIcon = (label) => {
+    switch (label) {
+      case "address":
+        return <LocationOnIcon />;
+      case "phone":
+        return <PhoneIcon />;
+      case "personal email":
+        return <EmailIcon />;
+      case "name":
+        return <AccountCircleTwoToneIcon />;
+      case "surname":
+        return <AccountBoxTwoToneIcon />;
+      default:
+        return null;
+    }
+  };
 
   const renderItems = uniqueLabels.map((label, index) => (
-    <ArgonBox key={label} display="flex" py={1} pr={2}>
-      <ArgonTypography variant="button" fontWeight="bold" textTransform="capitalize">
-        {label}: &nbsp;
+    <ArgonBox key={label} display="flex" py={2} pr={2} alignItems="center">
+      <ArgonBox
+        sx={{
+          position: "absolute",
+          left: "30px",
+          transform: "translateY(-50%)",
+          color: "blue",
+          fontSize: "1.35rem",
+          marginTop: "38px",
+        }}
+      >
+        {getIcon(label)}
+      </ArgonBox>
+
+      <ArgonTypography
+        variant="button"
+        fontWeight="bold"
+        textTransform="capitalize"
+        sx={{ fontSize: "1.3rem", paddingLeft: "30px", marginTop: "-1px" }}
+      >
+        {editMode ? "" : `${label}:`}
       </ArgonTypography>
       <ArgonTypography variant="button" fontWeight="regular" color="text">
-        &nbsp;
         {editMode ? (
-          <TextField
-            label={label}
-            name={label}
-            value={uniqueValues[index]}
-            onChange={handleFieldChange}
-            fullWidth
-             sx={{
-               width: "200%" ,
-               fontSize: "0.775rem",
-              marginTop:"-20px",}}
-            InputLabelProps={{
-              sx: {
-                fontSize: "0.775rem", 
-                display:"none",
-              },
-            }}
-          />
+          <React.Fragment>
+            <TextField
+              label={label}
+              name={label}
+              defaultValue={uniqueValues[index]}
+              onChange={handleFieldChange}
+              fullWidth
+              variant="outlined"
+              sx={{
+                fontSize: "0.9rem",
+                backgroundColor: "#f0f0f0",
+                marginTop: "1px",
+                marginLeft: "5px",
+                border: "1px solid #ced4da",
+                borderRadius: "4px",
+              }}
+              InputProps={{
+                style: {
+                  paddingTop: "4px",
+                  paddingBottom: "4px",
+                  paddingLeft: "5px",
+                  pointerEvents: label === "personal email" && "none",
+                },
+              }}
+              InputLabelProps={{
+                sx: {
+                  fontSize: "0.9rem",
+                  display: "block",
+                  marginTop: "-8px",
+                },
+              }}
+            />
+          </React.Fragment>
         ) : (
-          uniqueValues[index]
+          <ArgonTypography
+          variant="button"
+          fontWeight="regular"
+          textTransform="capitalize"
+          color="text"
+          sx={{ fontSize: "1.3rem", paddingLeft: "10px" }} 
+        >
+          {uniqueValues[index]}
+        </ArgonTypography>
         )}
       </ArgonTypography>
     </ArgonBox>
@@ -170,7 +189,14 @@ function GuestInfoCard({ title, description, info, social, action }) {
   ));
 
   return (
-    <Card sx={{ width:"309%"}}>
+    <Card
+      sx={{
+        width: "309%",
+        backgroundColor: "#f8f9fa",
+        boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.2)",
+        border: "1px solid #e0e0e0",
+      }}
+    >
       <Grid container>
         <Grid item xs={12}>
           <ArgonBox display="flex" justifyContent="space-between" alignItems="center" pt={2} px={2}>
@@ -206,20 +232,34 @@ function GuestInfoCard({ title, description, info, social, action }) {
 
             <ArgonBox width="180%" ml={2}>
               {editMode ? (
-                <form >
+                <form>
                   {renderItems}
                   <Stack direction="row" spacing={2} sx={{ justifyContent: "center" }}>
                     <Button
                       variant="contained"
                       onClick={handleSubmit}
-                      sx={{ mt: 2, mx: "auto", p: "8px 16px", fontSize: "0.75rem" }}
+                      sx={{
+                        mt: 2,
+                        mx: "auto",
+                        p: "8px 16px",
+                        fontSize: "0.75rem",
+                        backgroundColor: "#4caf50",
+                        color: "white",
+                      }}
                     >
                       Save
                     </Button>
                     <Button
                       variant="contained"
                       onClick={handleCancelEdit}
-                      sx={{ mt: 2, mx: "auto", p: "8px 16px", fontSize: "0.75rem" }}
+                      sx={{
+                        mt: 2,
+                        mx: "auto",
+                        p: "8px 16px",
+                        fontSize: "0.75rem",
+                        backgroundColor: "#f44336",
+                        color: "white",
+                      }}
                     >
                       Cancel
                     </Button>
