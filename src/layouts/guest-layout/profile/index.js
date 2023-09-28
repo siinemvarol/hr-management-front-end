@@ -48,7 +48,7 @@ function GuestProfile() {
         backgroundPositionY: "50%",
       }}
     >
-      <Header fullName={`${userInfo.name} ${userInfo.surname}`} />
+      <Header fullName={[userInfo.name, " ", userInfo.surname]} />
       <ArgonBox mt={5} mb={3}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6} xl={4}>

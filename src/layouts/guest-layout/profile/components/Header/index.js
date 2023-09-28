@@ -93,6 +93,11 @@ function Header({fullName}) {
               onError={handleImageError}
             />
           </ArgonBox>
+          <ArgonBox>
+            {/* <ArgonTypography>
+              {fullName}
+            </ArgonTypography> */}
+          </ArgonBox>
           <ArgonBox sx={{ ml: "83%" }}>
             <ArgonButton color="warning" size="small" onClick={handleUpload}>
               Change Photo
