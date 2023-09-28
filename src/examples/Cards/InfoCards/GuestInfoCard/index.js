@@ -125,7 +125,7 @@ function GuestInfoCard({ title, description, info, social, action }) {
       >
         {editMode ? "" : `${label}:`}
       </ArgonTypography>
-      <ArgonTypography variant="button" fontWeight="regular" color="text" textTransform="capitalize">
+      <ArgonTypography variant="button" fontWeight="regular" color="text" textTransform="capitalize" width="400px">
         {editMode ? (
           <React.Fragment>
             <TextField
