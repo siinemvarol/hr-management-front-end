@@ -78,17 +78,17 @@ function CompanyInfo() {
   }, [userInfo]);
   
   return (
-    <DashboardLayout
-      sx={{
-        backgroundImage: ({ functions: { rgba, linearGradient }, palette: { gradients } }) =>
-          `${linearGradient(
-            rgba(gradients.info.main, 0.6),
-            rgba(gradients.info.state, 0.6)
-          )}, url(${bgImage})`,
-        backgroundPositionY: "50%",
-      }}
-    >
-      <ArgonBox mt={30} mb={3} >
+    // <DashboardLayout
+    //   sx={{
+    //     backgroundImage: ({ functions: { rgba, linearGradient }, palette: { gradients } }) =>
+    //       `${linearGradient(
+    //         rgba(gradients.info.main, 0.6),
+    //         rgba(gradients.info.state, 0.6)
+    //       )}, url(${bgImage})`,
+    //     backgroundPositionY: "50%",
+    //   }}
+    // >
+      <ArgonBox mt={9} mb={3} >
         <Grid container spacing={3} >
           {/* <Grid item xs={12} md={6} xl={4}>
             <PlatformSettings />
@@ -126,7 +126,7 @@ function CompanyInfo() {
           </Grid>
         </Grid>
       </ArgonBox>
-    </DashboardLayout>
+    // </DashboardLayout>
   );
 }
 

@@ -31,7 +31,7 @@ function Slider() {
   
   return (
     <div style={{ justifyContent: "center", alignItems: "center", height: "30vh" }}>
-      <Card sx={{ position: "relative", display: "block", height: "100%", overflow: "hidden" }}>
+      <Card sx={{ position: "relative", display: "block", height: "60%", overflow: "hidden" }}>
       <Swiper
         onInit={({ params, navigation }) => {
           const { navigation: nav } = params;

@@ -63,7 +63,7 @@ function HolidaysTable({ title, rows }) {
 
   return (
     <ArgonBox display="flex" flexDirection="column" alignItems="center">
-    <TableContainer sx={{ width: "70%", marginTop: "2rem" }}>
+    <TableContainer sx={{ width: "100%", marginTop: "2rem" }}>
       <Table>
         <TableHead>
           <ArgonBox component="tr" width="max-content" display="block" mb={1.5}>

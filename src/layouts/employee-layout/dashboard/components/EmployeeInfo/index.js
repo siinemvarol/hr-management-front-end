@@ -62,17 +62,17 @@ function EmployeeInfo() {
     }
   }, [storedToken]);
   return (
-    <DashboardLayout
-      // sx={{
-      //   backgroundImage: ({ functions: { rgba, linearGradient }, palette: { gradients } }) =>
-      //     `${linearGradient(
-      //       rgba(gradients.info.main, 0.6),
-      //       rgba(gradients.info.state, 0.6)
-      //     )}, url(${bgImage})`,
-      //   backgroundPositionY: "50%",
-      // }}
-    >
-      <ArgonBox mt={-5} mb={3} >
+    // <DashboardLayout
+    //   // sx={{
+    //   //   backgroundImage: ({ functions: { rgba, linearGradient }, palette: { gradients } }) =>
+    //   //     `${linearGradient(
+    //   //       rgba(gradients.info.main, 0.6),
+    //   //       rgba(gradients.info.state, 0.6)
+    //   //     )}, url(${bgImage})`,
+    //   //   backgroundPositionY: "50%",
+    //   // }}
+    // >
+      <ArgonBox mt={-27} mb={0} >
       <Grid container spacing={0} justifyContent="center" alignItems="center">
           <Grid item xs={12} md={0} >
           <Header />
@@ -112,7 +112,7 @@ function EmployeeInfo() {
           </Grid>
         </Grid>
       </ArgonBox>
-    </DashboardLayout>
+    // </DashboardLayout>
   );
 }
 

@@ -44,6 +44,7 @@ import DashboardLayout from 'examples/LayoutContainers/DashboardLayout';
 import DashboardNavbar from 'examples/Navbars/DashboardNavbar';
 import Footer from "examples/Footer";
 import axios from "axios";
+import PhoneInput from 'react-phone-input-2';
 
 const turkishCities = [
   "Adana",
@@ -274,12 +275,23 @@ function AddNewCompany() {
                       />
                     </ArgonBox>
                     <ArgonBox mb={2}>
-                      <ArgonInput
-                        type="password"
-                        placeholder="Company Manager Password"
-                        name="company-manager-password"
-                        value={companyManagerPassword}
-                        onChange={handleCompanyManagerPasswordChange}
+                      {/* <ArgonInput
+                        placeholder="Company Manager Phone No"
+                        name="company-manager-phone"
+                        value={companyManagerPhone}
+                        onChange={handleCompanyManagerPhoneChange}
+                      /> */}
+                   <PhoneInput
+                        inputProps={{
+                          name: "company-manager-phone",
+                          placeholder: "Company Manager Phone No",
+                          style: {
+                            width: "100%",
+                          },
+                        }}
+                        country={"tr"}
+                        value={companyManagerPhone}
+                        onChange={(value) => setCompanyManagerPhone(value)}
                       />
                     </ArgonBox>
                   </div>
@@ -296,12 +308,14 @@ function AddNewCompany() {
                     </ArgonBox>
                     <ArgonBox mb={2}>
                       <ArgonInput
-                        placeholder="Company Manager Phone No"
-                        name="company-manager-phone"
-                        value={companyManagerPhone}
-                        onChange={handleCompanyManagerPhoneChange}
+                        type="password"
+                        placeholder="Company Manager Password"
+                        name="company-manager-password"
+                        value={companyManagerPassword}
+                        onChange={handleCompanyManagerPasswordChange}
                       />
                     </ArgonBox>
+                   
                   </div>
                 </div>
 
