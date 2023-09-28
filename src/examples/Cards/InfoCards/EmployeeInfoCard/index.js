@@ -64,6 +64,7 @@ import AccountBoxTwoToneIcon from "@mui/icons-material/AccountBoxTwoTone";
 import InfoIcon from '@mui/icons-material/Info';
 import CakeTwoToneIcon from '@mui/icons-material/CakeTwoTone';
 import ContactMailTwoToneIcon from '@mui/icons-material/ContactMailTwoTone';
+import ArgonButton from "components/ArgonButton";
 
 function EmployeeInfoCard({ title, description, info, social, action }) {
   const storedToken = localStorage.getItem("Authorization");
@@ -170,11 +171,11 @@ function EmployeeInfoCard({ title, description, info, social, action }) {
         variant="button"
         fontWeight="bold"
         textTransform="capitalize"
-        sx={{ fontSize: "1.3rem", paddingLeft: "30px", marginTop: "-1px" }}
+        sx={{ fontSize: "0.9rem", paddingLeft: "30px", marginTop: "-1px" }}
       >
         {editMode ? "" : `${label}:`}
       </ArgonTypography>
-      <ArgonTypography variant="button" fontWeight="regular" color="text">
+      <ArgonTypography variant="button" fontWeight="regular" color="text" textTransform="capitalize">
         {editMode ? (
           <React.Fragment>
             <TextField
@@ -215,7 +216,7 @@ function EmployeeInfoCard({ title, description, info, social, action }) {
           fontWeight="regular"
           textTransform="capitalize"
           color="text"
-          sx={{ fontSize: "1.3rem", paddingLeft: "10px" }} 
+          sx={{ fontSize: "0.9rem", paddingLeft: "10px" }} 
         >
           {uniqueValues[index]}
         </ArgonTypography>
@@ -253,16 +254,16 @@ function EmployeeInfoCard({ title, description, info, social, action }) {
             <ArgonTypography component={Link} to={action.route} variant="body2" color="secondary">
               <Tooltip title={action.tooltip} placement="top">
                 <Stack direction="row">
-                  <Button
+                  <ArgonButton
                     size="small"
-                    color="primary"
+                    color="info"
                     variant="contained"
                     startIcon={<EditIcon />}
                     onClick={handleEditClick}
                     sx={{ p: "8px 16px", fontSize: "0.75rem" }}
                   >
                     Edit
-                  </Button>
+                  </ArgonButton>
                 </Stack>
               </Tooltip>
             </ArgonTypography>
@@ -281,20 +282,22 @@ function EmployeeInfoCard({ title, description, info, social, action }) {
                 <form >
                   {renderItems}
                   <Stack direction="row" spacing={2} sx={{ justifyContent: "center" }}>
-                    <Button
+                    <ArgonButton
                       variant="contained"
                       onClick={handleSubmit}
+                      color="success"
                       sx={{ mt: 2, mx: "auto", p: "8px 16px", fontSize: "0.75rem" }}
                     >
                       Save
-                    </Button>
-                    <Button
+                    </ArgonButton>
+                    <ArgonButton
                       variant="contained"
                       onClick={handleCancelEdit}
+                      color="error"
                       sx={{ mt: 2, mx: "auto", p: "8px 16px", fontSize: "0.75rem" }}
                     >
                       Cancel
-                    </Button>
+                    </ArgonButton>
                   </Stack>
                 </form>
               ) : (

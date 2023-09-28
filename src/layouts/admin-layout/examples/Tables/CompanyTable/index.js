@@ -32,6 +32,7 @@ import ArgonBox from "components/ArgonBox";
 // Argon Dashboard 2 MUI example components
 import SalesTableCell from "examples/Tables/SalesTable/SalesTableCell";
 import { Button } from "@mui/material";
+import ArgonButton from "components/ArgonButton";
 
 function CompanyTable({ title, rows }) {
   const renderTableCells = rows.map((row, key) => {
@@ -64,16 +65,16 @@ function CompanyTable({ title, rows }) {
           key={`confirm-button-${key}`}
           title="Quick Confirm"
           content={
-            <Button
+            <ArgonButton
               variant="contained"
-              color="primary"
+              color="success"
               onClick={() => {
                 // Onayla butonuna tıklama işlemini burada ele alabilirsiniz
                 alert(`Onaylandı: ${row.companyName}`);
               }}
             >
               Accept
-            </Button>
+            </ArgonButton>
           }
           noBorder={key === rows.length - 1}
         />

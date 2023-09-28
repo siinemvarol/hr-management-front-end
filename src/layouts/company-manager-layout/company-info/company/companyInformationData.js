@@ -271,7 +271,7 @@ function CompanyInformationData() {
             ) : (
               <ArgonButton
                 size="small"
-                color="primary"
+                color="info"
                 variant="contained"
                 startIcon={<EditIcon />}
                 onClick={handleEditClick}

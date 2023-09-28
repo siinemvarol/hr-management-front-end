@@ -183,14 +183,6 @@ function AddNewEmployee() {
                         onChange={handleUsernameChange}
                       />
                     </ArgonBox>
-                    <ArgonBox mb={2}>
-                      <ArgonInput
-                        placeholder="Address"
-                        name="address"
-                        value={address}
-                        onChange={handleAddressChange}
-                      />
-                    </ArgonBox>
                   </div>
 
                   {/* Second Column */}
@@ -223,15 +215,26 @@ function AddNewEmployee() {
                         onChange={(value) => setPhone(value)}
                       />
                     </ArgonBox>
-                    <ArgonBox mb={2}>
+                    {/* <ArgonBox mb={2}>
                       <ArgonInput
                         placeholder="Avatar"
                         name="avatar"
                         value={avatar}
                         onChange={handleAvatarChange}
                       />
-                    </ArgonBox>
+                    </ArgonBox> */}
                   </div>
+                </div>
+
+                <div style={{ display: "flex", justifyContent: "space-between" }}>
+                  <ArgonBox mb={2} width="100%">
+                    <ArgonInput
+                      placeholder="Address"
+                      name="address"
+                      value={address}
+                      onChange={handleAddressChange}
+                    />
+                  </ArgonBox>
                 </div>
 
                 <div style={{ display: "flex", justifyContent: "space-between" }}>
@@ -347,7 +350,7 @@ function AddNewEmployee() {
                 <ArgonBox mt={4} mb={1}>
                   <ArgonButton
                     variant="gradient"
-                    color="dark"
+                    color="primary"
                     fullWidth
                     onClick={() => handleAddNewEmployee()}
                   >
