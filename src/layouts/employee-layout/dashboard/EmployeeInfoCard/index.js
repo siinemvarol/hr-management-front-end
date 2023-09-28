@@ -86,8 +86,8 @@ function EmployeeInfoCard({ title, info }) {
   // ));
 
   return (
-    <Card sx={{ height: "100%" }} >
-      <ArgonBox display="flex" justifyContent="space-between" alignItems="center" pt={0} px={0}>
+    <Card sx={{ height: "100%", mt:"8px" }} >
+      <ArgonBox display="flex" justifyContent="space-between" alignItems="center" pt={0} px={0} >
         <ArgonTypography variant="h6" fontWeight="medium" textTransform="capitalize">
           {title}
         </ArgonTypography>
