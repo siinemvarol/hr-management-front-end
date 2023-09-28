@@ -9,14 +9,72 @@ import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import breakpoints from "assets/theme/base/breakpoints";
 import burceMars from "assets/images/bruce-mars.jpg";
 import PropTypes from "prop-types";
+import jwt_decode from "jwt-decode";
+import ArgonButton from "components/ArgonButton";
 
 function Header({fullName}) {
   const [tabsOrientation, setTabsOrientation] = useState("horizontal");
   const [tabValue, setTabValue] = useState(0);
+  const handleUpload = async () => {
+    const selectedFile = await promptForFile();
+    if (!selectedFile) return;
+
+    if (selectedFile.size > 1024 * 1024) {
+      alert("Dosya boyutu 1MB'tan büyük olamaz.");
+      return;
+    }
+
+    try {
+      const formData = new FormData();
+      formData.append("file", selectedFile); // dosyayı seçiyoruz
+
+      const storedToken = localStorage.getItem("Authorization");
+      const decodedToken = jwt_decode(storedToken);
+
+      formData.append("userId", decodedToken.id);
+
+      const response = await axios.post(
+        "http://localhost:9095/api/v1/user/transfer-photo",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data", //Multi part data olarak database deki metota gönderiyorum
+          },
+        }
+      );
+
+      console.log("Dosya yükleme başarılı:", response.data);
+      alert("Fotoğraf başarıyla değiştirildi. ID: " + decodedToken.id);
+      window.location.reload(); //sayfa yenileniyor
+    } catch (error) {
+      console.error("Dosya yükleme hatası:", error);
+      alert("Fotoğraf değiştirme sırasında bir hata oluştu.");
+    }
+  };
+
+  const promptForFile = () => {
+    return new Promise((resolve) => {
+      const input = document.createElement("input");
+      input.type = "file";
+      input.accept = "image/*";
+      input.onchange = (event) => {
+        resolve(event.target.files[0]);
+      };
+      input.click();
+    });
+  };
+  const handleImageError = () => {
+    // Burce Mars fotoğrafını yükleme hatası durumunda kullan
+    setProfileImage(burceMars);
+  };
+  const storedToken = localStorage.getItem("Authorization");
+  const decodedToken = jwt_decode(storedToken);
+  const [profileImage, setProfileImage] = useState(
+    "http://localhost:9095/api/v1/user/images/" + decodedToken.id
+  );
 
   return (
     <ArgonBox position="relative">
-      <DashboardNavbar absolute light />
       <ArgonBox height="220px" />
       <Card
         sx={{
@@ -25,33 +83,28 @@ function Header({fullName}) {
           boxShadow: ({ boxShadows: { md } }) => md,
         }}
       >
-        <Grid container spacing={3} alignItems="center">
-          <Grid item>
+        <Grid item display="flex" justifyContent alignContent="space-between" alignItems="center">
+          <ArgonBox>
             <ArgonAvatar
-              src={burceMars}
+              src={profileImage} //getImage metotundan dönen image profil fotosu olarak yazdırılıyor
               alt="profile-image"
-              variant="rounded"
-              size="xl"
+              size="xxl"
               shadow="sm"
+              onError={handleImageError}
             />
-          </Grid>
-          <Grid item>
-            <ArgonBox height="100%" mt={0.5} lineHeight={1}>
-              <Typography variant="h5" fontWeight="medium" sx={{ display: "inline" }}>
-                {fullName}
-              </Typography>
-            </ArgonBox>
-          </Grid>
-          <Grid item xs={12} md={6} lg={4} sx={{ ml: "auto" }}>
-            {/* Tab Menüsü Burada Olabilir */}
-          </Grid>
+          </ArgonBox>
+          <ArgonBox sx={{ ml: "83%" }}>
+            <ArgonButton color="warning" size="small" onClick={handleUpload}>
+              Change Photo
+            </ArgonButton>
+          </ArgonBox>
         </Grid>
       </Card>
     </ArgonBox>
   );
+  Header.propTypes = {
+    fullName: PropTypes.string.isRequired, // fullName prop'unun bir dize olduğunu ve zorunlu olduğunu belirtiyoruz.
+  };
 }
-Header.propTypes = {
-  fullName: PropTypes.string.isRequired, // fullName prop'unun bir dize olduğunu ve zorunlu olduğunu belirtiyoruz.
-};
 
 export default Header;
