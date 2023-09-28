@@ -43,13 +43,17 @@ function Footer({ company, links }) {
     ));
 
   return (
+   
     <ArgonBox
-      width="100%"
+      width="87%"
       display="flex"
       flexDirection={{ xs: "column", lg: "row" }}
-      justifyContent="space-between"
+      justifyContent=" space-between"
       alignItems="center"
       px={1.5}
+      position= 'fixed'
+      bottom= {0}
+
     >
       <ArgonBox
         display="flex"
@@ -59,6 +63,7 @@ function Footer({ company, links }) {
         color="text"
         fontSize={size.sm}
         px={1.5}
+    
       >
         &copy; {new Date().getFullYear()}, made with
         <ArgonBox fontSize={size.md} color="text" mb={-0.5} mx={0.25}>
@@ -102,9 +107,9 @@ Footer.defaultProps = {
   company: { href: "https://www.google.com/", name: "BA Boost Java-8 Team-1" },
   links: [
     { href: "https://www.google.com/", name: "BA Boost Java-8 Team-1" },
-    { href: "https://www.google.com/", name: "About Us" },
     { href: "https://www.google.com/", name: "Blog" },
-    { href: "https://www.google.com/", name: "License" },
+    { href: "https://www.google.com/", name: "Contact Us" },
+    // { href: "https://www.google.com/", name: "License" },
   ],
 };
 

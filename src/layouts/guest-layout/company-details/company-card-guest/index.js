@@ -19,8 +19,7 @@ import { Box, Pagination} from "@mui/material";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { API_URLS } from "config/apiUrls";
-
-
+import Footer from "examples/Footer";
 
 const bgImage =
   "https://raw.githubusercontent.com/creativetimofficial/public-assets/master/argon-dashboard-pro/assets/img/profile-layout-header.jpg";
@@ -241,6 +240,7 @@ function CompanyDetails() {
           </Paper>
         </Grid>
       </Grid>
+      <Footer/>
     </DashboardLayout>
   );
 }

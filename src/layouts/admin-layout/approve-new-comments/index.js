@@ -35,6 +35,7 @@ import axios from "axios";
 // Argon Dashboard 2 MUI examples
 import DashboardLayout from 'examples/LayoutContainers/DashboardLayout';
 import DashboardNavbar from 'examples/Navbars/DashboardNavbar';
+import Footer from "examples/Footer";
 
 function ApproveNewComments() {
 
@@ -135,6 +136,7 @@ function ApproveNewComments() {
         </ArgonBox>
       </ArgonBox>
     {/* </BaseLayout> */}
+    <Footer/>
     </DashboardLayout>
     
   );

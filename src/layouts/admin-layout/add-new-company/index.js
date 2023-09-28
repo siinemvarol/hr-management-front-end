@@ -287,6 +287,8 @@ function AddNewCompany() {
                           placeholder: "Company Manager Phone No",
                           style: {
                             width: "100%",
+                            height: "39px",
+                            borderRadius: "0.5rem",
                           },
                         }}
                         country={"tr"}
@@ -331,11 +333,25 @@ function AddNewCompany() {
                       />
                     </ArgonBox>
                     <ArgonBox mb={2}>
-                      <ArgonInput
+                      {/* <ArgonInput
                         placeholder="Company Phone"
                         name="company-phone"
                         value={companyPhone}
                         onChange={handleCompanyPhoneChange}
+                      /> */}
+                      <PhoneInput
+                        inputProps={{
+                          name:"company-phone",
+                          placeholder:"Company Phone",
+                          style: {
+                            width: "100%",
+                            height: "39px",
+                            borderRadius: "0.5rem",
+                          },
+                        }}
+                        country={"tr"}
+                        value={companyPhone}
+                        onChange={(value) => setCompanyPhone(value)}
                       />
                     </ArgonBox>
                   </div>
