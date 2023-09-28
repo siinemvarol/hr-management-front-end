@@ -18,7 +18,7 @@ import { API_URLS } from "../../../config/apiUrls";
 import axios from "axios";
 
 // react-router-dom components
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // @mui material components
 import Card from "@mui/material/Card";
@@ -137,6 +137,8 @@ function CompanyRegister() {
   const [companyAddress, setCompanyAddress] = useState("");
   const [selectedCity, setSelectedCity] = useState("");
 
+  const navigate = useNavigate();
+
   const handleCompanyManagerNameChange = (event) => {
     setCompanyManagerName(event.target.value);
   };
@@ -218,6 +220,7 @@ function CompanyRegister() {
       .then((response) => {
         console.log("Company register successfull!", response.data);
         handleCompanyRegisterSuccess();
+        navigate("/authentication/login");
       })
       .catch((error) => {
         console.error("Company register failed: ", error);

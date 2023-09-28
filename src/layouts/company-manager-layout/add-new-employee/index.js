@@ -56,6 +56,7 @@ import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { Container, TextField } from "@mui/material";
 import dayjs from "dayjs";
 import { makeStyles } from "@mui/styles";
+import { API_URLS } from "config/apiUrls";
 
 function AddNewEmployee() {
   const storedToken = localStorage.getItem("Authorization");
@@ -147,8 +148,7 @@ function AddNewEmployee() {
       const decodedToken = jwt_decode(storedToken);
       console.log(decodedToken);
 
-      const addEmployeeCompanyDto = {
-        // authid below line should be "decodedToken.id" when navigate by role is working
+      const addEmployeeCompanyDto = {      
         authid: decodedToken.id,
         name: name,
         surname: surname,
@@ -164,7 +164,7 @@ function AddNewEmployee() {
 
       axios
         .post(
-          `http://localhost:9091/api/v1/company/add-employee/${decodedToken.id}`,
+          `${API_URLS.company.localhost}/add-employee/${decodedToken.id}`,
           addEmployeeCompanyDto
         )
         .then((response) => {

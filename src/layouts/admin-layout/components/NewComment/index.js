@@ -42,7 +42,7 @@ function NewComment({ content, commentId, createDate, updateDate, noGutter, user
       .then(response => {
 
         console.log('Comment status updated successfully:', response.data);
-        alert("Comment Succesfully")
+        alert("Comment Approved Succesfully")
         
       })
       .catch(error => {

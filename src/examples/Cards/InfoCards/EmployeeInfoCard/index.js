@@ -56,14 +56,14 @@ import { Button, Stack, TextField } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 
 import { API_URLS } from "../../../../config/apiUrls";
-import LocationOnIcon from "@mui/icons-material/LocationOn"; 
-import PhoneIcon from "@mui/icons-material/Phone"; 
-import EmailIcon from "@mui/icons-material/Email"; 
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import PhoneIcon from "@mui/icons-material/Phone";
+import EmailIcon from "@mui/icons-material/Email";
 import AccountCircleTwoToneIcon from "@mui/icons-material/AccountCircleTwoTone";
 import AccountBoxTwoToneIcon from "@mui/icons-material/AccountBoxTwoTone";
-import InfoIcon from '@mui/icons-material/Info';
-import CakeTwoToneIcon from '@mui/icons-material/CakeTwoTone';
-import ContactMailTwoToneIcon from '@mui/icons-material/ContactMailTwoTone';
+import InfoIcon from "@mui/icons-material/Info";
+import CakeTwoToneIcon from "@mui/icons-material/CakeTwoTone";
+import ContactMailTwoToneIcon from "@mui/icons-material/ContactMailTwoTone";
 import ArgonButton from "components/ArgonButton";
 
 function EmployeeInfoCard({ title, description, info, social, action }) {
@@ -128,7 +128,7 @@ function EmployeeInfoCard({ title, description, info, social, action }) {
 
   const uniqueLabels = [...uniqueLabelsSet];
   const uniqueValues = [...uniqueValuesSet];
-  
+
   const getIcon = (label) => {
     switch (label) {
       case "address":
@@ -175,7 +175,13 @@ function EmployeeInfoCard({ title, description, info, social, action }) {
       >
         {editMode ? "" : `${label}:`}
       </ArgonTypography>
-      <ArgonTypography variant="button" fontWeight="regular" color="text" textTransform="capitalize" width="400px">
+      <ArgonTypography
+        variant="button"
+        fontWeight="regular"
+        color="text"
+        textTransform="capitalize"
+        width="400px"
+      >
         {editMode ? (
           <React.Fragment>
             <TextField
@@ -212,14 +218,13 @@ function EmployeeInfoCard({ title, description, info, social, action }) {
           </React.Fragment>
         ) : (
           <ArgonTypography
-          variant="button"
-          fontWeight="regular"
-          textTransform="capitalize"
-          color="text"
-          sx={{ fontSize: "0.9rem", paddingLeft: "10px" }} 
-        >
-          {uniqueValues[index]}
-        </ArgonTypography>
+            variant="button"
+            fontWeight="regular"
+            color="text"
+            sx={{ fontSize: "0.9rem", paddingLeft: "10px" }}
+          >
+            {uniqueValues[index]}
+          </ArgonTypography>
         )}
       </ArgonTypography>
     </ArgonBox>
@@ -243,7 +248,7 @@ function EmployeeInfoCard({ title, description, info, social, action }) {
   ));
 
   return (
-    <Card sx={{ width:"309%"}}>
+    <Card sx={{ width: "309%" }}>
       <Grid container>
         <Grid item xs={12}>
           <ArgonBox display="flex" justifyContent="space-between" alignItems="center" pt={2} px={2}>
@@ -279,7 +284,7 @@ function EmployeeInfoCard({ title, description, info, social, action }) {
 
             <ArgonBox width="180%" ml={2}>
               {editMode ? (
-                <form >
+                <form>
                   {renderItems}
                   <Stack direction="row" spacing={2} sx={{ justifyContent: "center" }}>
                     <ArgonButton

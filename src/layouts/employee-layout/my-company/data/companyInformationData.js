@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import Table from "examples/Tables/Table";
+import { API_URLS } from "config/apiUrls";
+import { doc } from "prettier";
 
 function Header({ name }) {
   return (
@@ -93,11 +95,9 @@ function CompanyInformationData() {
   useEffect(() => {
     if (storedToken) {
       const decodedToken = jwt_decode(storedToken);
-      console.log(decodedToken);
-      // below URL should be changed to `http://localhost:9091/api/v1/company/get-company-information/${decodedToken.id}`
-      // after navigation by roles is completed
+      console.log(decodedToken);      
       axios
-        .get(`http://localhost:9091/api/v1/company/get-company-information/47`)
+        .get(`${API_URLS.company.localhost}/get-company-information/${decodedToken.id}`)
         .then((response) => {
           setCompanyInfo(response.data);
         })
