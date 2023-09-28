@@ -18,7 +18,7 @@ import {API_URLS} from '../../../config/apiUrls';
 import axios from "axios";
 
 // react-router-dom components
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // @mui material components
 import Card from "@mui/material/Card";
@@ -132,6 +132,8 @@ function GuestRegister() {
   const [guestAddress, setGuestAddress] = useState("");
   const [guestPassword, setGuestPassword] = useState("");
 
+  const navigate = useNavigate();
+
   const handleGuestNameChange = (event) => {
     setGuestName(event.target.value);
   };
@@ -182,6 +184,7 @@ function GuestRegister() {
       .then((response) => {
         console.log("Guest register successfull!", response.data);
         handleGuestRegisterSuccess();
+        navigate("/authentication/login");
       })
       .catch((error) => {
         console.error("Guest register failed: ", error);

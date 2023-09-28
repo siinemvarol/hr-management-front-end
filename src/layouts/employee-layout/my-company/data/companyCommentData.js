@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Table from "examples/Tables/Table";
 import jwt_decode from "jwt-decode";
+import { API_URLS } from "config/apiUrls";
 
 function CompanyCommentData() {
   const storedToken = localStorage.getItem("Authorization");
@@ -23,7 +24,7 @@ function CompanyCommentData() {
       // after navigation by roles is completed
 
       axios
-        .get(`http://localhost:9093/api/v1/comment/get-comments-by-company/`+decodedToken.id)
+        .get(`${API_URLS.comment.localhost}/get-comments-by-company/${decodedToken.id}`)
         .then((response) => {
           setCommentInfo(response.data);
           console.log("response data is...", response.data);

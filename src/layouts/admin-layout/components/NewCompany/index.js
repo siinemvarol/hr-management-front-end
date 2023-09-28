@@ -38,7 +38,7 @@ function NewCompany({ name, company, email, vat, noGutter,companyId,status  }) {
       .then(response => {
         // Başarılı ise burada yapılacak işlemler
         console.log('Company status updated successfully:', response.data);
-        alert("Şirket Onaylandı")
+        alert("Company Approved Successfully")
         
       })
       .catch(error => {

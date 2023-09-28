@@ -71,8 +71,7 @@ function NewCommentsApproval() {
   }, []);
 
   return (
-    <Card 
-    // id="delete-account" 
+    <Card id="delete-account" 
     sx={{ width: 1}}>
       <ArgonBox pt={3} px={2}>
         <ArgonTypography variant="h6" fontWeight="medium">
