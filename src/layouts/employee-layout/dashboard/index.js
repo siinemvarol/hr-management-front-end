@@ -26,7 +26,7 @@ import ArgonTypography from "components/ArgonTypography";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
-import DetailedStatisticsCard from "examples/Cards/StatisticsCards/DetailedStatisticsCard";
+import DetailedStatisticsCard from "./DetailedStatisticsCard";
 import HolidaysTable from "./HolidaysTable";
 
 // Argon Dashboard 2 MUI base styles
@@ -36,15 +36,53 @@ import typography from "assets/theme/base/typography";
 import Slider from "layouts/dashboard/components/Slider";
 
 // Data
-
+import jwt_decode from "jwt-decode";
 import holidaysTableData from "./data/holidaysTableData";
 
 //info cards
 import EmployeeInfo from "./components/EmployeeInfo";
 import CompanyInfo from "./components/CompanyInfo";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { API_URLS } from "config/apiUrls";
 
 function Default() {
   const { size } = typography;
+  const [waitingComments, setWaitingComments] = useState("");
+  const [allComments, setAllComments] = useState("");
+  const [allEmployeesCompany, setAllEmployeesCompany] = useState("");
+  const [allEmployeesPlatform, setAllEmployeesPlatform] = useState("");
+  const storedToken = localStorage.getItem("Authorization");
+
+  useEffect(() => {
+    if (storedToken) {
+      const decodedToken = jwt_decode(storedToken);
+      const authid = decodedToken.id;
+
+      axios
+        .get(`${API_URLS.user.localhost}/get-all-employees-in-company/${authid}`)
+        .then((response) => {
+          setAllEmployeesCompany(response.data);
+        });
+
+      axios
+        .get(`${API_URLS.comment.localhost}/get-total-comments-by-company/${authid}`)
+        .then((response) => {
+          setAllComments(response.data);
+        });
+
+      axios
+        .get(`${API_URLS.comment.localhost}/get-total-comments-by-employee/${authid}`)
+        .then((response) => {
+          setWaitingComments(response.data);
+        });
+    }
+
+    axios.get(`${API_URLS.user.localhost}/get-number-of-employees`).then((response) => {
+      setAllEmployeesPlatform(response.data);
+    });
+  }, []);
+
   return (
     <DashboardLayout>
       <DashboardNavbar />
@@ -52,34 +90,34 @@ function Default() {
         <Grid container spacing={3} mb={3}>
           <Grid item xs={12} md={6} lg={3}>
             <DetailedStatisticsCard
-              title="new employee"
-              count="22"
-              icon={{ color: "info", component: <i className="ni ni-money-coins" /> }}
-              percentage={{ color: "success", count: "+5%", text: "since last month" }}
+              title="my pending comments"
+              count={waitingComments}
+              icon={{ color: "info", component: <i className="ni ni-paper-diploma" /> }}
+              // percentage={{ color: "success", count: "+5%", text: "since last month" }}
             />
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
             <DetailedStatisticsCard
-              title="total employee"
-              count="425"
-              icon={{ color: "error", component: <i className="ni ni-world" /> }}
-              percentage={{ color: "success", count: "+3%", text: "since last year" }}
+              title="all comments of my company"
+              count={allComments}
+              icon={{ color: "error", component: <i className="ni ni-folder-17" /> }}
+              // percentage={{ color: "success", count: "+3%", text: "since last year" }}
             />
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
             <DetailedStatisticsCard
-              title="total salary"
-              count="$2.8M"
-              icon={{ color: "success", component: <i className="ni ni-paper-diploma" /> }}
-              percentage={{ color: "success", count: "+10%", text: "since last year" }}
+              title="all employees in my company"
+              count={allEmployeesCompany}
+              icon={{ color: "success", component: <i className="ni ni-building" /> }}
+              // percentage={{ color: "success", count: "+10%", text: "since last year" }}
             />
           </Grid>
           <Grid item xs={12} md={6} lg={3}>
             <DetailedStatisticsCard
-              title="avg. salary"
-              count="$1,250"
-              icon={{ color: "warning", component: <i className="ni ni-cart" /> }}
-              percentage={{ color: "success", count: "+5%", text: "than last year" }}
+              title="all employees in platform"
+              count={allEmployeesPlatform}
+              icon={{ color: "warning", component: <i className="ni ni-world-2" /> }}
+              // percentage={{ color: "success", count: "+5%", text: "than last year" }}
             />
           </Grid>
         </Grid>
@@ -102,7 +140,7 @@ function Default() {
               }
               chart={gradientLineChartData}
             /> */}
-            <EmployeeInfo/>
+            <EmployeeInfo />
           </Grid>
           <Grid item xs={12} lg={5}>
             <Slider />
@@ -113,7 +151,7 @@ function Default() {
             <HolidaysTable title="Public Holidays" rows={holidaysTableData} />
           </Grid>
           <Grid item xs={12} md={4}>
-            <CompanyInfo/>
+            <CompanyInfo />
           </Grid>
         </Grid>
       </ArgonBox>
