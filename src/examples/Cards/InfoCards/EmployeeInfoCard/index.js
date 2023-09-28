@@ -56,6 +56,14 @@ import { Button, Stack, TextField } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 
 import { API_URLS } from "../../../../config/apiUrls";
+import LocationOnIcon from "@mui/icons-material/LocationOn"; 
+import PhoneIcon from "@mui/icons-material/Phone"; 
+import EmailIcon from "@mui/icons-material/Email"; 
+import AccountCircleTwoToneIcon from "@mui/icons-material/AccountCircleTwoTone";
+import AccountBoxTwoToneIcon from "@mui/icons-material/AccountBoxTwoTone";
+import InfoIcon from '@mui/icons-material/Info';
+import CakeTwoToneIcon from '@mui/icons-material/CakeTwoTone';
+import ContactMailTwoToneIcon from '@mui/icons-material/ContactMailTwoTone';
 
 function EmployeeInfoCard({ title, description, info, social, action }) {
   const storedToken = localStorage.getItem("Authorization");
@@ -105,52 +113,112 @@ function EmployeeInfoCard({ title, description, info, social, action }) {
     setEditMode(false);
   };
 
-  // Create sets to store unique labels and values
-  const uniqueLabelsSet = [];
-  const uniqueValuesSet = [];
+  const uniqueLabelsSet = new Set();
+  const uniqueValuesSet = new Set();
 
-  // Convert this form `objectKey` of the object key into this `object key`
-  Object.keys(info).forEach((el, index) => {
+  Object.keys(info).forEach((el) => {
     const label = el.match(/[A-Z\s]+/)
       ? el.replace(/[A-Z]+/g, (match) => ` ${match.toLowerCase()}`)
       : el;
 
-      const value = Object.values(info)[index];
-
-      uniqueLabelsSet.push(label);
-      uniqueValuesSet.push(value); 
+    uniqueLabelsSet.add(label);
+    uniqueValuesSet.add(editedInfo[el]);
   });
 
-  // Convert sets back to arrays
   const uniqueLabels = [...uniqueLabelsSet];
   const uniqueValues = [...uniqueValuesSet];
+  
+  const getIcon = (label) => {
+    switch (label) {
+      case "address":
+        return <LocationOnIcon />;
+      case "phone":
+        return <PhoneIcon />;
+      case "company email":
+        return <EmailIcon />;
+      case "name":
+        return <AccountCircleTwoToneIcon />;
+      case "surname":
+        return <AccountBoxTwoToneIcon />;
+      case "info":
+        return <InfoIcon />;
+      case "birthday":
+        return <CakeTwoToneIcon />;
+      case "personal email":
+        return <ContactMailTwoToneIcon />;
+      default:
+        return null;
+    }
+  };
 
   const renderItems = uniqueLabels.map((label, index) => (
-    <ArgonBox key={label} display="flex" py={1} pr={2}>
-      <ArgonTypography variant="button" fontWeight="bold" textTransform="capitalize">
-        {label}: &nbsp;
+    <ArgonBox key={label} display="flex" py={2} pr={2} alignItems="center">
+      <ArgonBox
+        sx={{
+          position: "absolute",
+          left: "30px",
+          transform: "translateY(-50%)",
+          color: "blue",
+          fontSize: "1.35rem",
+          marginTop: "38px",
+        }}
+      >
+        {getIcon(label)}
+      </ArgonBox>
+
+      <ArgonTypography
+        variant="button"
+        fontWeight="bold"
+        textTransform="capitalize"
+        sx={{ fontSize: "1.3rem", paddingLeft: "30px", marginTop: "-1px" }}
+      >
+        {editMode ? "" : `${label}:`}
       </ArgonTypography>
       <ArgonTypography variant="button" fontWeight="regular" color="text">
-        &nbsp;
         {editMode ? (
-          <TextField
-            label={label}
-            name={label}
-            value={editedInfo[label]}
-            onChange={handleFieldChange}
-            fullWidth
-             sx={{
-               width: "309%" ,
-               marginTop: "-30px"}}
-            InputLabelProps={{
-              sx: {
-                fontSize: "0.775rem", 
-                display:"none",
-              },
-            }}
-          />
+          <React.Fragment>
+            <TextField
+              label={label}
+              name={label}
+              defaultValue={uniqueValues[index]}
+              onChange={handleFieldChange}
+              fullWidth
+              variant="outlined"
+              sx={{
+                fontSize: "0.9rem",
+                backgroundColor: "#f0f0f0",
+                marginTop: "1px",
+                marginLeft: "5px",
+                border: "1px solid #ced4da",
+                borderRadius: "4px",
+              }}
+              InputProps={{
+                style: {
+                  paddingTop: "4px",
+                  paddingBottom: "4px",
+                  paddingLeft: "5px",
+                  pointerEvents: label === "company email" && "none",
+                },
+              }}
+              InputLabelProps={{
+                sx: {
+                  fontSize: "0.9rem",
+                  display: "block",
+                  marginTop: "-8px",
+                },
+              }}
+            />
+          </React.Fragment>
         ) : (
-          uniqueValues[index]
+          <ArgonTypography
+          variant="button"
+          fontWeight="regular"
+          textTransform="capitalize"
+          color="text"
+          sx={{ fontSize: "1.3rem", paddingLeft: "10px" }} 
+        >
+          {uniqueValues[index]}
+        </ArgonTypography>
         )}
       </ArgonTypography>
     </ArgonBox>

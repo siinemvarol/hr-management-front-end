@@ -15,7 +15,7 @@ import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import RoomIcon from "@mui/icons-material/Room";
 import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
 import EventNoteIcon from "@mui/icons-material/EventNote";
-import { API_URLS } from "config/apiUrls";
+import { API_URLS } from "../../../config/apiUrls";
 import { Typography } from "@mui/material";
 
 function Companies() {
@@ -53,6 +53,7 @@ function Companies() {
   const handleCompanyClick = (companyName) => {
     const company = companies.find((comp) => comp.companyName === companyName);
     setSelectedCompany(company);
+    console.log("company", company);
     navigate(`/guest/company-detail/${encodeURIComponent(companyName)}`, {
       state: { company },
     });
