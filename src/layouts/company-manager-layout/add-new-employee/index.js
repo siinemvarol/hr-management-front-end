@@ -48,6 +48,15 @@ import axios from "axios";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 
+//datepicker
+import { DatePicker } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { Container, TextField } from "@mui/material";
+import dayjs from "dayjs";
+import { makeStyles } from "@mui/styles";
+
 function AddNewEmployee() {
   const storedToken = localStorage.getItem("Authorization");
   const [isEmployeeAdded, setIsEmployeeAdded] = useState(false);
@@ -61,6 +70,32 @@ function AddNewEmployee() {
   const [info, setInfo] = useState("");
   const [avatar, setAvatar] = useState("");
   const [birthday, setBirthday] = useState("");
+
+  const useStyles = makeStyles({
+    root: {
+      "& .MuiInputBase-root": {
+        padding: 0,
+        marginTop: "4px",
+
+        "& .MuiButtonBase-root": {
+          padding: 0,
+          paddingLeft: 10,
+          marginRight: "10px",
+        },
+        "& .MuiInputBase-input": {
+          // padding: 15,
+          paddingLeft: 11,
+
+          height: "36px",
+          width: "100%",
+        },
+        "& .MuiOutlinedInput-root": {
+          borderRadius: "0.5rem",
+        },
+      },
+    },
+  });
+  const classes = useStyles();
 
   const handleNameChange = (event) => {
     setName(event.target.value);
@@ -94,8 +129,13 @@ function AddNewEmployee() {
     setAvatar(event.target.value);
   };
 
-  const handleBirthdayChange = (event) => {
-    setBirthday(event.target.value);
+  const handleBirthdayChange = (date) => {
+    if (date) {
+      const formattedDate = dayjs(date).format("MM/DD/YYYY");
+      setBirthday(formattedDate);
+    } else {
+      setBirthday("");
+    }
   };
 
   const handleAddEmployeeSuccess = () => {
@@ -183,6 +223,14 @@ function AddNewEmployee() {
                         onChange={handleUsernameChange}
                       />
                     </ArgonBox>
+                    <ArgonBox mb={2} width="100%">
+                      <ArgonInput
+                        placeholder="Address"
+                        name="address"
+                        value={address}
+                        onChange={handleAddressChange}
+                      />
+                    </ArgonBox>
                   </div>
 
                   {/* Second Column */}
@@ -195,6 +243,7 @@ function AddNewEmployee() {
                         onChange={handleSurnameChange}
                       />
                     </ArgonBox>
+
                     <ArgonBox mb={2}>
                       {/* <ArgonInput
                         placeholder="Phone Number"
@@ -208,6 +257,8 @@ function AddNewEmployee() {
                           placeholder: "Phone Number",
                           style: {
                             width: "100%",
+                            height: "38px",
+                            borderRadius: "0.5rem",
                           },
                         }}
                         country={"tr"}
@@ -215,6 +266,25 @@ function AddNewEmployee() {
                         onChange={(value) => setPhone(value)}
                       />
                     </ArgonBox>
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                      <ArgonBox mb={2}>
+                        <DatePicker
+                          className={classes.root}
+                          value={birthday} 
+                          onChange={handleBirthdayChange}
+                          renderInput={(props) => (
+                            <TextField
+                              {...props}
+                              type="text"
+                              InputLabelProps={{
+                                shrink: true,
+                              }}
+                            />
+                          )}
+                        />
+                      </ArgonBox>
+                    </LocalizationProvider>
+
                     {/* <ArgonBox mb={2}>
                       <ArgonInput
                         placeholder="Avatar"
@@ -229,17 +299,6 @@ function AddNewEmployee() {
                 <div style={{ display: "flex", justifyContent: "space-between" }}>
                   <ArgonBox mb={2} width="100%">
                     <ArgonInput
-                      placeholder="Address"
-                      name="address"
-                      value={address}
-                      onChange={handleAddressChange}
-                    />
-                  </ArgonBox>
-                </div>
-
-                <div style={{ display: "flex", justifyContent: "space-between" }}>
-                  <ArgonBox mb={2} width="100%">
-                    <ArgonInput
                       placeholder="Info"
                       name="info"
                       value={info}
@@ -247,7 +306,7 @@ function AddNewEmployee() {
                     />
                   </ArgonBox>
                 </div>
-
+                {/* 
                 <div style={{ display: "flex", justifyContent: "space-between" }}>
                   <ArgonBox mb={2} width="100%">
                     <ArgonInput
@@ -256,9 +315,9 @@ function AddNewEmployee() {
                       value={birthday}
                       onChange={handleBirthdayChange}
                     />
-                  </ArgonBox>
+                  </ArgonBox> */}
 
-                  {/* <div style={{ flex: 1 }}>
+                {/* <div style={{ flex: 1 }}>
                     <ArgonBox mb={2}>
                       <ArgonTypography color="text" fontWeight="bold" fontSize="0.7em">
                         Birth Date
@@ -273,7 +332,7 @@ function AddNewEmployee() {
                       </ArgonBox>
                     </div>
                   </div> */}
-                </div>
+                {/* </div> */}
 
                 <div style={{ display: "flex", justifyContent: "space-between" }}>
                   <ArgonBox mb={2} width="100%">
