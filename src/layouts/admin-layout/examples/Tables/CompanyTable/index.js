@@ -33,11 +33,30 @@ import ArgonBox from "components/ArgonBox";
 import SalesTableCell from "examples/Tables/SalesTable/SalesTableCell";
 import { Button } from "@mui/material";
 import ArgonButton from "components/ArgonButton";
+import axios from "axios";
 
 function CompanyTable({ title, rows }) {
   const renderTableCells = rows.map((row, key) => {
+
     const tableRows = [];
     const rowKey = `row-${key}`;
+
+    const handleAcceptClick = (id) => {
+      // API isteği yap
+      axios.put(`http://localhost:9091/api/v1/company/activate-company?id=${id}`, {
+        status: 'active' // Burada istediğiniz yeni durumu belirtin
+      })
+        .then(response => {
+          // Başarılı ise burada yapılacak işlemler
+          console.log('Company status updated successfully:', response.data);
+          alert("Şirket Onaylandı")
+          
+        })
+        .catch(error => {
+          // Hata durumunda burada yapılacak işlemler
+          console.error('Error updating company status:', error);
+        });
+    };
 
     Object.entries(row).map(([cellTitle, cellContent]) =>
       Array.isArray(cellContent)
@@ -69,8 +88,9 @@ function CompanyTable({ title, rows }) {
               variant="contained"
               color="success"
               onClick={() => {
-                // Onayla butonuna tıklama işlemini burada ele alabilirsiniz
-                alert(`Onaylandı: ${row.companyName}`);
+                console.log(row.id)
+                handleAcceptClick(row.companyId)
+                
               }}
             >
               Accept
