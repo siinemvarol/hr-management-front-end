@@ -1,101 +1,40 @@
-/* eslint-disable react/prop-types */
-// Argon Dashboard 2 MUI components
-import ArgonBox from "components/ArgonBox";
-import ArgonTypography from "components/ArgonTypography";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-import Table from "examples/Tables/Table";
+import {
+  Paper,
+  Typography,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Grid,
+  IconButton,
+} from "@mui/material";
+import {
+  Phone as PhoneIcon,
+  Email as EmailIcon,
+  LocationOn as LocationOnIcon,
+  Event as EventIcon,
+  Business as BusinessIcon,
+  AccountBalanceWallet as AccountBalanceWalletIcon,
+  AttachMoney as AttachMoneyIcon,
+  MonetizationOn as MonetizationOnIcon,
+  MoneyOff as MoneyOffIcon,
+  TrendingUp as TrendingUpIcon,
+} from "@mui/icons-material";
 import { API_URLS } from "config/apiUrls";
-import { doc } from "prettier";
-
-function Header({ name }) {
-  return (
-    <ArgonBox display="flex" alignItems="center" px={1} py={0.5}>
-      <ArgonBox display="flex" flexDirection="column">
-        <ArgonTypography variant="button" fontWeight="medium">
-          {name}
-        </ArgonTypography>
-      </ArgonBox>
-    </ArgonBox>
-  );
-}
-
-function Function({ data }) {
-  return (
-    <ArgonBox display="flex" flexDirection="column">
-      <ArgonTypography variant="caption" fontWeight="medium" color="text">
-        {data}
-      </ArgonTypography>
-    </ArgonBox>
-  );
-}
 
 function CompanyInformationData() {
   const storedToken = localStorage.getItem("Authorization");
   const [companyInfo, setCompanyInfo] = useState(null);
 
-  const companyInformationData = {
-    columns: [
-      { name: "header", align: "left" },
-      { name: "information", align: "left" },
-    ],
-
-    rows: [
-      {
-        header: <Header name="Name" />,
-        information: <Function data={companyInfo?.companyName} />,
-      },
-      {
-        header: <Header name="Phone" />,
-        information: <Function data={companyInfo?.companyPhone} />,
-      },
-      {
-        header: <Header name="Email" />,
-        information: <Function data={companyInfo?.infoEmail} />,
-      },
-      {
-        header: <Header name="Address" />,
-        information: <Function data={companyInfo?.companyAddress} />,
-      },
-      {
-        header: <Header name="Establishment Date" />,
-        information: <Function data={companyInfo?.establishmentDate} />,
-      },
-      {
-        header: <Header name="City" />,
-        information: <Function data={companyInfo?.city} />,
-      },
-      {
-        header: <Header name="Tax ID Number" />,
-        information: <Function data={companyInfo?.taxId} />,
-      },
-      {
-        header: <Header name="Revenue" />,
-        information: <Function data={companyInfo?.revenue} />,
-      },
-      {
-        header: <Header name="Expense" />,
-        information: <Function data={companyInfo?.expense} />,
-      },
-      {
-        header: <Header name="Profit" />,
-        information: <Function data={companyInfo?.profit} />,
-      },
-      {
-        header: <Header name="Loss" />,
-        information: <Function data={companyInfo?.loss} />,
-      },
-      {
-        header: <Header name="Net Income" />,
-        information: <Function data={companyInfo?.netIncome} />,
-      },
-    ],
-  };
   useEffect(() => {
     if (storedToken) {
       const decodedToken = jwt_decode(storedToken);
-      console.log(decodedToken);      
+      console.log(decodedToken);
       axios
         .get(`${API_URLS.company.localhost}/get-company-information/${decodedToken.id}`)
         .then((response) => {
@@ -107,7 +46,69 @@ function CompanyInformationData() {
     }
   }, [storedToken]);
 
-  return <Table columns={companyInformationData.columns} rows={companyInformationData.rows} />;
+  const renderInformationRow = (header, information, icon) => (
+    <TableRow>
+      <TableCell>
+        <Grid container alignItems="center">
+          <Grid item>
+            <IconButton size="small" color="primary">
+              {icon}
+            </IconButton>
+          </Grid>
+          <Grid item>
+            <Typography variant="subtitle2">{header}</Typography>
+          </Grid>
+        </Grid>
+      </TableCell>
+      <TableCell>
+        <Typography variant="body2">{information}</Typography>
+      </TableCell>
+    </TableRow>
+  );
+
+  return (
+    <Grid container spacing={3}>
+    <Grid item xs={12} md={6}>
+      <Paper elevation={3} style={{ padding: 16 }}>
+        <Typography variant="h6" gutterBottom align="center">
+          Company Information
+        </Typography>
+        <TableContainer>
+          <Table>
+            <TableBody>
+              {renderInformationRow("Name", companyInfo?.companyName, <BusinessIcon />)}
+              {renderInformationRow("Phone", companyInfo?.companyPhone, <PhoneIcon />)}
+              {renderInformationRow("Email", companyInfo?.infoEmail, <EmailIcon />)}
+              {renderInformationRow("Address", companyInfo?.companyAddress, <LocationOnIcon />)}
+              {renderInformationRow("Establishment Date", companyInfo?.establishmentDate, <EventIcon />)}
+              {renderInformationRow("City", companyInfo?.city, <LocationOnIcon />)}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Paper>
+    </Grid>
+    <Grid item xs={12} md={6}>
+      <Paper elevation={3} style={{ padding: 16 }}>
+        <Typography variant="h6" gutterBottom align="center">
+          Financial Information
+        </Typography>
+        <TableContainer>
+          <Table>
+            <TableBody>
+              {renderInformationRow("Tax ID Number", companyInfo?.taxId, <AccountBalanceWalletIcon />)}
+              {renderInformationRow("Revenue", companyInfo?.revenue, <AttachMoneyIcon />)}
+              {renderInformationRow("Expense", companyInfo?.expense, <AttachMoneyIcon />)}
+              {renderInformationRow("Profit", companyInfo?.profit, <MonetizationOnIcon />)}
+              {renderInformationRow("Loss", companyInfo?.loss, <MoneyOffIcon />)}
+              {renderInformationRow("Net Income", companyInfo?.netIncome, <TrendingUpIcon />)}
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Paper>
+    </Grid>
+  </Grid>
+  
+  );
 }
 
 export default CompanyInformationData;
