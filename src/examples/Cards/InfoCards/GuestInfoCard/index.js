@@ -67,16 +67,18 @@ function GuestInfoCard({ title, description, info, social, action }) {
     setEditMode(false);
   };
 
-  const uniqueLabelsSet = new Set();
-  const uniqueValuesSet = new Set();
+  const uniqueLabelsSet = [];
+  const uniqueValuesSet = [];
 
-  Object.keys(info).forEach((el) => {
+  Object.keys(info).forEach((el, index) => {
     const label = el.match(/[A-Z\s]+/)
       ? el.replace(/[A-Z]+/g, (match) => ` ${match.toLowerCase()}`)
       : el;
 
-    uniqueLabelsSet.add(label);
-    uniqueValuesSet.add(editedInfo[el]);
+      const value = Object.values(info)[index];
+
+    uniqueLabelsSet.push(label);
+    uniqueValuesSet.push(value);
   });
 
   const uniqueLabels = [...uniqueLabelsSet];
@@ -131,7 +133,7 @@ function GuestInfoCard({ title, description, info, social, action }) {
             <TextField
               label={label}
               name={label}
-              defaultValue={uniqueValues[index]}
+              value={editedInfo[label]}
               onChange={handleFieldChange}
               fullWidth
               variant="outlined"
@@ -164,7 +166,6 @@ function GuestInfoCard({ title, description, info, social, action }) {
           <ArgonTypography
           variant="button"
           fontWeight="regular"
-          textTransform="capitalize"
           color="text"
           sx={{ fontSize: "0.9rem", paddingLeft: "10px" }} 
         >

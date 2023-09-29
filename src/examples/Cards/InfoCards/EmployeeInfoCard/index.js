@@ -114,16 +114,19 @@ function EmployeeInfoCard({ title, description, info, social, action }) {
     setEditMode(false);
   };
 
-  const uniqueLabelsSet = new Set();
-  const uniqueValuesSet = new Set();
+  const uniqueLabelsSet = [];
+  const uniqueValuesSet = [];
 
-  Object.keys(info).forEach((el) => {
+  Object.keys(info).forEach((el, index) => {
     const label = el.match(/[A-Z\s]+/)
       ? el.replace(/[A-Z]+/g, (match) => ` ${match.toLowerCase()}`)
       : el;
 
-    uniqueLabelsSet.add(label);
-    uniqueValuesSet.add(editedInfo[el]);
+      const value = Object.values(info)[index];
+
+
+    uniqueLabelsSet.push(label);
+    uniqueValuesSet.push(value);
   });
 
   const uniqueLabels = [...uniqueLabelsSet];
@@ -179,7 +182,7 @@ function EmployeeInfoCard({ title, description, info, social, action }) {
         variant="button"
         fontWeight="regular"
         color="text"
-        textTransform="capitalize"
+        
         width="400px"
       >
         {editMode ? (
@@ -187,7 +190,7 @@ function EmployeeInfoCard({ title, description, info, social, action }) {
             <TextField
               label={label}
               name={label}
-              defaultValue={uniqueValues[index]}
+              value={editedInfo[label]}
               onChange={handleFieldChange}
               fullWidth
               variant="outlined"
