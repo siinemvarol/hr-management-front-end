@@ -42,6 +42,8 @@ import Admin from "layouts/admin-layout";
 // import PersonelApp from "layouts/employee-layout/PersonelApp";
 import { useCentralState } from "context/UserRoleContext/UserRoleContext";
 import Footer from "examples/Footer";
+import ArgonAlert from "components/ArgonAlert";
+import { Alert, AlertTitle, Icon } from "@mui/material";
 
 // Image
 const bgImage =
@@ -52,6 +54,7 @@ const root = createRoot(container);
 
 function Login() {
   const [rememberMe, setRememberMe] = useState(false);
+  const [error, setError] = useState("");
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -102,6 +105,8 @@ function Login() {
       })
       .catch((error) => {
         console.error("Login failed:", error);
+        setError("Login failed. Please check your credentials.");
+
       });
 
     setEmail("");
@@ -154,7 +159,7 @@ function Login() {
             fontWeight="regular"
             fontSize="default"
           >
-            Forgot password
+            {/* Forgot password */}
           </ArgonTypography>
         </ArgonBox>
         <ArgonBox mt={4} mb={1}>
@@ -168,6 +173,12 @@ function Login() {
             Login
           </ArgonButton>
         </ArgonBox>
+        {error && (
+  <ArgonAlert severity="error" color="error">
+    <AlertTitle></AlertTitle>
+    {error}
+  </ArgonAlert>
+)}
         <ArgonBox mt={3} textAlign="center">
           <ArgonTypography variant="button" color="text" fontWeight="regular">
             Don&apos;t have an account?{" "}
