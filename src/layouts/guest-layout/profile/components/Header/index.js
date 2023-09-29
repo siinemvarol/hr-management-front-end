@@ -75,6 +75,7 @@ function Header({fullName}) {
 
   return (
     <ArgonBox position="relative">
+      <DashboardNavbar />
       <ArgonBox height="220px" />
       <Card
         sx={{

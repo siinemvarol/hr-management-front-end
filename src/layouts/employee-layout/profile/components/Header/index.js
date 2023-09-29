@@ -7,6 +7,7 @@ import ArgonAvatar from "components/ArgonAvatar";
 import ArgonButton from "components/ArgonButton";
 import axios from "axios";
 import burceMars from "assets/images/bruce-mars.jpg";
+import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 
 // Burada doğru yolu kontrol edin
 const images = require.context("assets/images", true);
@@ -71,6 +72,7 @@ function Header() {
 
   return (
     <ArgonBox position="relative">
+      <DashboardNavbar />
       <ArgonBox height="220px" />
       <Card
         sx={{
