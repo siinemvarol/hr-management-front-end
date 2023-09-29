@@ -8,9 +8,15 @@ const UserRoleContext = createContext();
 export const UserRoleProvider = ({ children }) => {
   const [userRole, setUserRole] = useState(() => {
     // Initialize userRole from localStorage or default to "all" roles
+
     const storedToken = localStorage.getItem("Authorization");
-    const storedUserRole = jwt_decode(storedToken).role;
+    try {
+      const storedUserRole = jwt_decode(storedToken).role;
     return storedUserRole || "all";
+    } catch (error) {
+      console.error("decodded error")
+    }
+    
   });
 
   useEffect(() => {

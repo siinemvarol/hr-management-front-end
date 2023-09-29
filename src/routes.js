@@ -121,7 +121,7 @@ const routes = [
     route: "/guest/company-detail/:companyName",
     icon: <ArgonBox component="i" color="warning" fontSize="14px" className="ni ni-single-copy-04" />,
     component: <CompanyDetails />,
-    allowedRoles: ["GUEST"],
+    allowedRoles: ["GHOST"],
   },
   {
     type: "route",
@@ -207,7 +207,7 @@ const routes = [
       <ArgonBox component="i" color="success" fontSize="14px" className="ni ni-send" />
     ),
     component: <AddNewComment />,
-    allowedRoles: ["EMPLOYEE"],
+    allowedRoles: ["GHOST"],
   },
   {
     type: "route",
