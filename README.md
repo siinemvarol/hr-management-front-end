@@ -1,37 +1,42 @@
-# [Argon Dashboard 2 MUI](http://demos.creative-tim.com/argon-dashboard-material-ui/?ref=readme-admui) [![Tweet](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&logo=twitter)](https://twitter.com/intent/tweet?url=https://www.creative-tim.com/product/argon-dashboard-material-ui&text=Check%20Argon%20Dashboard%20React%20made%20by%20@CreativeTim%20#webdesign%20#dashboard%20#argondesign%20#react%20https://www.creative-tim.com/product/argon-dashboard-material-ui)
+<div style="display: flex; align-items: center; justify-content: center;">
+  <img src="/src/assets/images/favicon.png" alt="Icon" width="50" height="50">
 
-![version](https://img.shields.io/badge/version-3.0.1-blue.svg) [![GitHub issues open](https://img.shields.io/github/issues/creativetimofficial/argon-dashboard-material-ui.svg)](https://github.com/creativetimofficial/argon-dashboard-material-ui/issues?q=is%3Aopen+is%3Aissue) [![GitHub issues closed](https://img.shields.io/github/issues-closed-raw/creativetimofficial/argon-dashboard-material-ui.svg)](https://github.com/creativetimofficial/argon-dashboard-material-ui/issues?q=is%3Aissue+is%3Aclosed)
+</div>
+  <h2 align="center">MAKS HR Management System</h2>
 
-![Image](https://s3.amazonaws.com/creativetim_bucket/products/447/original/argon-dashboard-material-ui.jpg)
+  <p align="center" >
+MAKS created for commercial companies for managing their human resource processes from one platform
+    <br/>
+    <br/>
 
-Start your Development with an Innovative Admin Template for MUI and React. If you like the look & feel of the hottest design trend right now, Argon, you will fall in love with this dashboard! It features a huge number of components built to fit together and look amazing.
+### About This Project  
 
-**Fully Coded Elements**
+MAKS is a human resources application that includes four distinct roles: admin, company manager, employee, and guest. Each role is equipped with its own dashboard, profile, and pages tailored to their specific responsibilities.
 
-Argon Dashboard 2 MUI is built with over 70 frontend individual elements, like buttons, inputs, navbars, nav tabs, cards, or alerts, giving you the freedom of choosing and combining. All components can take variations in color, which you can easily modify using MUI styled api and sx prop. You will save a lot of time going from prototyping to full-functional code because all elements are implemented. This Free MUI Dashboard is coming with prebuilt design blocks, so the development process is seamless, switching from our pages to the real website is very easy to be done.
+When a company manager registers, their registration is subject to approval by the admin. Once approved, the company manager gains access to the system and can subsequently add employees to the system.
 
-View [all components here](https://www.creative-tim.com/learning-lab/material-ui/alerts/argon-dashboard/).
+Employee profile page encompasses personal information, salary details, and shift schedules. The employee dashboard also provides information about public holidays and details about the company they are employed by.
 
-**Documentation built by Developers**
+Employees have the option to submit comments regarding their company, but these comments will only be published after receiving approval from the admin.
 
-Each element is well presented in very complex documentation.
+For company managers, there is a dedicated page with comprehensive information about their company's financial status, including income, expenses, and profit and loss data.
 
-You can read more about the [documentation here](https://www.creative-tim.com/learning-lab/material-ui/overview/argon-dashboard/).
+Guests who register with the application can access information and comments pertaining to all companies that are registered within the application.
 
-**Example Pages**
+### Screenshots
+ <img src="/src/assets/images/employee_dashboard.png" alt="Icon" width="400">
 
-If you want to get inspiration or just show something directly to your clients, you can jump-start your development with our pre-built example pages. Every page is spaced well, with attractive layouts and pleasing shapes. Argon Dashboard 2 MUI has everything you need to quickly set up an amazing project.
+- After registering in the system, you will receive an email.
+##### Confirm Account
+  <img src="/src/assets/images/confirm_account.png" alt="Icon" width="200" height="300">
 
-View [example pages here](https://demos.creative-tim.com/argon-dashboard-material-ui/).
+##### Verification Successful
+   <img src="/src/assets/images/verification_successful.png" alt="Icon" width="200" height="300">
 
-**HELPFUL LINKS**
+##### Verification Failed
+   <img src="/src/assets/images/verification_failed.png" alt="Icon" width="200" height="300">
 
-- View [Github Repository](https://github.com/creativetimofficial/argon-dashboard-material-ui)
-- Check [FAQ Page](https://www.creative-tim.com/faq)
-
-#### Special thanks
-
-During the development of this dashboard, we have used many existing resources from awesome developers. We want to thank them for providing their tools open source:
+### Technologies
 
 - [MUI](https://mui.com/) - The React UI library for faster and easier web development.
 - [React Countup](https://github.com/glennreyes/react-countup) - A lightweight React component that can be used to quickly create animations that display numerical data in a more interesting way.
@@ -39,56 +44,23 @@ During the development of this dashboard, we have used many existing resources f
 - [ChromaJS](https://gka.github.io/chroma.js/) - A small-ish zero-dependency JavaScript library for all kinds of color conversions and color scales.
 - [UUID](https://github.com/uuidjs/uuid) - JavaScript library for generating random id numbers.
 
-Let us know your thoughts below. And good luck with development!
+### Scripts
 
-## Table of Contents
+- Download and Install NodeJs LTS version from [NodeJs Official Page](https://nodejs.org/en/download/).
 
-- [Versions](#versions)
-- [Demo](#demo)
-- [Quick Start](#quick-start)
-- [Documentation](#documentation)
-- [File Structure](#file-structure)
-- [Browser Support](#browser-support)
-- [Resources](#resources)
-- [Reporting Issues](#reporting-issues)
-- [Technical Support or Questions](#technical-support-or-questions)
-- [Licensing](#licensing)
-- [Useful Links](#useful-links)
-
-## Versions
-
-[<img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/logos/react-logo.jpg?raw=true" width="60" height="60" />](https://www.creative-tim.com/product/argon-dashboard-material-ui?ref=readme-admui)
-
-| React |
-| ----- |
-
-| [![Argon Dashboard 2 MUI](https://s3.amazonaws.com/creativetim_bucket/products/447/thumb/argon-dashboard-material-ui.jpg)](http://demos.creative-tim.com/argon-dashboard-material-ui/?ref=readme-admui)
-
-## Demo
-
-- [Dashboard](http://demos.creative-tim.com/argon-dashboard-material-ui/#/dashboard?ref=readme-admui)
-- [Profile](https://demos.creative-tim.com/argon-dashboard-material-ui/#/profile?ref=readme-admui)
-- [RTL](https://demos.creative-tim.com/argon-dashboard-material-ui/#/rtl?ref=readme-admui)
-- [Sign In](https://demos.creative-tim.com/argon-dashboard-material-ui/#/authentication/sign-in?ref=readme-admui)
-- [Sign Up](https://demos.creative-tim.com/argon-dashboard-material-ui/#/authentication/sign-up?ref=readme-admui)
-
-[View More](https://demos.creative-tim.com/argon-dashboard-material-ui/#/dashboard?ref=readme-admui).
-
-## Quick start
-
-Quick start options:
-
-- Buy from [Creative Tim](https://www.creative-tim.com/product/argon-dashboard-material-ui?ref=readme-admui).
-
-## Terminal Commands
-
-1. Download and Install NodeJs LTS version from [NodeJs Official Page](https://nodejs.org/en/download/).
-2. Navigate to the root ./ directory of the product and run `yarn install` or `npm install` to install our local dependencies.
-
-## Documentation
-
-The documentation for the Argon Dashboard 2 MUI is hosted at our [website](https://www.creative-tim.com/learning-lab/material-ui/overview/argon-dashboard/?ref=readme-admui).
-
+- Navigate to the root ./ directory of the product and run to install our local dependencies.
+```
+npm install
+```
+- Runs the app in the development mode.
+Open http://localhost:3000 to view it in your browser.
+```
+npm start
+```
+- Axios Component for React with child function callback. This is intended to allow in render async requests.
+```
+npm install axios
+```
 ### What's included
 
 Within the download you'll find the following directories and files:
@@ -96,7 +68,6 @@ Within the download you'll find the following directories and files:
 ```
 argon-dashboard-material-ui
     ├── public
-    │   ├── apple-icon.png
     │   ├── favicon.png
     │   ├── index.html
     │   ├── manifest.json
@@ -128,6 +99,8 @@ argon-dashboard-material-ui
     │   │   ├── ArgonPagination
     │   │   ├── ArgonProgress
     │   │   └── ArgonTypography
+    │   ├── config
+    │   │   └── apiUrls.js
     │   ├── context
     │   ├── examples
     │   │   ├── Breadcrumbs
@@ -145,12 +118,18 @@ argon-dashboard-material-ui
     │   │   └── Timeline
     │   ├── layouts
     │   │   ├── authentication
-    │   │   ├── billing
-    │   │   ├── dashboard
-    │   │   ├── profile
-    │   │   ├── rtl
-    │   │   ├── tables
-    │   │   └── virtual-reality
+    │   │   ├── company-manager
+    │   │   ├── employee
+    │   │   ├── admin
+    │   │   ├── company-manager 
+    │   │   ├── employee
+    │   │   ├── guest 
+    │   │   ├── billing
+    │   │   ├── profile
+    │   │   ├── dashboard
+    │   │   ├── rtl
+    │   │   ├── tables 
+    │   │   └── virtual-reality 
     │   ├── App.js
     │   ├── index.js
     │   └── routes.js
@@ -159,62 +138,78 @@ argon-dashboard-material-ui
     ├── .gitignore
     ├── .prettierrc.json
     ├── CHANGELOG.md
+    ├── Dockerfile
     ├── ISSUE_TEMPLATE.md
     ├── jsconfig.json
     ├── package.json
     └── README.md
 ```
+### Project Deployment
+#### A Basic Dockerfile
+```
+FROM node:18.17.1-buster
+COPY ./ /app
+RUN apt-get update -y
+RUN npm install -g serve
+WORKDIR /app
+EXPOSE 3000
+ENTRYPOINT [ "npm","start" ]
+```
+#### Build an image from a Dockerfile
+```
+docker run -p 3000:3000 -d ayseozcan/react:v01 .
+```
+#### Google Cloud - Kubernetes Engine
+- Deployment.yaml
+```
+kind: Deployment
+metadata:
+  name: deployment-react
+spec:
+  selector:
+    matchLabels:
+      app: deployment-pod-label-react
+  template:
+    metadata:
+      labels:
+        app: deployment-pod-label-react      
+    spec:
+      containers: 
+      - name: react 
+        image: ayseozcan/react:v01
+        resources:
+          requests:
+            cpu: "100m"
+            memory: "1024Mi"
+          limits:
+            cpu: "200m"
+            memory: "2048Mi"
+        ports: 
+        - containerPort: 80
+        - containerPort: 3000
+```
+- Service.yaml
+```
+kind: Service
+metadata:
+  name: loadbalancer-react-export-ip
+  labels:
+   app: reactwebservice
+spec:
+  selector:
+    app: deployment-pod-label-react 
+  type: LoadBalancer
+  ports:
+    - name: reactport
+      port: 80
+      targetPort: 3000
+```
+### Browser Support
 
-## Browser Support
+<img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/chrome.png" width="40" height="40"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/firefox.png" width="40" height="40"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/edge.png" width="40" height="40"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/safari.png" width="40" height="40"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/opera.png" width="40" height="40">
 
-At present, we officially aim to support the last two versions of the following browsers:
-
-<img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/chrome.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/firefox.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/edge.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/safari.png" width="64" height="64"> <img src="https://s3.amazonaws.com/creativetim_bucket/github/browser/opera.png" width="64" height="64">
-
-## Resources
-
-- [Live Preview](https://demos.creative-tim.com/argon-dashboard-material-ui/#/dashboard?ref=readme-admui)
-- [Download Page](https://www.creative-tim.com/product/argon-dashboard-material-ui?ref=readme-admui)
-- Documentation is [here](https://www.creative-tim.com/learning-lab/material-ui/overview/argon-dashboard/?ref=readme-admui)
-- [License Agreement](https://www.creative-tim.com/license?ref=readme-admui)
-- [Support](https://www.creative-tim.com/contact-us?ref=readme-admui)
-- Issues: [Github Issues Page](https://github.com/creativetimofficial/argon-dashboard-material-ui/issues)
-
-## Reporting Issues
-
-We use GitHub Issues as the official bug tracker for the Argon Dashboard 2 MUI. Here are some advices for our users that want to report an issue:
-
-1. Make sure that you are using the latest version of the Argon Dashboard 2 MUI. Check the CHANGELOG from your dashboard on our [website](https://www.creative-tim.com/product/argon-dashboard-material-ui?ref=readme-admui).
-2. Providing us reproducible steps for the issue will shorten the time it takes for it to be fixed.
-3. Some issues may be browser specific, so specifying in what browser you encountered the issue might help.
-
-## Technical Support or Questions
-
-If you have questions or need help integrating the product please [contact us](https://www.creative-tim.com/contact-us?ref=readme-admui) instead of opening an issue.
-
-## Licensing
+### Licensing
 
 - Copyright 2023 [Creative Tim](https://www.creative-tim.com?ref=readme-admui)
 - Creative Tim [license](https://www.creative-tim.com/license?ref=readme-admui)
 
-## Useful Links
-
-- [More products](https://www.creative-tim.com/templates?ref=readme-admui) from Creative Tim
-
-- [Tutorials](https://www.youtube.com/channel/UCVyTG4sCw-rOvB9oHkzZD1w)
-
-- [Freebies](https://www.creative-tim.com/bootstrap-themes/free?ref=readme-admui) from Creative Tim
-
-- [Affiliate Program](https://www.creative-tim.com/affiliates/new?ref=readme-admui) (earn money)
-
-##### Social Media
-
-Twitter: <https://twitter.com/CreativeTim>
-
-Facebook: <https://www.facebook.com/CreativeTim>
-
-Dribbble: <https://dribbble.com/creativetim>
-
-Google+: <https://plus.google.com/+CreativetimPage>
-
-Instagram: <https://instagram.com/creativetimofficial>
