@@ -23,7 +23,7 @@ import { Grid } from "swiper";
 
 // Images
 const bgImage =
-  "https://img.freepik.com/free-photo/blurred-soft-people-meeting-table-business-people-talking-modern-office-generative-ai_1258-150801.jpg?w=1380&t=st=1695715928~exp=1695716528~hmac=49c98d9d564a4110ee36b1d5280e81e704a7ad11f24a10d38921d7c918888461";
+  "https://images.unsplash.com/photo-1541746972996-4e0b0f43e02a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80";
 
 function Welcome() {
   const info = [

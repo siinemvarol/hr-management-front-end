@@ -47,7 +47,7 @@ import { Alert, AlertTitle, Icon } from "@mui/material";
 
 // Image
 const bgImage =
-  "https://img.freepik.com/free-photo/copy-space-blank-commercial-advertisement_53876-121262.jpg?w=740&t=st=1695725202~exp=1695725802~hmac=1f0cca951e733f23072c4abb5f3aefea52d7d1c7f3306cf462a8399e4df11137";
+  "https://images.unsplash.com/photo-1554232456-8727aae0cfa4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTAwfHxvZmZpY2V8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
