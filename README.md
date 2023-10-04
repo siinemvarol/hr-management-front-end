@@ -157,7 +157,7 @@ ENTRYPOINT [ "npm","start" ]
 ```
 #### Build an image from a Dockerfile
 ```
-docker run -p 3000:3000 -d ayseozcan/react:v01 .
+docker run -p 3000:3000 -d siinemvarol/react:v01 .
 ```
 #### Google Cloud - Kubernetes Engine
 - Deployment.yaml
@@ -176,7 +176,7 @@ spec:
     spec:
       containers: 
       - name: react 
-        image: ayseozcan/react:v01
+        image: siinemvarol/react:v01
         resources:
           requests:
             cpu: "100m"
